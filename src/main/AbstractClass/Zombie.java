@@ -2,13 +2,13 @@ package AbstractClass;
 import Interface.Moveable;
 
 public abstract class Zombie implements Moveable {
-    protected String name;
-    protected int health;
-    protected int attackDamage;
-    protected float attackSpeed;
-    protected float movementSpeed = 5;
-    protected boolean isAquatic, isFrozen = false, isDead = false;
-    protected static int zombieCount = 0;
+    private String name;
+    private int health;
+    private int attackDamage;
+    private float attackSpeed;
+    private float movementSpeed = 5;
+    private boolean isAquatic, isFrozen = false, isDead = false;
+    public static int zombieCount = 0;
 
     // Getter
     public String getName() {
