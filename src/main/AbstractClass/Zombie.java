@@ -83,4 +83,5 @@ public abstract class Zombie implements Moveable {
     public void moveForward() {
         System.out.println("Maju satu langkah");
     }
+    
 }
