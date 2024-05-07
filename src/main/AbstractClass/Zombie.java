@@ -1,4 +1,5 @@
 package AbstractClass;
+
 import Interface.Moveable;
 
 public abstract class Zombie implements Moveable {
@@ -78,10 +79,6 @@ public abstract class Zombie implements Moveable {
 
     public void makeDead() {
         this.isDead = true;
-    }
-
-    public void moveForward() {
-        System.out.println("Maju satu langkah");
     }
     
 }
