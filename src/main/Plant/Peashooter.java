@@ -12,4 +12,8 @@ public class Peashooter extends Plant {
         setRange(-1);
         setCooldown(10);
     }
+
+    public void shoot() {
+        
+    }
 }
