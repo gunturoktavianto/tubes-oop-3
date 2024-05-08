@@ -1,8 +1,11 @@
 package Tile;
 
-import AbstractClass.Plant;
-import AbstractClass.Tile;
+import java.util.Random;
+
+import AbstractClass.*;
 import Plant.Lilypad;
+import Zombie.DolphinRiderZombie;
+import Zombie.DuckyTubeZombie;
 
 public class WaterTile extends Tile {
     public WaterTile() {
@@ -21,5 +24,15 @@ public class WaterTile extends Tile {
             setPlant(plant);
         else
             System.out.println("\u001B[31m" + "TIDAK BISA MENARUH TANAMAN" + "\u001B[0m");
+    }
+
+    @Override
+    public Zombie spawnZombie() {
+        Random rand = new Random();
+        if (rand.nextBoolean()) {
+            return new DolphinRiderZombie();
+        } else {
+            return new DuckyTubeZombie();
+        }
     }
 }
