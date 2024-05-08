@@ -12,4 +12,8 @@ public class BucketheadZombie extends Zombie {
         setIsAquatic(false);
         zombieCount ++;
     }
+
+    public void moveForward(){
+        
+    }
 }   

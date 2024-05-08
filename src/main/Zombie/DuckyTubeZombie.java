@@ -12,4 +12,8 @@ public class DuckyTubeZombie extends Zombie {
         setIsAquatic(true);
         zombieCount ++;
     }
+
+    public void moveForward(){
+        
+    }
 }   

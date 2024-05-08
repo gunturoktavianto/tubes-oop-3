@@ -17,4 +17,8 @@ public class EsKrimZombie extends Zombie implements SpellCaster{
     public void castSpell(){
         System.out.println("shing shing");
     }
+
+    public void moveForward(){
+        
+    }
 }   

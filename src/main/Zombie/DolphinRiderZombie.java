@@ -17,4 +17,8 @@ public class DolphinRiderZombie extends Zombie implements Vaultable {
     public void jumpOver(){
         System.out.println("gas lompat");
     }
+
+    public void moveForward(){
+        
+    }
 }   

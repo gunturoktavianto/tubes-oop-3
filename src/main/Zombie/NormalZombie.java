@@ -12,4 +12,8 @@ public class NormalZombie extends Zombie {
         setIsAquatic(false);
         zombieCount ++;
     }
+
+    public void moveForward(){
+        
+    }
 }   
