@@ -1,10 +1,12 @@
-package Lawn;
+package Game;
 
 import java.util.ArrayList;
+
 import AbstractClass.Tile;
-import Plant.Lilypad;
-import Plant.Peashooter;
-import Zombie.NormalZombie;
+
+import Plant.*;
+import Tile.*;
+import Zombie.*;
 
 public class Lawn {
     private ArrayList<ArrayList<Tile>> lawn = new ArrayList<>();

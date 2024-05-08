@@ -81,4 +81,7 @@ public abstract class Zombie implements Moveable {
         this.isDead = true;
     }
     
+    public void moveForward() {
+        return;
+    }
 }

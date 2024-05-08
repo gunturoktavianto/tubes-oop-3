@@ -1,4 +1,4 @@
-import Lawn.Lawn;
+import Game.Lawn;
 import Zombie.NormalZombie;
 
 public class Main {

@@ -1,4 +1,4 @@
-package Lawn;
+package Tile;
 
 import AbstractClass.Plant;
 import AbstractClass.Tile;
