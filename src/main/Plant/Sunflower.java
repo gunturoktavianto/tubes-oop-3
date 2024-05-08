@@ -1,10 +1,11 @@
 package Plant;
 import AbstractClass.Plant;
+import Interface.Action;
 
-public class Sunflower extends Plant {
+public class Sunflower extends Plant implements Action {
     private int sunGenerated;
     private int sunCooldown;
-
+    
     public Sunflower() {
         setName("Sunflower");
         setCost(50);
@@ -28,5 +29,9 @@ public class Sunflower extends Plant {
             sunCooldown = 0;
         }
         return sunGenerated;
+    }
+
+    public void action() {
+        
     }
 }
