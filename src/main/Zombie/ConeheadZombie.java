@@ -12,4 +12,8 @@ public class ConeheadZombie extends Zombie {
         setIsAquatic(false);
         zombieCount ++;
     }
+
+    public void moveForward(){
+        
+    }
 }   

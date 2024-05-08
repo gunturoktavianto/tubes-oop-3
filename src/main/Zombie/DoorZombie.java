@@ -12,4 +12,8 @@ public class DoorZombie extends Zombie {
         setIsAquatic(false);
         zombieCount ++;
     }
+
+    public void moveForward(){
+        
+    }
 }   

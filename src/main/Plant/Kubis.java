@@ -2,10 +2,10 @@ package Plant;
 import AbstractClass.Plant;
 import Interface.Action;
 
-public class Peashooter extends Plant implements Action{
+public class Kubis extends Plant implements Action {
     
-    public Peashooter() {
-        setName("Peashooter");
+    public Kubis() {
+        setName("Kubis");
         setCost(100);
         setHealth(100);
         setAttackDamage(25);
