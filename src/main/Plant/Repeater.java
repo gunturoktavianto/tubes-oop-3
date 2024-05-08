@@ -2,13 +2,13 @@ package Plant;
 import AbstractClass.Plant;
 import Interface.Action;
 
-public class Peashooter extends Plant implements Action{
+public class Repeater extends Plant implements Action {
     
-    public Peashooter() {
-        setName("Peashooter");
+    public Repeater() {
+        setName("Repeater");
         setCost(100);
         setHealth(100);
-        setAttackDamage(25);
+        setAttackDamage(50);
         setAttackSpeed(4);
         setRange(-1);
         setCooldown(10);

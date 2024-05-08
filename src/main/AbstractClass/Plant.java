@@ -75,5 +75,5 @@ public abstract class Plant {
         isAquatic = aquatic;
     }
 
-    abstract public void shoot();
+    // abstract public void shoot();
 }
