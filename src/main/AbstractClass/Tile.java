@@ -47,4 +47,6 @@ public abstract class Tile {
     public void setType(String type) {
         this.type = type;
     }
+
+    
 }

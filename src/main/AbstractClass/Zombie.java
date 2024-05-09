@@ -6,6 +6,8 @@ public abstract class Zombie implements Moveable {
     private String name;
     private int health;
     private int attackDamage;
+    private int x; // row posiition
+    private int y = 8       ; // column position
     private float attackSpeed;
     private float movementSpeed = 5;
     private boolean isAquatic, isFrozen = false, isDead = false;
@@ -48,6 +50,14 @@ public abstract class Zombie implements Moveable {
         return zombieCount;
     }
 
+    public int x() {
+        return x;
+    }
+
+    public int y() {
+        return y;
+    }
+
     // Setter
     public void setName(String name) {
         this.name = name;
@@ -77,6 +87,14 @@ public abstract class Zombie implements Moveable {
         this.isFrozen = true;
     }
 
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public void setY(int y) {
+        this.y = y;
+    }
+
     public void makeDead() {
         this.isDead = true;
     }
@@ -84,4 +102,5 @@ public abstract class Zombie implements Moveable {
     public void moveForward() {
         return;
     }
+    
 }

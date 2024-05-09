@@ -16,4 +16,9 @@ public class BucketheadZombie extends Zombie {
     public void moveForward(){
         
     }
+
+    public void action()
+    {
+        
+    }
 }   

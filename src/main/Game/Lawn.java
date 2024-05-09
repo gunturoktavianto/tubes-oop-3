@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import AbstractClass.Tile;
 import AbstractClass.Zombie;
+import AbstractClass.Plant;
 import Plant.*;
 import Tile.*;
 
@@ -69,6 +70,7 @@ public class Lawn {
                                 z.setMovementSpeed(5.0f);         // Reset Normal
                             }
                             tileRow.get(col - 1).getZombies().add(z);           // Place each zombie to the next tile
+                            z.setY(col);
                         } else if (z.getMovementSpeed() > 0) {                  // Need to decrease its movement_speed (as a cooldown)
                             z.setMovementSpeed(z.getMovementSpeed() - 0.5f);    // Decrease its movement speed
                         }
@@ -98,5 +100,26 @@ public class Lawn {
         }
         System.out.println();
         System.out.println();
+    }
+
+    public boolean isTailPlanted(int x, int y)
+    {
+        return (lawn.get(x).get(y).hasPlant());
+    }
+
+    public boolean isAnyZombie(int x, int y)
+    {
+        return (lawn.get(x).get(y).hasZombie());
+    }
+
+    public void planting(int x, int y, Plant plant)
+    {
+        // if()
+        if(lawn.get(x).get(y).hasPlant()) 
+        {
+            lawn.get(x).get(y).plant(plant);
+            plant.setCurrentCooldown(plant.getCooldown());
+        }
+        else System.out.println("cannot plant plants in the tile that already have plants.");
     }
 }

@@ -6,7 +6,10 @@ public abstract class Plant {
     private int health;
     private int attackDamage;
     private float attackSpeed;
-    private int cooldown;
+    private int x; // representasi row untuk tanaman yang di plant
+    private int y; // representasi kolom untuk tanaman yang di plant
+    private int cooldown; // cooldown tetap untuk setiap tanaman
+    private int currentCooldown; // cooldown tanaman saat ini untuk deck yang nanti kalo abis di plant tiap detik di loop dikurangin
     private int range;
     private boolean isAquatic;
 
@@ -57,6 +60,30 @@ public abstract class Plant {
 
     public void setCooldown(int cooldown) {
         this.cooldown = cooldown;
+    }
+
+    public int getCurrentCooldown() {
+        return currentCooldown;
+    }
+
+    public void setCurrentCooldown(int currentCooldown) {
+        this.currentCooldown = currentCooldown;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public void setX(int x) {
+        this.x = x;
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    public void setY(int y) {
+        this.y = y;
     }
 
     public int getRange() {

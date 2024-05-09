@@ -77,5 +77,14 @@ public class Deck implements Stockable {
             System.out.println("Slot " + (i + 1) + ": Empty");
         }
     }
+
+    public boolean isPlantCooldown(Plant plant)
+    {
+        if(plant.getCurrentCooldown() > 0)
+        {
+            return true;
+        }
+        else return false;
+    }
 }
 
