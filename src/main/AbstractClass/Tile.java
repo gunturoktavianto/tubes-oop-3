@@ -5,7 +5,7 @@ import java.util.Random;
 
 public abstract class Tile {
     private String type;
-    private Plant plant;
+    private Plant plant = null;
     private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
 
     public abstract void plant(Plant plant);

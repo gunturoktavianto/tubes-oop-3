@@ -15,6 +15,6 @@ public class SnowPea extends Plant implements Action {
     }
 
     public void action() {
-        
+        System.out.println("snowpea");
     }
 }

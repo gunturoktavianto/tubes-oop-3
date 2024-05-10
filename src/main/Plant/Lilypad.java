@@ -35,4 +35,6 @@ public class Lilypad extends Plant{
     public void shoot() {
         return;
     }
+
+    public void action(){}
 }

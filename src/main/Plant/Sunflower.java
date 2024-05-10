@@ -1,5 +1,6 @@
 package Plant;
 import AbstractClass.Plant;
+import Game.Game;
 import Interface.Action;
 
 public class Sunflower extends Plant implements Action {
@@ -15,23 +16,20 @@ public class Sunflower extends Plant implements Action {
         setRange(0);
         setCooldown(10);
         sunGenerated = 0;
-        sunCooldown = 0;
+        // sunCooldown = 0;
     }
 
-    public void shoot() {
-        
-    }
-
-    public int generateSun(){
-        sunCooldown++;
-        if (sunCooldown == 10){
-            sunGenerated += 25;
-            sunCooldown = 0;
-        }
-        return sunGenerated;
-    }
+    // public int generateSun(){
+    //     sunCooldown++;
+    //     if (sunCooldown == 10){
+    //         sunGenerated += 25;
+    //         sunCooldown = 0;
+    //     }
+    //     return sunGenerated;
+    // }
 
     public void action() {
-        
+        Game.setSun(Game.getSun() + 25);
+        System.out.println("sunflower");
     }
 }

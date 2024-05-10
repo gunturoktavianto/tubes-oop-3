@@ -21,4 +21,9 @@ public class EsKrimZombie extends Zombie implements SpellCaster{
     public void moveForward(){
         
     }
+
+    public void action()
+    {
+        System.out.println("eskrim");
+    }
 }   

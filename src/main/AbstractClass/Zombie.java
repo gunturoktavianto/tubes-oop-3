@@ -8,7 +8,8 @@ public abstract class Zombie implements Moveable {
     private int attackDamage;
     private int x; // row posiition
     private int y = 8       ; // column position
-    private float attackSpeed;
+    private float attackSpeed; // yang konstan
+    private float currentAttackSpeed = 0; // yang kurang
     private float movementSpeed = 5;
     private boolean isAquatic, isFrozen = false, isDead = false;
     public static int zombieCount = 0;
@@ -28,6 +29,10 @@ public abstract class Zombie implements Moveable {
 
     public float getAttackSpeed() {
         return attackSpeed;
+    }
+
+    public float getCurrentAttackSpeed() {
+        return currentAttackSpeed;
     }
 
     public float getMovementSpeed() {
@@ -50,11 +55,11 @@ public abstract class Zombie implements Moveable {
         return zombieCount;
     }
 
-    public int x() {
+    public int getX() {
         return x;
     }
 
-    public int y() {
+    public int getY() {
         return y;
     }
 
@@ -75,6 +80,10 @@ public abstract class Zombie implements Moveable {
         this.attackSpeed  = attackSpeed;
     }
 
+    public void setCurrentAttackSpeed(float currentAttackSpeed) {
+        this.currentAttackSpeed  = currentAttackSpeed;
+    }
+    
     public void setMovementSpeed(float movementSpeed) {
         this.movementSpeed = movementSpeed;
     }
@@ -102,5 +111,8 @@ public abstract class Zombie implements Moveable {
     public void moveForward() {
         return;
     }
-    
+
+    public void action() {
+        return;
+    }
 }

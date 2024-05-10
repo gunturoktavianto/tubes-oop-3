@@ -15,6 +15,6 @@ public class Chomper extends Plant implements Action {
     }
 
     public void action() {
-        
+        System.out.println("chomper");
     }
 }

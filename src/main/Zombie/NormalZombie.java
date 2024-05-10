@@ -16,4 +16,9 @@ public class NormalZombie extends Zombie {
     public void moveForward(){
         
     }
+
+    public void action()
+    {
+        System.out.println("normal");
+    }
 }   

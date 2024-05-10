@@ -12,5 +12,5 @@ public class Wallnut extends Plant {
         setRange(0);
         setCooldown(20);
     }
-
+    public void action(){}
 }

@@ -19,6 +19,6 @@ public class BucketheadZombie extends Zombie {
 
     public void action()
     {
-        
+        System.out.println("bucket");
     }
 }   

@@ -16,4 +16,9 @@ public class DuckyTubeZombie extends Zombie {
     public void moveForward(){
         
     }
+
+    public void action()
+    {
+        System.out.println("duck");
+    }
 }   

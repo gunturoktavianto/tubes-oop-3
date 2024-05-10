@@ -47,7 +47,7 @@ public class Lawn {
         }
     }
 
-    public void moveForward() {
+    public void moveForward() { 
         for (int row = 0; row < 6; row++) {
             ArrayList<Tile> tileRow = lawn.get(row);
             if (tileRow.get(0).hasZombie()) {
@@ -114,12 +114,99 @@ public class Lawn {
 
     public void planting(int x, int y, Plant plant)
     {
-        // if()
-        if(lawn.get(x).get(y).hasPlant()) 
+        
+        if(plant.getCurrentCooldown() > 0)
         {
-            lawn.get(x).get(y).plant(plant);
-            plant.setCurrentCooldown(plant.getCooldown());
+            plant.setCooldown(plant.getCooldown() - 0.5f);
         }
-        else System.out.println("cannot plant plants in the tile that already have plants.");
+        else
+        {
+            if(Game.getSun() > plant.getCost())
+            {
+                if(lawn.get(x).get(y).hasPlant()) 
+                {
+                    lawn.get(x).get(y).plant(plant);
+                    plant.setX(x);
+                    plant.setY(y);
+                    plant.setCurrentCooldown(plant.getCooldown());
+                }
+                else System.out.println("cannot plant plants in the tile that already have plants.");
+            }
+            else System.out.println("You r Broke");
+        }
+    }
+
+    public void zombieAction()
+    {
+        for (int row = 0; row < lawn.size(); row++) {
+            ArrayList<Tile> tileRow = lawn.get(row);
+            for (int col = 1; col < tileRow.size(); col++) {                    // Start from 1 to prevent array out of bounds
+                if (tileRow.get(col).hasZombie()) {
+                    ArrayList<Zombie> zombies = tileRow.get(col).getZombies();
+                    for (Zombie z : zombies) {
+                        if (z.getCurrentAttackSpeed() == 0 && z.getAttackDamage() > 0) {   // pastiin zombienya bisa attack
+                            z.action();                                                         // Cek dulu mana zombie yang attack_speed udah 0 dilakuin action
+                            z.setCurrentAttackSpeed(z.getAttackSpeed());                       // Reset its attack speed (attackspeed cooldown)
+                        } else if (z.getCurrentAttackSpeed() > 0 && z.getAttackDamage() > 0) {                  // Need to decrease its attack_speed (as a cooldown)
+                            z.setCurrentAttackSpeed(z.getCurrentAttackSpeed() - 0.5f);    // Decrease its attack speed
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public void plantAction()
+    {
+        for (int row = 0; row < lawn.size(); row++) {
+            ArrayList<Tile> tileRow = lawn.get(row);
+            for (int col = 1; col < tileRow.size(); col++) {                    // Start from 1 to prevent array out of bounds
+                if (tileRow.get(col).hasPlant()) {
+                    Plant p = tileRow.get(col).getPlant();
+                    if (p instanceof Chomper || p instanceof Jalapeno) {   
+                            p.action();        
+                    }                                                 
+                    else 
+                    {
+                        if(p.getCurrentAttackSpeed() == 0)
+                        {
+                            p.action();
+                            p.setCurrentAttackSpeed(p.getAttackSpeed());
+                        }
+                        else
+                        {
+                            p.setCurrentAttackSpeed(p.getCurrentAttackSpeed() - 0.5f);
+                        }
+                    }             
+                }
+            }
+        }
+    }
+
+    public void shoot(Plant plant)
+    {
+        int range = 0; 
+        if(plant.getRange() == -1)
+        {
+            range = 8;
+        } 
+        else 
+        {
+            if(plant.getY()+plant.getRange() > 8) range = 8;
+            else range =plant.getY()+ plant.getRange();
+        }
+        
+        for(int i = plant.getY()+1; i <= range; i++)
+        {
+            if(lawn.get(plant.getX()).get(i).hasZombie())
+            {
+                ArrayList<Zombie> zombies = lawn.get(plant.getX()).get(i).getZombies();
+                for(Zombie z : zombies)
+                {
+                    if(z.getHealth() - plant.getAttackDamage() < 0) z.setHealth(0);
+                    else z.setHealth(z.getHealth() - plant.getAttackDamage());
+                }
+            }
+        }
     }
 }

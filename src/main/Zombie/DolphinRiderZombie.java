@@ -21,4 +21,9 @@ public class DolphinRiderZombie extends Zombie implements Vaultable {
     public void moveForward(){
         
     }
+
+    public void action()
+    {
+        System.out.println("dolph");
+    }
 }   
