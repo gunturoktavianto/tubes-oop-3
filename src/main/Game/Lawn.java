@@ -2,6 +2,8 @@ package Game;
 
 import java.util.ArrayList;
 
+import java.util.Iterator;
+
 import AbstractClass.Tile;
 import AbstractClass.Zombie;
 import AbstractClass.Plant;
@@ -47,37 +49,39 @@ public class Lawn {
         }
     }
 
-    public void moveForward() { 
-        for (int row = 0; row < 6; row++) {
-            ArrayList<Tile> tileRow = lawn.get(row);
-            if (tileRow.get(0).hasZombie()) {
-                System.out.println("Zombies have reached the house! Game Over.");
-                System.exit(0);
-            }
+    public void moveForward(int row) { 
+        ArrayList<Tile> tileRow = lawn.get(row);
+        if (tileRow.get(0).hasZombie()) {
+            System.out.println("Zombies have reached the house! Game Over.");
+            System.exit(0);
         }
 
         // Moving zombies from right to left
-        for (int row = 0; row < lawn.size(); row++) {
-            ArrayList<Tile> tileRow = lawn.get(row);
-            for (int col = 1; col < tileRow.size(); col++) {                    // Start from 1 to prevent array out of bounds
-                if (tileRow.get(col).hasZombie()) {
-                    ArrayList<Zombie> zombies = tileRow.get(col).getZombies();
-                    for (Zombie z : zombies) {
-                        if (z.getMovementSpeed() == 0) {                        // Cek dulu mana zombie yang movement_speednya udah 0 yang perlu dipindah
-                            if (z.getIsFrozen()) {                              // Reset its movement_speed (move cooldown)
-                                z.setMovementSpeed(10.0f);        // Check if its still frozen or not (changing its speed if its back to not frozen again NOT YET IMPLEMENTED)
-                            } else {
-                                z.setMovementSpeed(5.0f);         // Reset Normal
-                            }
-                            z.setY(col-1);
-                            tileRow.get(col - 1).getZombies().add(z);           // Place each zombie to the next tile
-                            tileRow.get(col).getZombies().remove(z);
-                        } else if (z.getMovementSpeed() > 0) {                  // Need to decrease its movement_speed (as a cooldown)
-                            z.setMovementSpeed(z.getMovementSpeed() - 1f);      // Decrease its movement speed
+        for (int col = 1; col < tileRow.size(); col++) {
+            if (tileRow.get(col).hasZombie()) {
+                ArrayList<Zombie> zombies = tileRow.get(col).getZombies();
+                Iterator<Zombie> iterator = zombies.iterator();
+                while (iterator.hasNext()) {
+                    Zombie z = iterator.next();
+                    if (z.getMovementSpeed() == 0.0f) {
+                        if (z.getIsFrozen()) {
+                            z.setMovementSpeed(10.0f);
+                        } else {
+                            z.setMovementSpeed(5.0f);
                         }
+                        tileRow.get(col - 1).getZombies().add(z);
+                        iterator.remove(); // Safe removal
+                    } else if (z.getMovementSpeed() > 0) {
+                        z.setMovementSpeed(z.getMovementSpeed() - 1f);
                     }
                 }
             }
+        }
+    }
+
+    public void moveAll() {
+        for (int i=0; i<6; i++) {
+            moveForward(i);
         }
     }
 
