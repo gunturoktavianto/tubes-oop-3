@@ -70,9 +70,12 @@ public class Lawn {
                                 z.setMovementSpeed(5.0f);         // Reset Normal
                             }
                             tileRow.get(col - 1).getZombies().add(z);           // Place each zombie to the next tile
+                            Zombie temp = tileRow.get(col).getZombies().getFirst();
+                            tileRow.get(col).removeZombie(temp);
                             z.setY(col);
+                            System.out.println("test");
                         } else if (z.getMovementSpeed() > 0) {                  // Need to decrease its movement_speed (as a cooldown)
-                            z.setMovementSpeed(z.getMovementSpeed() - 0.5f);    // Decrease its movement speed
+                            z.setMovementSpeed(z.getMovementSpeed() - 1f);    // Decrease its movement speed
                         }
                     }
                 }
@@ -123,7 +126,7 @@ public class Lawn {
         {
             if(Game.getSun() > plant.getCost())
             {
-                if(lawn.get(x).get(y).hasPlant()) 
+                if(!lawn.get(x).get(y).hasPlant()) 
                 {
                     lawn.get(x).get(y).plant(plant);
                     plant.setX(x);

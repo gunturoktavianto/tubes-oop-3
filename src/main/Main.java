@@ -13,20 +13,37 @@ public class Main {
 
         lawn.printLawn();
         Game.setSun(500);
-        lawn.planting(1,8, new Jalapeno());
+        lawn.planting(1,6, new Jalapeno());
         lawn.printLawn();
         lawn.plantAction();
         lawn.printLawn();
         lawn.moveForward(); 
-        lawn.moveForward();
-        lawn.moveForward();
-        lawn.moveForward();
-        lawn.zombieAction();
         lawn.printLawn();
-        lawn.moveForward();
-        lawn.moveForward();
-        lawn.moveForward();
-        lawn.zombieAction();
+        lawn.moveForward(); 
         lawn.printLawn();
+        lawn.moveForward(); 
+        lawn.printLawn();
+        lawn.moveForward(); 
+        lawn.printLawn();
+        lawn.moveForward(); 
+        lawn.printLawn();
+        lawn.moveForward(); 
+        lawn.printLawn();
+        // lawn.printLawn();
+        // lawn.moveForward(); 
+        // lawn.printLawn();
+        // lawn.moveForward();
+        // lawn.printLawn();
+        // lawn.moveForward();
+        // lawn.printLawn();
+        // lawn.moveForward();
+        // lawn.printLawn();
+        // lawn.zombieAction();
+        // lawn.printLawn();
+        // lawn.moveForward();
+        // lawn.moveForward();
+        // lawn.moveForward();
+        // lawn.zombieAction();
+        // lawn.printLawn();
     }
 }
