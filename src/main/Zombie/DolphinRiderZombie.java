@@ -6,7 +6,7 @@ import Interface.Vaultable;
 public class DolphinRiderZombie extends Zombie implements Vaultable {
     
     public DolphinRiderZombie() {
-        setName("Pole Vaulting Zombie");
+        setName("Dolphin Rider Zombie");
         setHealth(175);
         setAttackDamage(100);
         setAttackSpeed(1);

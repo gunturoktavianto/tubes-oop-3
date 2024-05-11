@@ -32,9 +32,11 @@ public class Lilypad extends Plant{
         return (plantedPlant != null);
     }
 
-    public void shoot() {
-        return;
-    }
+    // public void shoot() {
+    //     return;
+    // }
 
-    public void action(){}
+    public void action(){
+
+    }
 }

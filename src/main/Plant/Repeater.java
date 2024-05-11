@@ -6,7 +6,7 @@ public class Repeater extends Plant implements Action {
     
     public Repeater() {
         setName("Repeater");
-        setCost(100);
+        setCost(200);
         setHealth(100);
         setAttackDamage(50);
         setAttackSpeed(4);
