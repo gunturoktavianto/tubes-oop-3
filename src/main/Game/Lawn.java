@@ -69,13 +69,11 @@ public class Lawn {
                             } else {
                                 z.setMovementSpeed(5.0f);         // Reset Normal
                             }
+                            z.setY(col-1);
                             tileRow.get(col - 1).getZombies().add(z);           // Place each zombie to the next tile
-                            Zombie temp = tileRow.get(col).getZombies().getFirst();
-                            tileRow.get(col).removeZombie(temp);
-                            z.setY(col);
-                            System.out.println("test");
+                            tileRow.get(col).getZombies().remove(z);
                         } else if (z.getMovementSpeed() > 0) {                  // Need to decrease its movement_speed (as a cooldown)
-                            z.setMovementSpeed(z.getMovementSpeed() - 1f);    // Decrease its movement speed
+                            z.setMovementSpeed(z.getMovementSpeed() - 1f);      // Decrease its movement speed
                         }
                     }
                 }
@@ -120,7 +118,7 @@ public class Lawn {
         
         if(plant.getCurrentCooldown() > 0)
         {
-            plant.setCooldown(plant.getCooldown() - 0.5f);
+            plant.setCooldown(plant.getCooldown() - 1f);
         }
         else
         {
@@ -143,15 +141,15 @@ public class Lawn {
     {
         for (int row = 0; row < lawn.size(); row++) {
             ArrayList<Tile> tileRow = lawn.get(row);
-            for (int col = 1; col < tileRow.size(); col++) {                    // Start from 1 to prevent array out of bounds
+            for (int col = 1; col < tileRow.size(); col++) {                                   // Start from 1 to prevent array out of bounds
                 if (tileRow.get(col).hasZombie()) {
                     ArrayList<Zombie> zombies = tileRow.get(col).getZombies();
                     for (Zombie z : zombies) {
-                        if (z.getCurrentAttackSpeed() == 0 && z.getAttackDamage() > 0) {   // pastiin zombienya bisa attack
+                        if (z.getCurrentAttackSpeed() == 0 && z.getAttackDamage() > 0) {        // pastiin zombienya bisa attack
                             z.action();                                                         // Cek dulu mana zombie yang attack_speed udah 0 dilakuin action
-                            z.setCurrentAttackSpeed(z.getAttackSpeed());                       // Reset its attack speed (attackspeed cooldown)
-                        } else if (z.getCurrentAttackSpeed() > 0 && z.getAttackDamage() > 0) {                  // Need to decrease its attack_speed (as a cooldown)
-                            z.setCurrentAttackSpeed(z.getCurrentAttackSpeed() - 0.5f);    // Decrease its attack speed
+                            z.setCurrentAttackSpeed(z.getAttackSpeed());                        // Reset its attack speed (attackspeed cooldown)
+                        } else if (z.getCurrentAttackSpeed() > 0 && z.getAttackDamage() > 0) {  // Need to decrease its attack_speed (as a cooldown)
+                            z.setCurrentAttackSpeed(z.getCurrentAttackSpeed() - 1f);            // Decrease its attack speed
                         }
                     }
                 }
@@ -178,7 +176,7 @@ public class Lawn {
                         }
                         else
                         {
-                            p.setCurrentAttackSpeed(p.getCurrentAttackSpeed() - 0.5f);
+                            p.setCurrentAttackSpeed(p.getCurrentAttackSpeed() - 1f);
                         }
                     }             
                 }
