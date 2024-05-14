@@ -1,8 +1,6 @@
 package Plant;
-import java.util.ArrayList;
 
 import AbstractClass.Plant;
-import AbstractClass.Tile;
 import Interface.Action;
 
 public class Peashooter extends Plant implements Action{

@@ -6,7 +6,6 @@ public class Main {
        
         Lawn lawn = Lawn.getLawnInstance();
 
-        // Thread for moving all items on the lawn every 1 second
         Thread moveThread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -22,7 +21,7 @@ public class Main {
             }
         });
 
-        // Thread for printing the state of the lawn every 5 seconds
+
         Thread printThread = new Thread(new Runnable() {
             @Override
             public void run() {
