@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import Game.Lawn;
 
 public abstract class Plant {
-    private String name;
-    private int cost;
-    private int health;
-    private int attackDamage;
-    private int attackSpeed;
+    private String        name;
+    private int           cost;
+    private int         health;
+    private int   attackDamage;
+    private int    attackSpeed;
     private int attackCooldown;
-    private int range;
-    private boolean isAquatic;
-    private int row, col;        //INFO UNTUK SHOOTING 
+    private int          range;
+    private boolean  isAquatic;
+    private int       row, col;                                                 //INFO UNTUK SHOOTING 
 
     public void shoot() {
         if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT

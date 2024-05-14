@@ -28,12 +28,12 @@ public class Lawn {
         lawn.get(4).get(9).addZombie(new NormalZombie(4, 9));
         lawn.get(5).get(9).addZombie(new NormalZombie(5, 9));
 
-        lawn.get(0).get(6).plant(new Peashooter(0, 6));
-        lawn.get(1).get(6).plant(new Peashooter(1, 6));
+        lawn.get(0).get(1).plant(new Peashooter(0, 1));
+        lawn.get(1).get(2).plant(new Peashooter(1, 2));
         lawn.get(2).get(1).plant(new Lilypad(2, 1));
         lawn.get(3).get(2).plant(new Lilypad(3, 2));
-        lawn.get(4).get(6).plant(new Peashooter(4, 6));
-        lawn.get(5).get(6).plant(new Peashooter(5, 6));
+        lawn.get(4).get(1).plant(new Peashooter(4, 1));
+        lawn.get(5).get(2).plant(new Peashooter(5, 2));
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -80,21 +80,24 @@ public class Lawn {
                 Iterator<Zombie> iterator = zombies.iterator();
                 while (iterator.hasNext()) {
                     Zombie z = iterator.next();
-                    if (z.getHealth() <= 0)
+                    if (z.getHealth() > 0)
+                    {
+                        if (z.getMovementSpeed() == 0.0f) {
+                            if (z.getIsFrozen()) {
+                                z.setMovementSpeed(10.0f);
+                            } else {
+                                z.setMovementSpeed(5.0f);
+                            }
+                            tileRow.get(col - 1).getZombies().add(z);
+                            z.setZombiePosition(row, col-1);
+                            iterator.remove(); // Safe removal
+                        } else if (z.getMovementSpeed() > 0) {
+                            z.setMovementSpeed(z.getMovementSpeed() - 1f);
+                        }
+                    } else
                     {
                         System.out.println("ZOMBIE MATI!!!");
                         iterator.remove();
-                    }
-                    if (z.getMovementSpeed() == 0.0f) {
-                        if (z.getIsFrozen()) {
-                            z.setMovementSpeed(10.0f);
-                        } else {
-                            z.setMovementSpeed(5.0f);
-                        }
-                        tileRow.get(col - 1).getZombies().add(z);
-                        iterator.remove(); // Safe removal
-                    } else if (z.getMovementSpeed() > 0) {
-                        z.setMovementSpeed(z.getMovementSpeed() - 1f);
                     }
                 }
             }
