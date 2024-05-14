@@ -14,6 +14,7 @@ public class Lilypad extends Plant{
         setAttackCooldown(99999);
         setRange(0);
         setPlantPosition(row, col);
+        setAquatic(true);
     }
 
     public Plant getPlant() {

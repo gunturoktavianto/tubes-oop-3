@@ -28,12 +28,14 @@ public class Lawn {
         lawn.get(4).get(9).addZombie(new NormalZombie(4, 9));
         lawn.get(5).get(9).addZombie(new NormalZombie(5, 9));
 
-        lawn.get(0).get(1).plant(new Peashooter(0, 1));
+        lawn.get(0).get(1).plant(new SnowPea(0, 1));
         lawn.get(1).get(2).plant(new Peashooter(1, 2));
         lawn.get(2).get(1).plant(new Lilypad(2, 1));
         lawn.get(3).get(2).plant(new Lilypad(3, 2));
         lawn.get(4).get(1).plant(new Peashooter(4, 1));
-        lawn.get(5).get(2).plant(new Peashooter(5, 2));
+        lawn.get(5).get(2).plant(new Kubis(5, 2));
+        lawn.get(5).get(3).plant(new Jalapeno(5, 3));
+        lawn.get(4).get(8).plant(new Squash(4, 8));
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -113,7 +115,7 @@ public class Lawn {
                 if (tileRow.get(j).hasPlant())
                 {
                     Plant plant = tileRow.get(j).getPlant();
-                    plant.shoot();
+                    plant.action();
                     if (plant.getHealth() <= 0)
                     {
                         tileRow.get(j).removePlant();                           // REMOVE PLANT JIKA DARAH SUDAH HABIS

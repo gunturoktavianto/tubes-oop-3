@@ -7,16 +7,17 @@ public class Sunflower extends Plant implements Action {
     private int sunGenerated;
     private int sunCooldown;
     
-    public Sunflower() {
+    public Sunflower(int row, int col) {
         setName("Sunflower");
         setCost(50);
         setHealth(100);
         setAttackDamage(0);
-        setAttackSpeed(0);
-        setAttackCooldown(99999);
+        setAttackSpeed(3); // attack speed dsnai waktu dia produce sunnya
+        setAttackCooldown(3);
         setRange(0);
         sunGenerated = 0;
         // sunCooldown = 0;
+        setPlantPosition(row, col);
     }
 
     // public int generateSun(){
@@ -29,7 +30,18 @@ public class Sunflower extends Plant implements Action {
     // }
 
     public void action() {
-        Game.setSun(Game.getSun() + 25);
         System.out.println("sunflower");
+        if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
+        {
+            setAttackCooldown(getAttackCooldown() - 1);                         // MENGURANGI COOLDOWN
+            return;
+        }
+        else
+        {   
+            Game.setSun(Game.getSun() + 25);
+            setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
+            return; 
+        }
+        
     }
 }

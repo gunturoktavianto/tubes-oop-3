@@ -13,7 +13,7 @@ public abstract class Plant {
     private int attackCooldown;
     private int          range;
     private boolean  isAquatic;
-    private int       row, col;                                                 //INFO UNTUK SHOOTING 
+    protected int       row, col;                                                 //INFO UNTUK SHOOTING 
 
     public void shoot() {
         if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
@@ -36,6 +36,19 @@ public abstract class Plant {
             }                                                            
         }
     }
+    public int getPlantCol()
+    {
+        return col;
+    }
+    
+    // public int configRange(int col, int range) // untuk tetapin petak range
+    // {
+    //     ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
+    //     if(range == -1) return tileRow.size();
+    //     else if(range + col >= tileRow.size()-1) return tileRow.size();
+    //     else if(range + col < tileRow.size()-1 && range + col > 0) return range + col;
+    //     else return 0;
+    // }
 
     public void setPlantPosition(int row, int col) {
         this.row = row;

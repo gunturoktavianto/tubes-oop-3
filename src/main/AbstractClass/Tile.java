@@ -39,6 +39,7 @@ public abstract class Tile {
 
     public void removePlant()
     {
+        System.out.println("remove");
         this.plant = null;
     }
 
