@@ -3,17 +3,23 @@ package Zombie;
 import AbstractClass.Plant;
 import AbstractClass.Zombie;
 import Game.Lawn;
+import Interface.Vaultable;
 
-public class DuckyTubeZombie extends Zombie {
+public class FootballZombie extends Zombie implements Vaultable {
     
-    public DuckyTubeZombie(int row, int col) {
-        setName("Ducky Tube Zombie");
-        setHealth(100);
+    public FootballZombie(int row, int col) {
+        setName("Football Zombie");
+        setHealth(600);
         setAttackDamage(100);
         setAttackSpeed(1);
         setIsAquatic(true);
         setZombiePosition(row, col);
+        setMovementSpeed(3);
         zombieCount ++;
+    }
+
+    public void jumpOver(){
+        System.out.println("gas lompat");
     }
 
     public void moveForward(){

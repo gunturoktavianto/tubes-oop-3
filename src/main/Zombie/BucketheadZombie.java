@@ -1,6 +1,8 @@
 package Zombie;
 
+import AbstractClass.Plant;
 import AbstractClass.Zombie;
+import Game.Lawn;
 
 public class BucketheadZombie extends Zombie {
     
@@ -20,6 +22,12 @@ public class BucketheadZombie extends Zombie {
 
     public void action()
     {
-        System.out.println("bucket");
+        if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
+        {
+            Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
+            plant.setHealth(plant.getHealth() - getAttackDamage());
+            System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
+            setMovementSpeed(getMovementSpeed() + 1);                           // MENGKOMPENSASI WAKTU ATTACK                         
+        }
     }
 }   

@@ -8,19 +8,14 @@ public abstract class Zombie {
     private int attackDamage;
     private int attackSpeed = 1;
     private float movementSpeed = 5;
-    private boolean isAquatic, isFrozen = false, isDead = false;
+    private float currentMovementSpeed = movementSpeed;
+    private boolean isAquatic, isDead = false;
     private int frozenTime = 0;
     public static int zombieCount = 0;
-    private int row, col;
+    protected int row, col;
 
     public void attack() {
-        if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
-        {
-            Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
-            plant.setHealth(plant.getHealth() - getAttackDamage());
-            System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
-            setMovementSpeed(getMovementSpeed() + 1);                           // MENGKOMPENSASI WAKTU ATTACK                         
-        }
+        
     }
 
     public void setZombiePosition(int row, int col) {
@@ -49,14 +44,14 @@ public abstract class Zombie {
         return movementSpeed;
     }
 
+    public float getCurrentMovementSpeed() {
+        return currentMovementSpeed;
+    }
+    
     public boolean getIsAquatic() {
         return isAquatic;
     }
-
-    public boolean getIsFrozen() {
-        return isFrozen;
-    }
-
+    
     public int getFrozenTime() {
         return frozenTime;
     }
@@ -90,12 +85,12 @@ public abstract class Zombie {
         this.movementSpeed = movementSpeed;
     }
 
-    public void setIsAquatic(boolean isAquatic) {
-        this.isAquatic = isAquatic;
+    public void setCurrentMovementSpeed(float currentMovementSpeed) {
+        this.currentMovementSpeed = currentMovementSpeed;
     }
 
-    public void setIsFrozen(boolean isFrozen) {
-        this.isFrozen = isFrozen;
+    public void setIsAquatic(boolean isAquatic) {
+        this.isAquatic = isAquatic;
     }
 
     public void setFrozenTime(int frozenTime) {

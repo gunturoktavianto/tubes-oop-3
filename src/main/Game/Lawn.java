@@ -84,17 +84,21 @@ public class Lawn {
                     Zombie z = iterator.next();
                     if (z.getHealth() > 0)
                     {
-                        if (z.getMovementSpeed() == 0.0f) {
-                            if (z.getIsFrozen()) {
-                                z.setMovementSpeed(10.0f);
+                        if (z.getCurrentMovementSpeed() == 0.0f) {
+                            if (z.getFrozenTime() > 0) {
+                                System.out.println("dingin bang");
+                                z.setCurrentMovementSpeed(z.getCurrentMovementSpeed()+1);
+                                z.setFrozenTime(z.getFrozenTime()-1);
                             } else {
-                                z.setMovementSpeed(5.0f);
+                                z.setCurrentMovementSpeed(z.getMovementSpeed());
+                                tileRow.get(col - 1).getZombies().add(z);
+                                z.setZombiePosition(row, col-1);
+                                iterator.remove(); // Safe removal
                             }
-                            tileRow.get(col - 1).getZombies().add(z);
-                            z.setZombiePosition(row, col-1);
-                            iterator.remove(); // Safe removal
-                        } else if (z.getMovementSpeed() > 0) {
-                            z.setMovementSpeed(z.getMovementSpeed() - 1f);
+                           
+                        } else if (z.getCurrentMovementSpeed() > 0) {
+                            z.setCurrentMovementSpeed(z.getCurrentMovementSpeed() - 1f);
+                            if (z.getFrozenTime() > 0) z.setFrozenTime(z.getFrozenTime()-1);
                         }
                     } else
                     {
@@ -125,7 +129,7 @@ public class Lawn {
                 {
                     for (Zombie z : tileRow.get(j).getZombies())
                     {
-                        z.attack();
+                        z.action();
                     }
                 }
             }

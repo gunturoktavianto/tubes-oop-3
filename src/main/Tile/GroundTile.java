@@ -25,15 +25,15 @@ public class GroundTile extends Tile {
             case 1:
                 return new BucketheadZombie(getTileRow(), getTileCol());
             case 2:
-                return new DoorZombie(getTileRow(), getTileCol());
+                return new TerminatorZombie(getTileRow(), getTileCol());
             case 3:
                 return new ConeheadZombie(getTileRow(), getTileCol());
             case 4:
                 return new NormalZombie(getTileRow(), getTileCol());
             case 5:
-                return new StitcherZombie(getTileRow(), getTileCol());
+                return new NewspaperZombie(getTileRow(), getTileCol());
             case 6:
-                return new EsKrimZombie(getTileRow(), getTileCol());
+                return new FootballZombie(getTileRow(), getTileCol());
             case 7:
                 return new TuyulZombie(getTileRow(), getTileCol());
             default:

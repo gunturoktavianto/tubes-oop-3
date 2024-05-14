@@ -24,7 +24,7 @@ public class SnowPea extends Plant implements Action {
         System.out.println("snowpea");
         if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
         {
-            setAttackCooldown(getAttackCooldown() - 1);                         // MENGURANGI COOLDOWN
+            setAttackCooldown(getAttackCooldown() - 1);                           // MENGURANGI COOLDOWN
             return;
         }
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
@@ -35,8 +35,7 @@ public class SnowPea extends Plant implements Action {
                 System.out.println("DOR!!! zombie di tile" + i + " kena damage sebesar : " + getAttackDamage() + " \n");
                 for (Zombie z : tileRow.get(i).getZombies())
                 {
-                    if(z.getFrozenTime() == 0) z.setFrozenTime(3);  // waktu zombie frozen di atur
-                    else z.setFrozenTime(z.getFrozenTime() + 1); 
+                    z.setFrozenTime(3);  // waktu zombie frozen di atur
                     if(z.getHealth() < getAttackDamage()) z.setHealth(0);
                     else z.setHealth(z.getHealth() - getAttackDamage());
                     // z.setIsFrozen(true);

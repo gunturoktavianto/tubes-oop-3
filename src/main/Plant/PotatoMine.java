@@ -12,7 +12,7 @@ public class PotatoMine extends Plant implements Action {
     public PotatoMine(int row, int col) {
         setName("PotatoMine");
         setCost(25);
-        setHealth(10000);
+        setHealth(100);
         setAttackDamage(0);
         setAttackSpeed(0);
         setAttackCooldown(8);
