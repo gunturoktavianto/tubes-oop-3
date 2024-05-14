@@ -1,18 +1,31 @@
 package AbstractClass;
 
-import Interface.Moveable;
+import Game.Lawn;
 
-public abstract class Zombie implements Moveable {
+public abstract class Zombie {
     private String name;
     private int health;
     private int attackDamage;
-    private int x; // row posiition
-    private int y = 8       ; // column position
-    private float attackSpeed; // yang konstan
-    private float currentAttackSpeed = 0; // yang kurang
+    private int attackSpeed = 1;
     private float movementSpeed = 5;
     private boolean isAquatic, isFrozen = false, isDead = false;
     public static int zombieCount = 0;
+    private int row, col;
+
+    public void attack() {
+        if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
+        {
+            Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
+            plant.setHealth(plant.getHealth() - getAttackDamage());
+            System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
+            setMovementSpeed(getMovementSpeed() + 1);                           // MENGKOMPENSASI WAKTU ATTACK                         
+        }
+    }
+
+    public void setZombiePosition(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 
     // Getter
     public String getName() {
@@ -29,10 +42,6 @@ public abstract class Zombie implements Moveable {
 
     public float getAttackSpeed() {
         return attackSpeed;
-    }
-
-    public float getCurrentAttackSpeed() {
-        return currentAttackSpeed;
     }
 
     public float getMovementSpeed() {
@@ -55,14 +64,6 @@ public abstract class Zombie implements Moveable {
         return zombieCount;
     }
 
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
     // Setter
     public void setName(String name) {
         this.name = name;
@@ -76,14 +77,10 @@ public abstract class Zombie implements Moveable {
         this.attackDamage = attackDamage;
     }
 
-    public void setAttackSpeed(float attackSpeed) {
+    public void setAttackSpeed(int attackSpeed) {
         this.attackSpeed  = attackSpeed;
     }
 
-    public void setCurrentAttackSpeed(float currentAttackSpeed) {
-        this.currentAttackSpeed  = currentAttackSpeed;
-    }
-    
     public void setMovementSpeed(float movementSpeed) {
         this.movementSpeed = movementSpeed;
     }
@@ -94,14 +91,6 @@ public abstract class Zombie implements Moveable {
 
     public void setFrozen() {
         this.isFrozen = true;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
     }
 
     public void makeDead() {

@@ -5,14 +5,15 @@ public class Lilypad extends Plant{
     private Plant plantedPlant;
     // private String type;
 
-    public Lilypad() {
+    public Lilypad(int row, int col) {
         setName("Lilypad");
         setCost(25);
         setHealth(100);
         setAttackDamage(0);
         setAttackSpeed(0);
+        setAttackCooldown(99999);
         setRange(0);
-        setCooldown(10);
+        setPlantPosition(row, col);
     }
 
     public Plant getPlant() {

@@ -13,8 +13,8 @@ public class Sunflower extends Plant implements Action {
         setHealth(100);
         setAttackDamage(0);
         setAttackSpeed(0);
+        setAttackCooldown(99999);
         setRange(0);
-        setCooldown(10);
         sunGenerated = 0;
         // sunCooldown = 0;
     }

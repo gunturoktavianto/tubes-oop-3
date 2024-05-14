@@ -10,8 +10,8 @@ public class Jalapeno extends Plant implements Action {
         setHealth(100);
         setAttackDamage(5000);
         setAttackSpeed(0);
+        setAttackCooldown(9999);
         setRange(1); //bingung mo -1 ato gimana
-        setCooldown(20);
     }
 
     public void action() {

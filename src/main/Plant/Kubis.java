@@ -10,8 +10,8 @@ public class Kubis extends Plant implements Action {
         setHealth(100);
         setAttackDamage(25);
         setAttackSpeed(4);
+        setAttackCooldown(getAttackSpeed());
         setRange(-1);
-        setCooldown(10);
     }
 
     public void action() {

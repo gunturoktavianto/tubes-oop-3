@@ -7,9 +7,23 @@ public abstract class Tile {
     private String type;
     private Plant plant = null;
     private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
+    private int row, col;
 
     public abstract void plant(Plant plant);
     public abstract Zombie spawnZombie();
+
+    public int getTileRow() {
+        return this.row;
+    }
+
+    public int getTileCol() {
+        return this.col;
+    }
+
+    public void setTilePosition(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 
     public Plant getPlant() {
         return plant;
@@ -21,6 +35,11 @@ public abstract class Tile {
 
     public void setPlant(Plant plant) { // DO NOT INVOKE THIS METHOD, ONLY FOR PLANTING USE ONLY
         this.plant = plant;
+    }
+
+    public void removePlant()
+    {
+        this.plant = null;
     }
 
     public boolean hasZombie() {

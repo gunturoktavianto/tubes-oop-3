@@ -1,18 +1,46 @@
 package AbstractClass;
 
+import java.util.ArrayList;
+
+import Game.Lawn;
+
 public abstract class Plant {
     private String name;
     private int cost;
     private int health;
     private int attackDamage;
-    private float attackSpeed;
-    private float currentAttackSpeed = attackSpeed;
-    protected int x; // representasi row untuk tanaman yang di plant
-    protected int y; // representasi kolom untuk tanaman yang di plant
-    private float cooldown; // cooldown tetap untuk setiap tanaman
-    private float currentCooldown = cooldown; // cooldown tanaman saat ini untuk deck yang nanti kalo abis di plant tiap detik di loop dikurangin
+    private int attackSpeed;
+    private int attackCooldown;
     private int range;
     private boolean isAquatic;
+    private int row, col;        //INFO UNTUK SHOOTING 
+
+    public void shoot() {
+        if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
+        {
+            setAttackCooldown(getAttackCooldown() - 1);                         // MENGURANGI COOLDOWN
+            return;
+        }
+        ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
+        for (int i=col; i<tileRow.size(); i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
+        {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
+            if (tileRow.get(i).hasZombie())
+            {
+                System.out.println("DOR!!! zombie di tile" + i);
+                for (Zombie z : tileRow.get(i).getZombies())
+                {
+                    z.setHealth(z.getHealth() - getAttackDamage());
+                }
+                setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
+                return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
+            }                                                            
+        }
+    }
+
+    public void setPlantPosition(int row, int col) {
+        this.row = row;
+        this.col = col;
+    }
 
     // Getter
     public String getName() {
@@ -47,52 +75,20 @@ public abstract class Plant {
         this.attackDamage = attackDamage;
     }
 
-    public float getAttackSpeed() {
+    public int getAttackSpeed() {
         return attackSpeed;
     }
 
-    public void setAttackSpeed(float attackSpeed) {
+    public int getAttackCooldown() {
+        return attackCooldown;
+    }
+
+    public void setAttackSpeed(int attackSpeed) {
         this.attackSpeed = attackSpeed;
     }
 
-    public float getCurrentAttackSpeed() {
-        return currentAttackSpeed;
-    }
-
-    public void setCurrentAttackSpeed(float currentAttackSpeed) {
-        this.currentAttackSpeed = currentAttackSpeed;
-    }
-    
-    public float getCooldown() {
-        return cooldown;
-    }
-
-    public void setCooldown(float cooldown) {
-        this.cooldown = cooldown;
-    }
-
-    public float getCurrentCooldown() {
-        return currentCooldown;
-    }
-
-    public void setCurrentCooldown(float currentCooldown) {
-        this.currentCooldown = currentCooldown;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public int getY() {
-        return y;
-    }
-
-    public void setY(int y) {
-        this.y = y;
+    public void setAttackCooldown(int attackCooldown) {
+        this.attackCooldown = attackCooldown;
     }
 
     public int getRange() {
@@ -111,5 +107,5 @@ public abstract class Plant {
         isAquatic = aquatic;
     }
 
-    public abstract void action();
+    public abstract void action();          // NANTI DULU
 }

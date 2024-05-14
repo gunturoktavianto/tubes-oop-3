@@ -7,8 +7,9 @@ import AbstractClass.Tile;
 import Zombie.*;
 
 public class GroundTile extends Tile {
-    public GroundTile() {
+    public GroundTile(int row, int col) {
         setType("Ground");
+        setTilePosition(row, col);
     }
 
     public void plant(Plant plant) {
@@ -20,21 +21,21 @@ public class GroundTile extends Tile {
         Random rand = new Random();
         switch (rand.nextInt(8)) {
             case 0:
-                return new PoleVaultingZombie();
+                return new PoleVaultingZombie(getTileRow(), getTileCol());
             case 1:
-                return new BucketheadZombie();
+                return new BucketheadZombie(getTileRow(), getTileCol());
             case 2:
-                return new DoorZombie();
+                return new DoorZombie(getTileRow(), getTileCol());
             case 3:
-                return new ConeheadZombie();
+                return new ConeheadZombie(getTileRow(), getTileCol());
             case 4:
-                return new NormalZombie();
+                return new NormalZombie(getTileRow(), getTileCol());
             case 5:
-                return new StitcherZombie();
+                return new StitcherZombie(getTileRow(), getTileCol());
             case 6:
-                return new EsKrimZombie();
+                return new EsKrimZombie(getTileRow(), getTileCol());
             case 7:
-                return new TuyulZombie();
+                return new TuyulZombie(getTileRow(), getTileCol());
             default:
                 return null;
         }

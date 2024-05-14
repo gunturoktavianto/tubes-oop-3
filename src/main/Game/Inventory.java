@@ -11,7 +11,7 @@ public class Inventory implements Stockable {
 
     public Inventory() {
         this.inventory = new ArrayList<Plant>();
-        addItem(new Peashooter()); 
+        addItem(new Peashooter(0,0)); 
         // INITILIZE WITH OTHER PLANTS 
     }
 

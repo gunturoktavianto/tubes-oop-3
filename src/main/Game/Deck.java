@@ -78,13 +78,13 @@ public class Deck implements Stockable {
         }
     }
 
-    public boolean isPlantCooldown(Plant plant)
-    {
-        if(plant.getCurrentCooldown() > 0)
-        {
-            return true;
-        }
-        else return false;
-    }
+    // public boolean isPlantCooldown(Plant plant)
+    // {
+    //     if(plant.getCurrentCooldown() > 0)
+    //     {
+    //         return true;
+    //     }
+    //     else return false;
+    // }
 }
 

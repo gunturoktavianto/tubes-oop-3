@@ -5,12 +5,13 @@ import Interface.SpellCaster;
 
 public class TuyulZombie extends Zombie implements SpellCaster{
     
-    public TuyulZombie() {
+    public TuyulZombie(int row, int col) {
         setName("Tuyul Zombie");
         setHealth(10000);
         setAttackDamage(100);
         setAttackSpeed(1);
         setIsAquatic(false);
+        setZombiePosition(row, col);
         zombieCount ++;
     }
 

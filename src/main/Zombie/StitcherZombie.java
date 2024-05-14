@@ -5,12 +5,13 @@ import Interface.SpellCaster;
 
 public class StitcherZombie extends Zombie implements SpellCaster{
     
-    public StitcherZombie() {
+    public StitcherZombie(int row, int col) {
         setName("Stitcher Zombie");
         setHealth(10000);
         setAttackDamage(100);
         setAttackSpeed(1);
         setIsAquatic(false);
+        setZombiePosition(row, col);
         zombieCount ++;
     }
 
