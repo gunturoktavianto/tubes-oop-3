@@ -3,6 +3,9 @@ package Game;
 import java.util.ArrayList;
 
 import AbstractClass.Plant;
+import Exception.IndexOutOfRangeException;
+import Exception.InvalidInventorySwapException;
+import Exception.RemoveNullException;
 import Interface.Stockable;
 import Plant.*;
 
@@ -19,21 +22,26 @@ public class Inventory implements Stockable {
         inventory.add(plant);
     }
 
-    public void removeItem(Plant plant) {
-        inventory.remove(plant);
+    public void removeItem(Plant plant) throws RemoveNullException {
+        if (plant == null) {
+            throw new RemoveNullException("Cannot remove null from inventory.");
+        }
+        if (!inventory.remove(plant)) {
+            System.out.println("Plant not found in the inventory.");
+        }
     }   
 
-    public void switchPlacement(int index1, int index2) {
-        // Validate indices within inventory bounds
-        if (index1 >= 0 && index1 < inventory.size() &&
-            index2 >= 0 && index2 < inventory.size()) {
-      
+    public void switchPlacement(int index1, int index2) throws InvalidInventorySwapException, IndexOutOfRangeException  {
+        if (index1 < 0 || index1 >= inventory.size() || index2 < 0 || index2 >= inventory.size()) {
+            throw new IndexOutOfRangeException("Index out of range.");
+        }
+        if (index1 == index2 || (inventory.get(index1) == null && inventory.get(index2) == null)) {
+            throw new InvalidInventorySwapException("Invalid swap operation.");
+        }
             Plant temp = inventory.get(index1);
             inventory.set(index1, inventory.get(index2));
             inventory.set(index2, temp);
-        } else {
-            System.out.println("Invalid placement indices!");
-        }
+         
     }
     
     public void printInventory() {
