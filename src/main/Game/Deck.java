@@ -3,6 +3,7 @@ package Game;
 import java.util.ArrayList;
 import java.util.Collections;
 import AbstractClass.Plant;
+import Exception.InvalidStoringException;
 import Interface.Stockable;
 
 public class Deck implements Stockable {
@@ -14,14 +15,19 @@ public class Deck implements Stockable {
     }
 
     // Adds a Plant to the deck if there is space and it's not already in the deck
-    public void addItem(Plant plant) {
+    public void addItem(Plant plant) throws InvalidStoringException {
         if (plant == null) {
             throw new IllegalArgumentException("Plant cannot be null");
         }
-        if (plants.size() < MAX_SIZE && !plants.contains(plant)) {
-            plants.add(plant);
-        } else {
-            System.out.println("Deck is full or plant is already in the deck.");
+        if (plants.contains(plant)) {
+            throw new InvalidStoringException("Plant is already in the deck.");
+        }
+        int emptySlot = plants.indexOf(null);
+        if (emptySlot != -1) {
+            plants.set(emptySlot, plant);
+        }
+        else {
+            throw new InvalidStoringException("Deck is full.");
         }
     }
 
