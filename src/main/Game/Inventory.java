@@ -43,6 +43,15 @@ public class Inventory implements Stockable {
             System.out.println("  - " + plant.getName() + " (Index: " + i + ")");
         }
       }
+
+      public Plant getPlant(int index) {
+        if (index >= 0 && index < inventory.size()) {
+            return inventory.get(index);
+        } else {
+            System.out.println("Invalid index!");
+            return null;
+        }
+    }
 }
 
 
