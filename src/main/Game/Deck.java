@@ -77,6 +77,25 @@ public class Deck implements Stockable {
             System.out.println("Slot " + (i + 1) + ": Empty");
         }
     }
+    public void setDeck(Plant plant, int quantity) {
+        for (int i = 0; i < quantity; i++) {
+            if (plants.size() < MAX_SIZE) {
+                plants.add(plant);
+            } else {
+                System.out.println("Deck is full. Cannot add more plants.");
+                break;
+            }
+        }
+    }
+
+    public void setCoolDown(int index, int cooldown) {
+        Plant plant = plants.get(index);
+        if (plant != null) {
+            plant.setAttackCooldown(cooldown);
+        } else {
+            System.out.println("No plant found at the given index.");
+        }
+    }
 
     // public boolean isPlantCooldown(Plant plant)
     // {
