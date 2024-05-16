@@ -33,7 +33,7 @@ public abstract class Tile {
         return (plant != null);
     }
 
-    public void setPlant(Plant plant) { // DO NOT INVOKE THIS METHOD, ONLY FOR PLANTING USE ONLY
+    public void setPlant(Plant plant) {                                         // DO NOT INVOKE THIS METHOD, ONLY FOR PLANTING USE ONLY
         this.plant = plant;
     }
 

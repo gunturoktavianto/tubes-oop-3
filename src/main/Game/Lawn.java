@@ -4,10 +4,8 @@ import java.util.ArrayList;
 
 import java.util.Iterator;
 
-import AbstractClass.Plant;
-import AbstractClass.Tile;
-import AbstractClass.Zombie;
-
+import AbstractClass.*;
+import Exception.InvalidPlantingException;
 import Plant.*;
 import Tile.*;
 
@@ -38,10 +36,19 @@ public class Lawn {
         // lawn.get(5).get(3).plant(new Jalapeno(5, 3));
         // lawn.get(4).get(8).plant(new Squash(4, 8));
 
-        lawn.get(0).get(5).plant(new Wallnut(0,5));
-        lawn.get(0).get(6).plant(new Peashooter(0,6));
-        lawn.get(0).get(7).plant(new Peashooter(0,7));
-        lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
+        try {
+            plant(0, 4, new Peashooter(0, 4)); 
+            plant(2, 4, new Lilypad(2, 4));
+            plant(2, 4, new SnowPea(2,4));  
+            plant(2, 4, new Peashooter(2,4));   
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+        // lawn.get(0).get(5).plant(new Wallnut(0,5));
+        // lawn.get(0).get(6).plant(new Peashooter(0,6));
+        // lawn.get(0).get(7).plant(new Peashooter(0,7));
+        // lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -118,6 +125,13 @@ public class Lawn {
         }
     }
 
+    public void moveAll() {
+        for (int i=0; i<6; i++) {
+            moveForward(i);
+        }
+    }
+
+
     public void INITIALIZE_ATTACK() {
         for (int i = 0; i < 6; i++) {
             ArrayList<Tile> tileRow = lawn.get(i);
@@ -153,61 +167,65 @@ public class Lawn {
         }
     }
 
-    // public void shoot(int row) {
-    //     ArrayList<Tile> tileRow = lawn.get(row);
-        
-    //     for (int col = 1; col < tileRow.size() - 1; col++ )
-    //     {
-    //         if (tileRow.get(col).hasPlant()) 
-    //         {
-    //             Plant plant = tileRow.get(col).getPlant();
-    //             if (plant.getAttackCooldown() == 0)                             // SUDAH BISA MELAKUKAN ATTACK
-    //             {
-    //                 for (int j = col + 1; j < tileRow.size(); j++)
-    //                 {
-    //                     if (tileRow.get(j).hasZombie())                         // TILE PALING DEKET AKAN DIKENAI
-    //                     {
-    //                         System.out.println("DOR!!!!");                    // DELETE LATER
-    //                         for (Zombie z : tileRow.get(j).getZombies())
-    //                         {
-    //                             z.setHealth(z.getHealth() - plant.getAttackDamage()); // SEMUA ZOMBIE DI TILE TERSEBUT TERKENA DAMAGE
-    //                         }
-    //                         plant.setAttackCooldown(plant.getAttackSpeed());    // DI RESTART COOLDOWNNYA
-    //                         if (tileRow.get(j-1).hasPlant())                    // CEK APAKAH DIDEPANNYA ADA PLANT ATAU GA UNTUK DI ATTACK ZOMBIE
-    //                         {
-    //                             for (Zombie z : tileRow.get(j).getZombies())
-    //                             {
-    //                                 plant.setHealth(plant.getHealth() - z.getAttackDamage()); // ZOMBIE SELALU ATTACK SETIAP DETIK
-    //                                 if (plant.getHealth() <= 0)
-    //                                 {
-    //                                     System.out.println("PLANT MATI!!!");  //DELETE LATER    
-    //                                     tileRow.get(j-1).removePlant();
-    //                                 }
-    //                             }
-    //                         }
-    //                         return;                                             // JANGAN DILANJUTIN BIAR GAKENA ZOMBIE BELAKANGNYA
-    //                     }   
-    //                 }
-    //             } else
-    //             {
-    //                 plant.setAttackCooldown(plant.getAttackCooldown() - 1);     // KURANGI COOLDOWN
-    //             }
-    //         }
-    //     }
-    // }
-
-    public void moveAll() {
-        for (int i=0; i<6; i++) {
-            moveForward(i);
+    public void plant(int row, int col, Plant plant) 
+        throws InvalidPlantingException
+    {
+        if (row < 0 || row > 5 || col < 1 || col > 9)
+        {
+            throw new InvalidPlantingException("Tidak Bisa Menaruh Plant!");
+        }
+        // if (!plant.isAquatic() && row == 2 || !plant.isAquatic() && row == 3)
+        // {
+        //     throw new InvalidPlantingException("Tidak Bisa Menaruh Plant tanpa Lilypad!");
+        // }
+        if (row == 2 || row == 3)                                               // WATER TILE PLANTING
+        {
+            if (!getLawn().get(row).get(col).hasPlant()                         // KONDISI JIKA BELUM ADA LILYPAD
+                &&
+                plant.getName().equals("Lilypad")                      // PLANT YANG INGIN DITARO ADALAH LILYPAD
+            )
+            {
+                lawn.get(row).get(col).setPlant(plant);
+            }
+            else if (((WaterTile) lawn.get(row).get(col)).hasLilypad())
+            {
+                if (((Lilypad) lawn.get(row).get(col).getPlant()).isOccupied())
+                {
+                    throw new InvalidPlantingException("Sudah ada tanaman diatas lilypad ini!");
+                }
+                else {
+                    if (!plant.getName().equals("lilypad")) 
+                    {
+                        ((Lilypad) lawn.get(row).get(col).getPlant()).plantOnTop(plant);
+                    } else
+                    {
+                        throw new InvalidPlantingException("Tidak bisa menaruh lilypad diatas lilypad");
+                    }
+                }
+            }
+        } else
+        {
+            if (!lawn.get(row).get(col).hasPlant())
+            {
+                lawn.get(row).get(col).setPlant(plant);
+            } else
+            {
+                throw new InvalidPlantingException("Sudah ada tanaman");
+            }
         }
     }
 
-    public void printLawn() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (j == 0) {
+    public void printLawn() 
+    {
+        for (int i = 0; i < 6; i++) 
+        {
+            for (int j = 0; j < 10; j++) 
+            {
+                if (j == 0) 
+                {
                     System.out.print("[ ]");
-                } else {
+                } else 
+                {
                     if (lawn.get(i).get(j).hasZombie() && lawn.get(i).get(j).hasPlant()) // IF THERE IS A ZOMBIE AND PLANT IN A TILE
                         System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[X]" + "\u001B[0m");
                     else if (lawn.get(i).get(j).hasZombie()) // ONLY HAS A ZOMBIE IN A TILE
@@ -219,42 +237,8 @@ public class Lawn {
                 }
             }
             System.out.println();
-        }
+        } 
         System.out.println();
         System.out.println();
     }
-
-    public boolean isTailPlanted(int x, int y)
-    {
-        return (lawn.get(x).get(y).hasPlant());
-    }
-
-    public boolean isAnyZombie(int x, int y)
-    {
-        return (lawn.get(x).get(y).hasZombie());
-    }
-
-    // public void planting(int x, int y, Plant plant)
-    // {
-        
-    //     if(plant.getCurrentCooldown() > 0)
-    //     {
-    //         plant.setCooldown(plant.getCooldown() - 1f);
-    //     }
-    //     else
-    //     {
-    //         if(Game.getSun() > plant.getCost())
-    //         {
-    //             if(!lawn.get(x).get(y).hasPlant()) 
-    //             {
-    //                 lawn.get(x).get(y).plant(plant);
-    //                 plant.setX(x);
-    //                 plant.setY(y);
-    //                 plant.setCurrentCooldown(plant.getCooldown());
-    //             }
-    //             else System.out.println("cannot plant plants in the tile that already have plants.");
-    //         }
-    //         else System.out.println("You r Broke");
-    //     }
-    // }
 }

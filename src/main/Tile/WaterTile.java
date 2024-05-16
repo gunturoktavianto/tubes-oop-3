@@ -12,6 +12,7 @@ public class WaterTile extends Tile {
         setType("Water");
         setTilePosition(row, col);
     }
+    
     public boolean hasLilypad() {
         if (getPlant() != null)
             return (getPlant().getName().equals("Lilypad"));

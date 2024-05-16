@@ -3,7 +3,6 @@ import AbstractClass.Plant;
 
 public class Lilypad extends Plant{
     private Plant plantedPlant;
-    // private String type;
 
     public Lilypad(int row, int col) {
         setName("Lilypad");
@@ -17,13 +16,9 @@ public class Lilypad extends Plant{
         setAquatic(true);
     }
 
-    public Plant getPlant() {
+    public Plant getPlantedPlant() {
         return plantedPlant;
     }
-
-    // public String getType() {
-    //     return type;
-    // }
 
     public void plantOnTop(Plant plant) {
         this.plantedPlant = plant;
@@ -34,11 +29,7 @@ public class Lilypad extends Plant{
         return (plantedPlant != null);
     }
 
-    // public void shoot() {
-    //     return;
-    // }
-
-    public void action(){
+    public void action() {
 
     }
 }

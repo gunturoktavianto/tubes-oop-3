@@ -13,7 +13,7 @@ public abstract class Plant {
     private int attackCooldown;
     private int          range;
     private boolean  isAquatic;
-    protected int       row, col;                                                 //INFO UNTUK SHOOTING 
+    protected int     row, col;                                                 //INFO UNTUK SHOOTING 
 
     public void shoot() {
         if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
