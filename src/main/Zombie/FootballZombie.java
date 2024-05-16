@@ -28,6 +28,10 @@ public class FootballZombie extends Zombie implements Vaultable {
 
     public void action()
     {
+        if (getFrozenTime() == 3 || getFrozenTime() == 1) 
+        {
+            return;
+        }
         if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
         {
             Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 

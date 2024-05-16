@@ -38,6 +38,10 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
             }
             else
             {
+                if (getFrozenTime() == 3 || getFrozenTime() == 1) 
+                {
+                    return;
+                }
                 Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant();
                 System.out.println("Health: " + plant.getHealth()); 
                 plant.setHealth(plant.getHealth() - getAttackDamage());

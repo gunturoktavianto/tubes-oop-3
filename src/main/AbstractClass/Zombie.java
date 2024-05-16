@@ -11,7 +11,7 @@ public abstract class Zombie {
     private int frozenTime = 0;
     public static int zombieCount = 0;
     protected int row, col;
-
+    private boolean isWillNotFreeze = false;
     public void attack() {
         
     }
@@ -51,6 +51,10 @@ public abstract class Zombie {
         return currentMovementSpeed;
     }
     
+    public boolean getIsWillNotFreeze() {
+        return isWillNotFreeze;
+    }
+
     public boolean getIsAquatic() {
         return isAquatic;
     }
@@ -100,6 +104,10 @@ public abstract class Zombie {
         this.frozenTime = frozenTime;
     }
 
+    public void setIsWillNotFreeze(boolean isWillNotFreeze) {
+        this.isWillNotFreeze = isWillNotFreeze;
+    }
+    
     public void makeDead() {
         this.isDead = true;
     }

@@ -36,9 +36,10 @@ public class Lawn {
 
         try {
             plant(0, 5, new Wallnut(0,5));
-            plant(0, 6,new Peashooter(0,6));
+            plant(0, 6,new SnowPea(0,6));
+            plant(0, 3,new SnowPea(0,3));
             plant(0, 7, new Peashooter(0,7));
-            lawn.get(0).get(9).getZombies().add(new DolphinRiderZombie(0, 9));  
+            lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));  
         } catch (InvalidPlantingException e) {
             System.out.println(e.getMessage());
         }
@@ -91,27 +92,48 @@ public class Lawn {
                     if (z.getHealth() > 0)
                     {
                         System.out.println("current speed: " + z.getCurrentMovementSpeed());
-                        if (z.getCurrentMovementSpeed() == 0.0f) 
+                        System.out.println("frozen time: " + z.getFrozenTime());
+                        if(z.getFrozenTime() == 3)
+                        {
+                            z.setCurrentMovementSpeed(z.getCurrentMovementSpeed() + z.getCurrentMovementSpeed());
+                        }
+                        else if(z.getFrozenTime() == 1)
+                        {
+                            z.setIsWillNotFreeze(true);
+                        }
+                        else if(z.getFrozenTime() == 0 && z.getIsWillNotFreeze() == true)
+                        {
+                            z.setCurrentMovementSpeed((float)Math.ceil(z.getCurrentMovementSpeed() / 2)); // kenapa di 1 soalnya karena di 1 ama 0 harusnya sama aja toh nti diubah lagi di 0 kan biat lebih ez aja
+                            z.setIsWillNotFreeze(false);
+                            System.out.println("current speed: " + z.getCurrentMovementSpeed());
+                        }
+                        if (z.getCurrentMovementSpeed() <= 0.0f) 
                         {
                             if (z.getFrozenTime() > 0) 
                             {
                                 System.out.println("dingin bang");
-                                z.setCurrentMovementSpeed(z.getCurrentMovementSpeed()+1);
+                                // float temp = z.getCurrentMovementSpeed();
+                                z.setCurrentMovementSpeed(z.getMovementSpeed() + z.getMovementSpeed());
                                 z.setFrozenTime(z.getFrozenTime()-1);
                             } else 
-                            {
+                            { 
                                 z.setCurrentMovementSpeed(z.getMovementSpeed());
-                                tileRow.get(col - 1).getZombies().add(z);
-                                z.setZombiePosition(row, col-1);
-                                iterator.remove(); // Safe removal
                             }
-                           
-                        } else 
+                            // }
+                            tileRow.get(col - 1).getZombies().add(z);
+                            z.setZombiePosition(row, col-1);
+                            iterator.remove(); // Safe removal
+                        } 
+                        else 
                         {
                             z.setCurrentMovementSpeed(z.getCurrentMovementSpeed() - 1f);
                             if (z.getFrozenTime() > 0) 
                                 z.setFrozenTime(z.getFrozenTime()-1);
                         }
+                        // if(z.getFrozenTime() == 0)
+                        // {
+                        //     z.setIsFrozen(false);
+                        // }
                     }
                 }
             }

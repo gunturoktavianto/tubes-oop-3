@@ -6,9 +6,8 @@ import AbstractClass.Plant;
 import AbstractClass.Tile;
 import AbstractClass.Zombie;
 import Game.Lawn;
-import Interface.SpellCaster;
 
-public class TuyulZombie extends Zombie implements SpellCaster{
+public class TuyulZombie extends Zombie{
     
     public TuyulZombie(int row, int col) {
         setName("Tuyul Zombie");
@@ -20,9 +19,9 @@ public class TuyulZombie extends Zombie implements SpellCaster{
         zombieCount ++;
     }
 
-    public void castSpell(){
-        System.out.println("shing shing");
-    }
+    // public void castSpell(){
+    //     System.out.println("shing shing");
+    // }
     
     public void moveForward(){
         
@@ -38,7 +37,7 @@ public class TuyulZombie extends Zombie implements SpellCaster{
                 System.out.println("DOR!!! plant di tile" + i);
                 Plant p = tileRow.get(i).getPlant();
                 p.setHealth(p.getHealth() - p.getHealth());                           // RESET COOLDOWN
-                tileRow.get(col).removeZombie(this);
+                setHealth(0);
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
             }                                                            
         }

@@ -22,6 +22,10 @@ public class NormalZombie extends Zombie {
 
     public void action()
     {
+        if (getFrozenTime() == 3 || getFrozenTime() == 1) 
+        {
+            return;
+        }
         if (getHealth() > 0)
         {
             if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    

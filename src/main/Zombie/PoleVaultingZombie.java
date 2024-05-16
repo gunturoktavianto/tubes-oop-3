@@ -40,6 +40,10 @@ public class PoleVaultingZombie extends Zombie implements Vaultable {
             }
             else
             {
+                if (getFrozenTime() == 3 || getFrozenTime() == 1) 
+                {
+                    return;
+                }
                 Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
                 plant.setHealth(plant.getHealth() - getAttackDamage());
                 System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
