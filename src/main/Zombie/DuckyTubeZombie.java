@@ -1,8 +1,7 @@
-package Zombie;
+package main.Zombie;
 
-import AbstractClass.Plant;
-import AbstractClass.Zombie;
-import Game.Lawn;
+import main.AbstractClass.*;
+import main.Game.Lawn;
 
 public class DuckyTubeZombie extends Zombie {
     

@@ -1,9 +1,8 @@
-package Zombie;
+package main.Zombie;
 
-import AbstractClass.Plant;
-import AbstractClass.Zombie;
-import Game.Lawn;
-import Interface.SpellCaster;
+import main.AbstractClass.*;
+import main.Game.Lawn;
+import main.Interface.SpellCaster;
 
 public class NewspaperZombie extends Zombie implements SpellCaster{
     

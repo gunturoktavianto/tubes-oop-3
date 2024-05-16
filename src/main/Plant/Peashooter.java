@@ -1,12 +1,10 @@
-package Plant;
+package main.Plant;
 
 import java.util.ArrayList;
 
-import AbstractClass.Plant;
-import AbstractClass.Tile;
-import AbstractClass.Zombie;
-import Game.Lawn;
-import Interface.Action;
+import main.AbstractClass.*;
+import main.Game.Lawn;
+import main.Interface.Action;
 
 public class Peashooter extends Plant implements Action{
     

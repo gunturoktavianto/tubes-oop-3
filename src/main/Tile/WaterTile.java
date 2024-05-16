@@ -1,11 +1,11 @@
-package Tile;
+package main.Tile;
 
 import java.util.Random;
 
-import AbstractClass.*;
-import Plant.Lilypad;
-import Zombie.DolphinRiderZombie;
-import Zombie.DuckyTubeZombie;
+import main.AbstractClass.*;
+import main.Plant.Lilypad;
+import main.Zombie.DolphinRiderZombie;
+import main.Zombie.DuckyTubeZombie;
 
 public class WaterTile extends Tile {
     public WaterTile(int row, int col) {

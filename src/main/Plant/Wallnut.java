@@ -1,5 +1,5 @@
-package Plant;
-import AbstractClass.Plant;
+package main.Plant;
+import main.AbstractClass.Plant;
 
 public class Wallnut extends Plant {
     

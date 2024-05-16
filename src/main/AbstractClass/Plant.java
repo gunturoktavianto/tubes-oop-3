@@ -1,8 +1,8 @@
-package AbstractClass;
+package main.AbstractClass;
 
 import java.util.ArrayList;
 
-import Game.Lawn;
+import main.Game.Lawn;
 
 public abstract class Plant {
     private String        name;

@@ -1,20 +1,15 @@
-package Tile;
+package main.Tile;
 
 import java.util.Random;
 
-import AbstractClass.*;
-import AbstractClass.Tile;
-import Zombie.*;
+import main.AbstractClass.*;
+import main.Zombie.*;
 
 public class GroundTile extends Tile {
     public GroundTile(int row, int col) {
         setType("Ground");
         setTilePosition(row, col);
     }
-
-    // public void plant(Plant plant) {
-    //     setPlant(plant);
-    // }
 
     @Override
     public Zombie spawnZombie() {

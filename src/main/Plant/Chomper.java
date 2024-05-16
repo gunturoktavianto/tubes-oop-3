@@ -1,11 +1,9 @@
-package Plant;
+package main.Plant;
 import java.util.ArrayList;
 
-import AbstractClass.Plant;
-import AbstractClass.Tile;
-import AbstractClass.Zombie;
-import Game.Lawn;
-import Interface.Action;
+import main.AbstractClass.*;
+import main.Game.Lawn;
+import main.Interface.Action;
 
 public class Chomper extends Plant implements Action {
     int ranges;
@@ -22,8 +20,12 @@ public class Chomper extends Plant implements Action {
 
     public void action() {
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
-        if(getRange() + col > tileRow.size()-1) ranges = tileRow.size()-1;
-        else ranges = col+getRange();
+        
+        if (getRange() + col > tileRow.size()-1) 
+            ranges = tileRow.size()-1;
+        else 
+            ranges = col+getRange();
+        
         for (int i=col; i < ranges; i++)                                        // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasZombie())

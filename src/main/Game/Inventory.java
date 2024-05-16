@@ -1,13 +1,13 @@
-package Game;
+package main.Game;
 
 import java.util.ArrayList;
 
-import AbstractClass.Plant;
-import Exception.IndexOutOfRangeException;
-import Exception.InvalidInventorySwapException;
-import Exception.RemoveNullException;
-import Interface.Stockable;
-import Plant.*;
+import main.AbstractClass.Plant;
+import main.Exception.IndexOutOfRangeException;
+import main.Exception.InvalidInventorySwapException;
+import main.Exception.RemoveNullException;
+import main.Interface.Stockable;
+import main.Plant.*;
 
 public class Inventory implements Stockable {
     private ArrayList<Plant> inventory;

@@ -1,10 +1,10 @@
-package Game;
+package main.Game;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import AbstractClass.Plant;
-import Exception.InvalidStoringException;
-import Interface.Stockable;
+import main.AbstractClass.Plant;
+import main.Exception.InvalidStoringException;
+import main.Interface.Stockable;
 
 public class Deck implements Stockable {
     private ArrayList<Plant> plants;

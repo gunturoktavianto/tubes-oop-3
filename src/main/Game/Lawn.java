@@ -1,14 +1,16 @@
-package Game;
+package main.Game;
 
 import java.util.ArrayList;
 
 import java.util.Iterator;
 
-import AbstractClass.*;
-import Exception.InvalidPlantingException;
-import Plant.*;
-import Tile.*;
-import Zombie.*;
+import main.AbstractClass.*;
+import main.Exception.InvalidPlantingException;
+import main.Plant.*;
+import main.Tile.*;
+import main.Zombie.*;
+
+import main.GameCLI;
 
 public class Lawn {
     private static Lawn instance;
@@ -39,7 +41,7 @@ public class Lawn {
             plant(0, 6,new SnowPea(0,6));
             plant(0, 3,new Wallnut(0,3));
             plant(0, 7, new Wallnut(0,7));
-            lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
+            lawn.get(0).get(9).getZombies().add(new BucketheadZombie(0, 9));
         } catch (InvalidPlantingException e) {
             System.out.println(e.getMessage());
         }
@@ -79,7 +81,7 @@ public class Lawn {
         ArrayList<Tile> tileRow = lawn.get(row);
         if (tileRow.get(0).hasZombie()) {
             System.out.println("Zombies have reached the house! Game Over.");
-            System.exit(0);
+            GameCLI.endGame();
         }
 
         // Moving zombies from right to left

@@ -1,11 +1,9 @@
-package Zombie;
+package main.Zombie;
 
 import java.util.ArrayList;
 
-import AbstractClass.Plant;
-import AbstractClass.Tile;
-import AbstractClass.Zombie;
-import Game.Lawn;
+import main.AbstractClass.*;
+import main.Game.Lawn;
 
 public class TerminatorZombie extends Zombie {
     

@@ -1,11 +1,9 @@
-package Zombie;
+package main.Zombie;
 
-import AbstractClass.Plant;
-import AbstractClass.Zombie;
-import Game.Lawn;
-import Interface.Vaultable;
+import main.AbstractClass.*;
+import main.Game.Lawn;
 
-public class FootballZombie extends Zombie implements Vaultable {
+public class FootballZombie extends Zombie {
     
     public FootballZombie(int row, int col) {
         setName("Football Zombie");
@@ -17,14 +15,6 @@ public class FootballZombie extends Zombie implements Vaultable {
         setMovementSpeed(3);
         setCurrentMovementSpeed(3);
         zombieCount ++;
-    }
-
-    public void jumpOver(){
-        System.out.println("gas lompat");
-    }
-
-    public void moveForward(){
-        
     }
 
     public void action()

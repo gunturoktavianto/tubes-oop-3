@@ -1,7 +1,7 @@
-package Plant;
-import AbstractClass.Plant;
-import Game.Sun;
-import Interface.Action;
+package main.Plant;
+import main.AbstractClass.Plant;
+import main.Game.Sun;
+import main.Interface.Action;
 
 public class Sunflower extends Plant implements Action {
     

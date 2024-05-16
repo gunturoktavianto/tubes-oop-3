@@ -1,6 +1,6 @@
-package Tile;
+package main.Tile;
 
-import AbstractClass.*;
+import main.AbstractClass.*;
 
 public class HouseTile extends Tile {
     public HouseTile() {

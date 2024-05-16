@@ -1,4 +1,4 @@
-package AbstractClass;
+package main.AbstractClass;
 
 public abstract class Zombie {
     private String name;

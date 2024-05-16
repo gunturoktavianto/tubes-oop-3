@@ -1,9 +1,8 @@
-package Zombie;
+package main.Zombie;
 
-import AbstractClass.Plant;
-import AbstractClass.Zombie;
-import Game.Lawn;
-import Interface.Vaultable;
+import main.AbstractClass.*;
+import main.Game.Lawn;
+import main.Interface.Vaultable;
 
 public class PoleVaultingZombie extends Zombie implements Vaultable {
     private boolean isJump = false;

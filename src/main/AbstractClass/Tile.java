@@ -1,4 +1,4 @@
-package AbstractClass;
+package main.AbstractClass;
 
 import java.util.ArrayList;
 import java.util.Random;

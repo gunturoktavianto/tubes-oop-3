@@ -1,12 +1,12 @@
-package Interface;
+package main.Interface;
 
-import AbstractClass.Plant;
-import Exception.IndexOutOfRangeException;
-import Exception.InvalidInventorySwapException;
-import Exception.RemoveNullException;
-import Exception.InvalidStoringException;
-import Exception.InvalidPlacingToTileException;
-import Exception.InvalidDeckSwapException;
+import main.AbstractClass.Plant;
+import main.Exception.IndexOutOfRangeException;
+import main.Exception.InvalidInventorySwapException;
+import main.Exception.RemoveNullException;
+import main.Exception.InvalidStoringException;
+import main.Exception.InvalidPlacingToTileException;
+import main.Exception.InvalidDeckSwapException;
 
 public interface Stockable {
     public void addItem(Plant plant) throws InvalidStoringException;
