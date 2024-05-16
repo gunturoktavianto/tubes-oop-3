@@ -9,7 +9,7 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
     private boolean isJump = false;
     public DolphinRiderZombie(int row, int col) {
         setName("Dolphin Rider Zombie");
-        setHealth(1000);
+        setHealth(175);
         setAttackDamage(100);
         setAttackSpeed(1);
         setIsAquatic(true);

@@ -7,6 +7,7 @@ public class Game {
     private Lawn lawn;
     private Deck deck;
     private boolean isGameOver;
+    private int Timer; //mungkin?
 
     public Game() { 
         this.lawn = Lawn.getLawnInstance();
