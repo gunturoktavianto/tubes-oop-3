@@ -1,22 +1,16 @@
 package Plant;
 import AbstractClass.Plant;
-import Game.Game;
+import Game.Sun;
 import Interface.Action;
 
 public class Sunflower extends Plant implements Action {
-    private int sunGenerated;
-    private int sunCooldown;
     
     public Sunflower(int row, int col) {
         setName("Sunflower");
         setCost(50);
         setHealth(100);
-        setAttackDamage(0);
         setAttackSpeed(3); // attack speed dsnai waktu dia produce sunnya
         setAttackCooldown(3);
-        setRange(0);
-        sunGenerated = 0;
-        // sunCooldown = 0;
         setPlantPosition(row, col);
     }
 
@@ -38,7 +32,7 @@ public class Sunflower extends Plant implements Action {
         }
         else
         {   
-            Game.setSun(Game.getSun() + 25);
+            Sun.setSun(Sun.getSun() + 25);
             setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
             return; 
         }

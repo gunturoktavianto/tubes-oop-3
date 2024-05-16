@@ -22,7 +22,7 @@ public class Lilypad extends Plant{
 
     public void plantOnTop(Plant plant) {
         this.plantedPlant = plant;
-        // this.type = plant.getClass().getName();
+        setHealth(getHealth() + plantedPlant.getHealth());
     } 
 
     public boolean isOccupied() {
@@ -30,6 +30,7 @@ public class Lilypad extends Plant{
     }
 
     public void action() {
-
+        if (plantedPlant !=  null)
+            plantedPlant.action();
     }
 }

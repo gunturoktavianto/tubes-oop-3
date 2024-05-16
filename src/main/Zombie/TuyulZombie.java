@@ -31,7 +31,7 @@ public class TuyulZombie extends Zombie implements SpellCaster{
     public void action()
     {
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
-        for (int i=1; i<tileRow.size(); i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
+        for (int i=1; i<tileRow.size(); i++)                                    // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasPlant())
             {

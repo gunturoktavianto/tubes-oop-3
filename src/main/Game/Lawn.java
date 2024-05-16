@@ -8,9 +8,7 @@ import AbstractClass.*;
 import Exception.InvalidPlantingException;
 import Plant.*;
 import Tile.*;
-
-import Zombie.NormalZombie;
-import Zombie.PoleVaultingZombie;
+import Zombie.*;
 
 public class Lawn {
     private static Lawn instance;
@@ -37,18 +35,13 @@ public class Lawn {
         // lawn.get(4).get(8).plant(new Squash(4, 8));
 
         try {
-            plant(0, 4, new Peashooter(0, 4)); 
-            plant(2, 4, new Lilypad(2, 4));
-            plant(2, 4, new SnowPea(2,4));  
-            plant(2, 4, new Peashooter(2,4));   
-        } catch (Exception e) {
+            plant(0, 5, new Wallnut(0,5));
+            plant(0, 6,new Peashooter(0,6));
+            plant(0, 7, new Peashooter(0,7));
+            lawn.get(0).get(9).getZombies().add(new DolphinRiderZombie(0, 9));  
+        } catch (InvalidPlantingException e) {
             System.out.println(e.getMessage());
         }
-
-        // lawn.get(0).get(5).plant(new Wallnut(0,5));
-        // lawn.get(0).get(6).plant(new Peashooter(0,6));
-        // lawn.get(0).get(7).plant(new Peashooter(0,7));
-        // lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -174,10 +167,6 @@ public class Lawn {
         {
             throw new InvalidPlantingException("Tidak Bisa Menaruh Plant!");
         }
-        // if (!plant.isAquatic() && row == 2 || !plant.isAquatic() && row == 3)
-        // {
-        //     throw new InvalidPlantingException("Tidak Bisa Menaruh Plant tanpa Lilypad!");
-        // }
         if (row == 2 || row == 3)                                               // WATER TILE PLANTING
         {
             if (!getLawn().get(row).get(col).hasPlant()                         // KONDISI JIKA BELUM ADA LILYPAD

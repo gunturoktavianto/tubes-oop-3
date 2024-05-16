@@ -19,14 +19,14 @@ public class WaterTile extends Tile {
         return false;
     }
 
-    public void plant(Plant plant) {
-        if (getPlant() == null && plant.getName().equals("Lilypad"))
-            setPlant(new Lilypad(999, 999));
-        else if (hasLilypad())
-            setPlant(plant);
-        else
-            System.out.println("\u001B[31m" + "TIDAK BISA MENARUH TANAMAN" + "\u001B[0m");
-    }
+    // public void plant(Plant plant) {
+    //     if (getPlant() == null && plant.getName().equals("Lilypad"))
+    //         setPlant(new Lilypad(999, 999));
+    //     else if (hasLilypad())
+    //         setPlant(plant);
+    //     else
+    //         System.out.println("\u001B[31m" + "TIDAK BISA MENARUH TANAMAN" + "\u001B[0m");
+    // }
 
     @Override
     public Zombie spawnZombie() {

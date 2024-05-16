@@ -9,7 +9,7 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
     private boolean isJump = false;
     public DolphinRiderZombie(int row, int col) {
         setName("Dolphin Rider Zombie");
-        setHealth(175);
+        setHealth(1000);
         setAttackDamage(100);
         setAttackSpeed(1);
         setIsAquatic(true);
@@ -24,7 +24,6 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
             Lawn.getLawn().get(row).get(col-2).removePlant();
         }
         Lawn.getLawn().get(row).get(col - 2).getZombies().add(this);
-        // Lawn.getLawn().get(row).get(col).getZombies().remove(this);
         setZombiePosition(row, col-2);
         isJump = true;
     }
@@ -39,10 +38,10 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
             }
             else
             {
-                Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
+                Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant();
+                System.out.println("Health: " + plant.getHealth()); 
                 plant.setHealth(plant.getHealth() - getAttackDamage());
-                System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
-                setMovementSpeed(getMovementSpeed() + 1);    
+                setCurrentMovementSpeed(getCurrentMovementSpeed() + 1);    
             }                        
         }
     }

@@ -9,7 +9,6 @@ public abstract class Tile {
     private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
     private int row, col;
 
-    public abstract void plant(Plant plant);
     public abstract Zombie spawnZombie();
 
     public int getTileRow() {

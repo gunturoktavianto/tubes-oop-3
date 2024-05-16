@@ -1,5 +1,6 @@
 
 import Game.Lawn;
+import Game.Sun;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,7 +24,7 @@ public class Main {
             }
         });
 
-        
+
         gameThread.start();
     }
 }

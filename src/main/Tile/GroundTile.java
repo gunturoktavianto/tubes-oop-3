@@ -12,9 +12,9 @@ public class GroundTile extends Tile {
         setTilePosition(row, col);
     }
 
-    public void plant(Plant plant) {
-        setPlant(plant);
-    }
+    // public void plant(Plant plant) {
+    //     setPlant(plant);
+    // }
 
     @Override
     public Zombie spawnZombie() {

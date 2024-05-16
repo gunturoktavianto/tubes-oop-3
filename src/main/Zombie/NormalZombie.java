@@ -29,7 +29,7 @@ public class NormalZombie extends Zombie {
                 Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
                 plant.setHealth(plant.getHealth() - getAttackDamage());
                 System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
-                setMovementSpeed(getMovementSpeed() + 1);                           // MENGKOMPENSASI WAKTU ATTACK                         
+                setCurrentMovementSpeed(getCurrentMovementSpeed() + 1);                           // MENGKOMPENSASI WAKTU ATTACK                         
             }
         }
     }

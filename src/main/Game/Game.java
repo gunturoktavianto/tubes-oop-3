@@ -1,28 +1,57 @@
 package Game;
 
+import java.util.Scanner;
+
 public class Game {
+    // private final Scanner scanner;
     private Lawn lawn;
     private Deck deck;
-    private Inventory inventory;
-    private static int sun;
+    private boolean isGameOver;
 
     public Game() { 
-        this.lawn = new Lawn();
+        this.lawn = Lawn.getLawnInstance();
         this.deck = new Deck();
-        this.inventory = new Inventory(); 
+        this.isGameOver = false; 
     }
 
     public void initializeGame() {
+        Thread gameThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!isGameOver) 
+                {
+                    lawn.INITIALIZE_ATTACK();
+                    lawn.moveAll();
+                    lawn.printLawn();
+                    try {
+                        Thread.sleep(1000); // Sleep for 1 second
+                    } catch (InterruptedException e) {
+                        System.out.println("Move thread interrupted.");
+                        return;
+                    }
+                }
+            }
+        });
+
+        Thread generatorThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (!isGameOver)
+                {
+                    Sun.generateSun();
+                }
+            } 
+        });
+
+        gameThread.start();
+    }
+
+    public void handleInput() {
 
     }
 
-    public static int getSun()
+    public void endGame() 
     {
-        return sun;
-    }
-
-    public static void setSun(int a)
-    {
-        sun = a;
+        isGameOver = true;
     }
 }
