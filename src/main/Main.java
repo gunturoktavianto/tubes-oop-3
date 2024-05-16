@@ -6,11 +6,13 @@ public class Main {
        
         Lawn lawn = Lawn.getLawnInstance();
 
-        Thread moveThread = new Thread(new Runnable() {
+        Thread gameThread = new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
+                    lawn.INITIALIZE_ATTACK();
                     lawn.moveAll();
+                    lawn.printLawn();
                     try {
                         Thread.sleep(1000); // Sleep for 1 second
                     } catch (InterruptedException e) {
@@ -22,39 +24,24 @@ public class Main {
         });
 
 
-        Thread printThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    lawn.printLawn();
-                    try {
-                        Thread.sleep(1000); // Sleep for 5 seconds
-                    } catch (InterruptedException e) {
-                        System.out.println("Print thread interrupted.");
-                        return;
-                    }
-                }
-            }
-        });
+        // Thread printThread = new Thread(new Runnable() {
+        //     @Override
+        //     public void run() {
+        //         while (true) {
+        //             lawn.printLawn();
+        //             try {
+        //                 Thread.sleep(1000); // Sleep for 5 seconds
+        //             } catch (InterruptedException e) {
+        //                 System.out.println("Print thread interrupted.");
+        //                 return;
+        //             }
+        //         }
+        //     }
+        // });
 
-        Thread attackThread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    lawn.INITIALIZE_ATTACK();
-                    try {
-                        Thread.sleep(1000); // Sleep for 5 seconds
-                    } catch (InterruptedException e) {
-                        System.out.println("Print thread interrupted.");
-                        return;
-                    }
-                }
-            }
-        });
-
-        // Start both threads
-        moveThread.start();
-        attackThread.start();
-        printThread.start();
+        
+        gameThread.start();
+        // attackThread.start();
+        // printThread.start();
     }
 }

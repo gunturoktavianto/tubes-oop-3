@@ -21,14 +21,13 @@ public class SnowPea extends Plant implements Action {
     }
 
     public void action() {
-        System.out.println("snowpea");
-        if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
+        if (getAttackCooldown() > 0)                                            // TIDAK PERLU MELAKUKAN SHOOT
         {
-            setAttackCooldown(getAttackCooldown() - 1);                           // MENGURANGI COOLDOWN
+            setAttackCooldown(getAttackCooldown() - 1);                         // MENGURANGI COOLDOWN
             return;
         }
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
-        for (int i=col; i < tileRow.size(); i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
+        for (int i=col; i < tileRow.size(); i++)                                // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasZombie())
             {

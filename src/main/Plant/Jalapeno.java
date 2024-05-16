@@ -27,17 +27,16 @@ public class Jalapeno extends Plant implements Action {
             return;
         }
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
-        for (int i=col; i < tileRow.size(); i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
+        for (int i=1; i < tileRow.size(); i++)                                 // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasZombie())
             {
                 System.out.println("DOR!!! Jalapeno ne bos");
                 for (Zombie z : tileRow.get(i).getZombies())
                 {
-                    z.setHealth(z.getHealth() - z.getHealth());
+                    z.setHealth(0);
                 }
                 tileRow.get(col).removePlant(); // lsg remove
-                return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
             }                                                            
         }
     }

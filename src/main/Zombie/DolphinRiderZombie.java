@@ -3,9 +3,9 @@ package Zombie;
 import AbstractClass.Plant;
 import AbstractClass.Zombie;
 import Game.Lawn;
-import Interface.SpellCaster;
+import Interface.Vaultable;
 
-public class DolphinRiderZombie extends Zombie implements SpellCaster{
+public class DolphinRiderZombie extends Zombie implements Vaultable{
     private boolean isJump = false;
     public DolphinRiderZombie(int row, int col) {
         setName("Dolphin Rider Zombie");
@@ -17,12 +17,16 @@ public class DolphinRiderZombie extends Zombie implements SpellCaster{
         zombieCount ++;
     }
 
-    public void castSpell(){
-        System.out.println("shing shing");
-    }
-
-    public void moveForward(){
-        
+    public void jumpOver(){
+        System.out.println("gas lompat");
+        if (Lawn.getLawn().get(row).get(col-2).hasPlant())
+        {
+            Lawn.getLawn().get(row).get(col-2).removePlant();
+        }
+        Lawn.getLawn().get(row).get(col - 2).getZombies().add(this);
+        // Lawn.getLawn().get(row).get(col).getZombies().remove(this);
+        setZombiePosition(row, col-2);
+        isJump = true;
     }
 
     public void action()
@@ -31,14 +35,7 @@ public class DolphinRiderZombie extends Zombie implements SpellCaster{
         {
             if(!isJump)
             {
-                if (Lawn.getLawn().get(row).get(col-2).hasPlant())
-                {
-                    Lawn.getLawn().get(row).get(col-2).removePlant();
-                }
-                Lawn.getLawn().get(row).get(col).removeZombie(this);
-                setZombiePosition(row, col-2);
-                Lawn.getLawn().get(row).get(col-2).addZombie(this);
-                isJump = true;
+                jumpOver();
             }
             else
             {
@@ -46,8 +43,7 @@ public class DolphinRiderZombie extends Zombie implements SpellCaster{
                 plant.setHealth(plant.getHealth() - getAttackDamage());
                 System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
                 setMovementSpeed(getMovementSpeed() + 1);    
-            }
-                                   // MENGKOMPENSASI WAKTU ATTACK                         
+            }                        
         }
     }
 }   

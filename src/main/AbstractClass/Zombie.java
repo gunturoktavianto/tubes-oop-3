@@ -1,7 +1,5 @@
 package AbstractClass;
 
-import Game.Lawn;
-
 public abstract class Zombie {
     private String name;
     private int health;
@@ -16,6 +14,11 @@ public abstract class Zombie {
 
     public void attack() {
         
+    }
+
+    public int getZombieCol()
+    {
+        return this.col;
     }
 
     public void setZombiePosition(int row, int col) {

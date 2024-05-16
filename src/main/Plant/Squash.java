@@ -23,10 +23,14 @@ public class Squash extends Plant implements Action {
 
     public void action() {
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
-        if(getRange() + col > tileRow.size()-1) ranges = tileRow.size()-1;
-        else ranges = col+getRange();
-        if(col - 1 < 0) cols = col;
-        else cols = col-1;
+        if  (getRange() + col > tileRow.size()-1) 
+            ranges = tileRow.size()-1;
+        else 
+            ranges = col+getRange();
+        if (col - 1 < 1) 
+            cols = col;
+        else 
+            cols = col-1;
         for (int i=cols; i <= ranges; i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasZombie())
@@ -34,9 +38,9 @@ public class Squash extends Plant implements Action {
                 System.out.println("DOR!!! ratakan squash");
                 for (Zombie z : tileRow.get(i).getZombies())
                 {
-                    z.setHealth(z.getHealth() - z.getHealth());
+                    z.setHealth(0);
                 }
-                tileRow.get(getPlantCol()).removePlant(); //lsg remove
+                tileRow.get(col).removePlant(); //lsg remove
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
             }                                                            
         }

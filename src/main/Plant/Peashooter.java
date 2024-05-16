@@ -22,8 +22,7 @@ public class Peashooter extends Plant implements Action{
     }
 
     public void action() {
-        System.out.println("peashooter");
-        if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
+        if (getAttackCooldown() > 0)                                            // TIDAK PERLU MELAKUKAN SHOOT
         {
             setAttackCooldown(getAttackCooldown() - 1);                         // MENGURANGI COOLDOWN
             return;

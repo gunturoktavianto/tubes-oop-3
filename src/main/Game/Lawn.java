@@ -12,6 +12,7 @@ import Plant.*;
 import Tile.*;
 
 import Zombie.NormalZombie;
+import Zombie.PoleVaultingZombie;
 
 public class Lawn {
     private static Lawn instance;
@@ -21,21 +22,26 @@ public class Lawn {
         initializeLawn();
 
         // lawn.get(0).get(9).spawnZombie()
-        lawn.get(0).get(9).addZombie(new NormalZombie(0, 9));
-        lawn.get(1).get(9).addZombie(new NormalZombie(1, 9));
-        lawn.get(2).get(9).addZombie(new NormalZombie(2, 9));
-        lawn.get(3).get(9).addZombie(new NormalZombie(3, 9));
-        lawn.get(4).get(9).addZombie(new NormalZombie(4, 9));
-        lawn.get(5).get(9).addZombie(new NormalZombie(5, 9));
+        // lawn.get(0).get(9).addZombie(new NormalZombie(0, 9));
+        // lawn.get(1).get(9).addZombie(new NormalZombie(1, 9));
+        // lawn.get(2).get(9).addZombie(new NormalZombie(2, 9));
+        // lawn.get(3).get(9).addZombie(new NormalZombie(3, 9));
+        // lawn.get(4).get(9).addZombie(new NormalZombie(4, 9));
+        // lawn.get(5).get(9).addZombie(new NormalZombie(5, 9));
 
-        lawn.get(0).get(1).plant(new SnowPea(0, 1));
-        lawn.get(1).get(2).plant(new Peashooter(1, 2));
-        lawn.get(2).get(1).plant(new Lilypad(2, 1));
-        lawn.get(3).get(2).plant(new Lilypad(3, 2));
-        lawn.get(4).get(1).plant(new Peashooter(4, 1));
-        lawn.get(5).get(2).plant(new Kubis(5, 2));
-        lawn.get(5).get(3).plant(new Jalapeno(5, 3));
-        lawn.get(4).get(8).plant(new Squash(4, 8));
+        // lawn.get(0).get(1).plant(new SnowPea(0, 1));
+        // lawn.get(1).get(2).plant(new Peashooter(1, 2));
+        // lawn.get(2).get(1).plant(new Lilypad(2, 1));
+        // lawn.get(3).get(2).plant(new Lilypad(3, 2));
+        // lawn.get(4).get(1).plant(new Peashooter(4, 1));
+        // lawn.get(5).get(2).plant(new Kubis(5, 2));
+        // lawn.get(5).get(3).plant(new Jalapeno(5, 3));
+        // lawn.get(4).get(8).plant(new Squash(4, 8));
+
+        lawn.get(0).get(5).plant(new Wallnut(0,5));
+        lawn.get(0).get(6).plant(new Peashooter(0,6));
+        lawn.get(0).get(7).plant(new Peashooter(0,7));
+        lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -76,7 +82,7 @@ public class Lawn {
         }
 
         // Moving zombies from right to left
-        for (int col = 1; col < tileRow.size(); col++) {
+        for (int col = tileRow.size() - 1; col > 0; col--) {
             if (tileRow.get(col).hasZombie()) {
                 ArrayList<Zombie> zombies = tileRow.get(col).getZombies();
                 Iterator<Zombie> iterator = zombies.iterator();
@@ -84,26 +90,28 @@ public class Lawn {
                     Zombie z = iterator.next();
                     if (z.getHealth() > 0)
                     {
-                        if (z.getCurrentMovementSpeed() == 0.0f) {
-                            if (z.getFrozenTime() > 0) {
+                        System.out.println("current speed: " + z.getCurrentMovementSpeed());
+                        if (z.getCurrentMovementSpeed() == 0.0f) 
+                        {
+                            if (z.getFrozenTime() > 0) 
+                            {
                                 System.out.println("dingin bang");
                                 z.setCurrentMovementSpeed(z.getCurrentMovementSpeed()+1);
                                 z.setFrozenTime(z.getFrozenTime()-1);
-                            } else {
+                            } else 
+                            {
                                 z.setCurrentMovementSpeed(z.getMovementSpeed());
                                 tileRow.get(col - 1).getZombies().add(z);
                                 z.setZombiePosition(row, col-1);
                                 iterator.remove(); // Safe removal
                             }
                            
-                        } else if (z.getCurrentMovementSpeed() > 0) {
+                        } else 
+                        {
                             z.setCurrentMovementSpeed(z.getCurrentMovementSpeed() - 1f);
-                            if (z.getFrozenTime() > 0) z.setFrozenTime(z.getFrozenTime()-1);
+                            if (z.getFrozenTime() > 0) 
+                                z.setFrozenTime(z.getFrozenTime()-1);
                         }
-                    } else
-                    {
-                        System.out.println("ZOMBIE MATI!!!");
-                        iterator.remove();
                     }
                 }
             }
@@ -111,25 +119,34 @@ public class Lawn {
     }
 
     public void INITIALIZE_ATTACK() {
-        for (int i=0; i<6; i++)                                                 // PLANT ATTACK
-        {
+        for (int i = 0; i < 6; i++) {
             ArrayList<Tile> tileRow = lawn.get(i);
-            for (int j=1; j < tileRow.size(); j++)
-            {
-                if (tileRow.get(j).hasPlant())
-                {
+    
+            // Plant attack
+            for (int j = 1; j < tileRow.size(); j++) {
+                if (tileRow.get(j).hasPlant()) {
                     Plant plant = tileRow.get(j).getPlant();
                     plant.action();
-                    if (plant.getHealth() <= 0)
-                    {
-                        tileRow.get(j).removePlant();                           // REMOVE PLANT JIKA DARAH SUDAH HABIS
+                    if (plant.getHealth() <= 0) {
+                        tileRow.get(j).removePlant(); // Remove plant if health is zero
                     }
                 }
-                if (tileRow.get(j).hasZombie())
-                {
-                    for (Zombie z : tileRow.get(j).getZombies())
-                    {
+            }
+    
+            for (int j = tileRow.size() - 1; j > 0; j--) {
+                if (tileRow.get(j).hasZombie()) {
+                    Iterator<Zombie> iterator = tileRow.get(j).getZombies().iterator();
+                    while (iterator.hasNext()) {
+                        Zombie z = iterator.next();
                         z.action();
+                        if (z.getZombieCol() != j) {                            // TREATMENT KHUSUS UNTUK POLE VAULTER
+                                                                                // DI ZOMBIE VAULTER, OBJECT ZOMBIE TIDAK DIPINDAHKAN LANGSUNG
+                            iterator.remove();                                  // POSITION DIBUAT TIDAK SINKRON DENGAN CURRENT TILE LALU DIUBAH DISINI
+                        }
+                        if (z.getHealth() <= 0) {
+                            System.out.println("ZOMBIE MATI!!!");
+                            iterator.remove();
+                        }
                     }
                 }
             }
