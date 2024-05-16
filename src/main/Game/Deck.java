@@ -14,6 +14,14 @@ public class Deck implements Stockable {
         plants = new ArrayList<>();
     }
 
+    // public void setDeck(Plant plant) throws InvalidStoringException {
+    //     while(plants.size() < MAX_SIZE)
+    //     {
+    //         Inventory.printInventory();
+                
+    //     }
+    // }
+
     // Adds a Plant to the deck if there is space and it's not already in the deck
     public void addItem(Plant plant) throws InvalidStoringException {
         if (plant == null) {

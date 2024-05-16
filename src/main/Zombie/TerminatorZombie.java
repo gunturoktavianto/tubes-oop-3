@@ -36,6 +36,7 @@ public class TerminatorZombie extends Zombie {
             {
                 if (getFrozenTime() == 3 || getFrozenTime() == 1) 
                 {
+                    setCurrentMovementSpeed(getCurrentMovementSpeed() + 1); 
                     return;
                 }
                 System.out.println("DOR!!! plant di tile" + i);

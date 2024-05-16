@@ -42,6 +42,7 @@ public class PoleVaultingZombie extends Zombie implements Vaultable {
             {
                 if (getFrozenTime() == 3 || getFrozenTime() == 1) 
                 {
+                    setCurrentMovementSpeed(getCurrentMovementSpeed() + 1); 
                     return;
                 }
                 Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 

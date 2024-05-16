@@ -40,9 +40,9 @@ public class Inventory implements Stockable {
             Plant temp = inventory.get(index1);
             inventory.set(index1, inventory.get(index2));
             inventory.set(index2, temp);
-         
+            
+        
     }
-
     public void printInventory() {
         System.out.println("Inventory:");
         for (int i = 0; i < inventory.size(); i++) {
