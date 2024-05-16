@@ -29,7 +29,7 @@ public class PotatoMine extends Plant implements Action {
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);                                                                  // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
         if (tileRow.get(col).hasZombie())
         {
-            System.out.println("DOR!!! ratakan kelp");
+            System.out.println("DOR!!! ratakan potato");
             for (Zombie z : tileRow.get(col).getZombies())
             {
                 z.setHealth(z.getHealth() - z.getHealth());

@@ -39,7 +39,7 @@ public class Lawn {
             plant(0, 6,new SnowPea(0,6));
             plant(0, 3,new Wallnut(0,3));
             plant(0, 7, new Wallnut(0,7));
-            lawn.get(0).get(9).getZombies().add(new FootballZombie(0, 9));
+            lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
         } catch (InvalidPlantingException e) {
             System.out.println(e.getMessage());
         }
