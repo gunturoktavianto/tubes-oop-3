@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import main.AbstractClass.Plant;
 import main.Exception.InvalidStoringException;
+import main.Exception.RemoveNullException;
 import main.Interface.Stockable;
 
 public class Deck implements Stockable {
     private ArrayList<Plant> plants;
     private static final int MAX_SIZE = 6;
+    private Inventory inventory;
 
     public Deck() {
         plants = new ArrayList<>();
+        inventory = new Inventory();  
     }
 
     // public void setDeck(Plant plant) throws InvalidStoringException {
@@ -40,9 +43,12 @@ public class Deck implements Stockable {
     }
 
     // Removes a Plant from the deck
-    public void removeItem(Plant plant) {
+    public void removeItem(Plant plant) throws RemoveNullException {
+        if (plant == null) {
+            throw new IllegalArgumentException("Plant cannot be null");
+        }
         if (!plants.remove(plant)) {
-            System.out.println("Plant not found in the deck.");
+            throw new RemoveNullException("Plant not found in the deck.");
         }
     }
 
@@ -108,6 +114,19 @@ public class Deck implements Stockable {
             plant.setAttackCooldown(cooldown);
         } else {
             System.out.println("No plant found at the given index.");
+        }
+    }
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void addPlantFromInventory(int inventoryIndex, int deckSlot) throws InvalidStoringException, RemoveNullException {
+        Plant plant = inventory.getPlant(inventoryIndex);
+        if (plant != null) {
+            addItem(plant);
+            inventory.removeItem(plant);
+        } else {
+            System.out.println("No plant found at the given inventory index.");
         }
     }
 

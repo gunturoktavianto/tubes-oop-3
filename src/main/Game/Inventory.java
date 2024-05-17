@@ -10,22 +10,31 @@ import main.Interface.Stockable;
 import main.Plant.*;
 
 public class Inventory implements Stockable {
-    private ArrayList<Plant> inventory;
+    private ArrayList<Slot<Plant>> inventory;
     public Inventory() {
-        this.inventory = new ArrayList<Plant>();
+        this.inventory = new ArrayList<>();
         addItem(new Peashooter(0,0)); 
         // INITILIZE WITH OTHER PLANTS 
     }
 
     public void addItem(Plant plant) {
-        inventory.add(plant);
+        Slot<Plant> newSlot = new Slot<>(plant);
+        inventory.add(newSlot);
     }
 
     public void removeItem(Plant plant) throws RemoveNullException {
         if (plant == null) {
             throw new RemoveNullException("Cannot remove null from inventory.");
         }
-        if (!inventory.remove(plant)) {
+        boolean removed = false;
+        for (Slot<Plant> slot : inventory) {
+            if (plant.equals(slot.getItem())) {
+                slot.setItem(null);
+                removed = true;
+                break;
+            }
+        }
+        if (!removed) {
             System.out.println("Plant not found in the inventory.");
         }
     }   
@@ -37,23 +46,29 @@ public class Inventory implements Stockable {
         if (index1 == index2 || (inventory.get(index1) == null && inventory.get(index2) == null)) {
             throw new InvalidInventorySwapException("Invalid swap operation.");
         }
-            Plant temp = inventory.get(index1);
-            inventory.set(index1, inventory.get(index2));
-            inventory.set(index2, temp);
+        Slot<Plant> temp = inventory.get(index1);
+        inventory.set(index1, inventory.get(index2));
+        inventory.set(index2, temp);
             
         
     }
     public void printInventory() {
         System.out.println("Inventory:");
         for (int i = 0; i < inventory.size(); i++) {
-            Plant plant = inventory.get(i);
-            System.out.println("  - " + plant.getName() + " (Index: " + i + ")");
+            Slot<Plant> slot = inventory.get(i);
+            if (!slot.isEmpty()) {
+                Plant plant = slot.getItem();
+                System.out.println("  - " + plant.getName() + " (Index: " + i + ")");
+            } else {
+                System.out.println("  - Empty slot (Index: " + i + ")");
+            }
         }
       }
 
       public Plant getPlant(int index) {
         if (index >= 0 && index < inventory.size()) {
-            return inventory.get(index);
+            Slot<Plant> slot = inventory.get(index);
+            return slot.getItem();
         } else {
             System.out.println("Invalid index!");
             return null;
