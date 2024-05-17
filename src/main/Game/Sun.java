@@ -8,10 +8,13 @@ public class Sun {
         while (true) {
             try {
                 // Menghasilkan interval acak antara 5 hingga 10 detik (5000 hingga 10000 milidetik)
-                int delay = 5000 + (int) (Math.random() * 5000);
+                double delay = 5000 + (Math.random() * 5000);
+                //Mengubah ke detik agar bisa dibulatkan
+                delay = Math.ceil((delay/1000));
+                long roudingDelay = (long) (delay*1000);
                 // System.out.println(delay);
                 // Tidur selama interval acak
-                Thread.sleep(delay);
+                Thread.sleep(roudingDelay);
 
                 // Menambah nilai sun sebesar 25
                 sun += 25;
