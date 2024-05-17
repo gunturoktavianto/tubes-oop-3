@@ -31,9 +31,11 @@ public class SnowPea extends Plant implements Action {
             {
                 for (Zombie z : tileRow.get(i).getZombies())
                 {
-                    z.setFrozenTime(3);  // waktu zombie frozen di atur
-                    if(z.getHealth() < getAttackDamage()) z.setHealth(0);
-                    else z.setHealth(z.getHealth() - getAttackDamage());
+                    z.setFrozenTime(3);                                         // waktu zombie frozen di atur
+                    if (z.getHealth() < getAttackDamage()) 
+                        z.setHealth(0);
+                    else 
+                        z.setHealth(z.getHealth() - getAttackDamage());
                 }
                 setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA

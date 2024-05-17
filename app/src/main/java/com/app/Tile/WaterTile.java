@@ -28,7 +28,7 @@ public class WaterTile extends Tile {
     // }
 
     public void spawnZombie() {
-        if (Zombie.getZombieCount() > 10)
+        if (Zombie.getZombieCount() > 9)
         {
             return;
         }

@@ -15,7 +15,6 @@ public class Sunflower extends Plant implements Action {
     }
 
     public void action() {
-        System.out.println("sunflower");
         if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
         {
             setAttackCooldown(getAttackCooldown() - 1);                         // MENGURANGI COOLDOWN

@@ -8,6 +8,7 @@ import com.app.Game.*;
 
 public class GameCLI extends Main {
     private final Scanner scanner;
+    private long startTime, passedTime;
     private Lawn lawn;
     private Deck deck;
     private static boolean isGameOver;
@@ -39,6 +40,7 @@ public class GameCLI extends Main {
                         if (!isStarted) {
                             isStarted = true;
                             isPaused = false;
+                            startTime = System.currentTimeMillis();
                             startThreads();
                             startDisplayThread();
                         }
@@ -61,23 +63,23 @@ public class GameCLI extends Main {
             public void run() {
                 while (!isGameOver) {
                     synchronized (scanner) {
-                        // Wait for user input to trigger display
-                        System.out.println("Press ENTER to display lawn and input commands.");
-                        scanner.nextLine();
 
                         if (!isPaused) {
                             System.out.print("\033[H\033[2J");
                             System.out.flush();
+                            
+                            passedTime = (System.currentTimeMillis() - startTime) / 1000;
+                            System.out.println("\033[0;33mTime: \u001B[0m" + passedTime);
 
                             System.out.println("\033[0;33mTotal Sun: \u001B[0m" + Sun.getSun());
                             System.out.println("\033[0;33mJumlah Zombie di Map: \u001B[0m" + Zombie.getZombieCount());
                             lawn.printLawn();
-                            System.out.println("Masukkan Perintah");
-
+                            
+                            System.out.println("Press ENTER to display lawn or input commands.");
                             String menu = scanner.nextLine();
                             System.out.println();
                             
-                            if (menu.equals(""))
+                            if (menu.equals(""))                       // Will just print the map
                             {
 
                             }

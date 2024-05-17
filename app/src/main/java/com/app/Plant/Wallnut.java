@@ -4,7 +4,7 @@ import com.app.AbstractClass.Plant;
 public class Wallnut extends Plant {
     
     public Wallnut(int row, int col) {
-        setName("Wall nut");
+        setName("Wallnut");
         setCost(50);
         setHealth(1000);
         setAttackDamage(0);

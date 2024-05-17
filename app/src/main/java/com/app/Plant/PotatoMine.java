@@ -31,7 +31,7 @@ public class PotatoMine extends Plant implements Action {
             {
                 z.setHealth(z.getHealth() - z.getHealth());
             }
-            tileRow.get(col).removePlant(); //lsg remove
+            setHealth(0);
             return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
         }                                                            
     }

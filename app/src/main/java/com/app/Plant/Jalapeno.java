@@ -33,7 +33,7 @@ public class Jalapeno extends Plant implements Action {
                 {
                     z.setHealth(0);
                 }
-                tileRow.get(col).removePlant(); // lsg remove
+                setHealth(0);
             }                                                            
         }
     }

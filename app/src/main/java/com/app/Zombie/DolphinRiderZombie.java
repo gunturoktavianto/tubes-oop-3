@@ -17,7 +17,6 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
     }
 
     public void jumpOver(){
-        System.out.println("gas lompat");
         if (Lawn.getLawn().get(row).get(col-2).hasPlant())
         {
             Lawn.getLawn().get(row).get(col-2).removePlant();
@@ -43,7 +42,6 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
                     return;
                 }
                 Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant();
-                System.out.println("Health: " + plant.getHealth()); 
                 plant.setHealth(plant.getHealth() - getAttackDamage());
                 setCurrentMovementSpeed(getCurrentMovementSpeed() + 1);    
             }                        

@@ -51,6 +51,7 @@ public abstract class Tile {
 
     public void addZombie(Zombie zombie) {
         if (new Random().nextDouble() < 0.3)
+            System.out.println("Spawning a zombie");
             zombies.add(zombie);
     }
 

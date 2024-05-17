@@ -27,7 +27,7 @@ public class NewspaperZombie extends Zombie implements SpellCaster{
     public void action()
     {
         if(getHealth() < 125) {
-            System.out.println("im angry");
+            System.out.println("Newspaper Zombie said 'Im Angry'");
             setMovementSpeed(3);
         }
 
@@ -41,8 +41,7 @@ public class NewspaperZombie extends Zombie implements SpellCaster{
             }
             Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
             plant.setHealth(plant.getHealth() - getAttackDamage());
-            System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
-                                      // MENGKOMPENSASI WAKTU ATTACK                         
+            setCurrentMovementSpeed(getCurrentMovementSpeed() + 1);              // MENGKOMPENSASI WAKTU ATTACK                         
         }
     }
 }   

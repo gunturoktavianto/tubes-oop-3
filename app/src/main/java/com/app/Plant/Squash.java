@@ -37,7 +37,7 @@ public class Squash extends Plant implements Action {
                 {
                     z.setHealth(0);
                 }
-                tileRow.get(col).removePlant(); //lsg remove
+                setHealth(0);
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
             }                                                            
         }

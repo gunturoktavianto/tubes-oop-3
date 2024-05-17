@@ -30,7 +30,6 @@ public class DuckyTubeZombie extends Zombie {
             }
             Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
             plant.setHealth(plant.getHealth() - getAttackDamage());
-            System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
             setCurrentMovementSpeed(getCurrentMovementSpeed() + 1);                           // MENGKOMPENSASI WAKTU ATTACK                         
         }
     }

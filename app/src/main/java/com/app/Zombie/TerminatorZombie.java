@@ -37,7 +37,7 @@ public class TerminatorZombie extends Zombie {
                     setCurrentMovementSpeed(getCurrentMovementSpeed() + 1); 
                     return;
                 }
-                System.out.println("DOR!!! plant di tile" + i);
+                System.out.println("Terminator Zombie attacks plant at Tile: " + i);
                 Plant p = tileRow.get(i).getPlant();
                 p.setHealth(p.getHealth() - getAttackDamage());                           // RESET COOLDOWN
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA

@@ -18,13 +18,11 @@ public class PoleVaultingZombie extends Zombie implements Vaultable {
     }
 
     public void jumpOver(){
-        System.out.println("gas lompat");
         if (Lawn.getLawn().get(row).get(col-2).hasPlant())
         {
             Lawn.getLawn().get(row).get(col-2).removePlant();
         }
         Lawn.getLawn().get(row).get(col - 2).getZombies().add(this);
-        // Lawn.getLawn().get(row).get(col).getZombies().remove(this);
         setZombiePosition(row, col-2);
         isJump = true;
     }
@@ -46,9 +44,7 @@ public class PoleVaultingZombie extends Zombie implements Vaultable {
                 }
                 Plant plant = Lawn.getLawn().get(row).get(col-1).getPlant(); 
                 plant.setHealth(plant.getHealth() - getAttackDamage());
-                System.out.println("NYAM!!! DARAH PLANT: " + plant.getHealth());
                 setCurrentMovementSpeed(getCurrentMovementSpeed() + 1);                       // MENGKOMPENSASI WAKTU ATTACK  
-                System.out.println(getCurrentMovementSpeed());
             }                       
         }
     }

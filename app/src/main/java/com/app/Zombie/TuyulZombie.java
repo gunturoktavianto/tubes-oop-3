@@ -9,20 +9,12 @@ public class TuyulZombie extends Zombie{
     
     public TuyulZombie(int row, int col) {
         setName("Tuyul Zombie");
-        setHealth(10000);
+        setHealth(125);
         setAttackDamage(100);
         setAttackSpeed(1);
         setIsAquatic(false);
         setZombiePosition(row, col);
         Zombie.addZombieCount();
-    }
-
-    // public void castSpell(){
-    //     System.out.println("shing shing");
-    // }
-    
-    public void moveForward(){
-        
     }
 
     public void action()
@@ -34,7 +26,14 @@ public class TuyulZombie extends Zombie{
             {
                 System.out.println("DOR!!! plant di tile" + i);
                 Plant p = tileRow.get(i).getPlant();
-                p.setHealth(p.getHealth() - p.getHealth());                           // RESET COOLDOWN
+                if (getHealth() >= 50)
+                {
+                    p.setHealth(0);                                                 // RESET COOLDOWN
+                }
+                else
+                {
+
+                }
                 setHealth(0);
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
             }                                                            

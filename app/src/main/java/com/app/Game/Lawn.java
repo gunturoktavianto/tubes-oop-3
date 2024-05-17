@@ -18,23 +18,6 @@ public class Lawn {
     public Lawn() {
         initializeLawn();
 
-        // lawn.get(0).get(9).spawnZombie()
-        // lawn.get(0).get(9).addZombie(new NormalZombie(0, 9));
-        // lawn.get(1).get(9).addZombie(new NormalZombie(1, 9));
-        // lawn.get(2).get(9).addZombie(new NormalZombie(2, 9));
-        // lawn.get(3).get(9).addZombie(new NormalZombie(3, 9));
-        // lawn.get(4).get(9).addZombie(new NormalZombie(4, 9));
-        // lawn.get(5).get(9).addZombie(new NormalZombie(5, 9));
-
-        // lawn.get(0).get(1).plant(new SnowPea(0, 1));
-        // lawn.get(1).get(2).plant(new Peashooter(1, 2));
-        // lawn.get(2).get(1).plant(new Lilypad(2, 1));
-        // lawn.get(3).get(2).plant(new Lilypad(3, 2));
-        // lawn.get(4).get(1).plant(new Peashooter(4, 1));
-        // lawn.get(5).get(2).plant(new Kubis(5, 2));
-        // lawn.get(5).get(3).plant(new Jalapeno(5, 3));
-        // lawn.get(4).get(8).plant(new Squash(4, 8));
-
         try {
             plant(0, 5, new Wallnut(0,5));
             plant(0, 6,new SnowPea(0,6));
@@ -59,15 +42,23 @@ public class Lawn {
     }
 
     public void initializeLawn() {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) 
+        {
             ArrayList<Tile> row = new ArrayList<>();
-            for (int j = 0; j < 10; j++) {
-                if (j == 0) { // THE HOUSE TILE
+            for (int j = 0; j < 10; j++) 
+            {
+                if (j == 0) 
+                { // THE HOUSE TILE
                     row.add(new HouseTile());
-                } else {
-                    if (i == 2 || i == 3) {
+                } 
+                else 
+                {
+                    if (i == 2 || i == 3) 
+                    {
                         row.add(new WaterTile(i, j));
-                    } else {
+                    } 
+                    else 
+                    {
                         row.add(new GroundTile(i, j));
                     }
                 }
@@ -78,7 +69,8 @@ public class Lawn {
 
     public void moveForward(int row) { 
         ArrayList<Tile> tileRow = lawn.get(row);
-        if (tileRow.get(0).hasZombie()) {
+        if (tileRow.get(0).hasZombie()) 
+        {
             System.out.println("Zombies have reached the house! Game Over.");
             GameCLI.endGame();
         }
@@ -109,18 +101,16 @@ public class Lawn {
                         {
                             if (z.getFrozenTime() > 0) 
                             {
-                                System.out.println("dingin bang");
-                                // float temp = z.getCurrentMovementSpeed();
                                 z.setCurrentMovementSpeed(z.getMovementSpeed() + z.getMovementSpeed());
                                 z.setFrozenTime(z.getFrozenTime()-1);
-                            } else 
+                            } 
+                            else 
                             { 
                                 z.setCurrentMovementSpeed(z.getMovementSpeed());
                             }
-                            // }
                             tileRow.get(col - 1).getZombies().add(z);
                             z.setZombiePosition(row, col-1);
-                            iterator.remove(); // Safe removal
+                            iterator.remove();
                         } 
                         else 
                         {
@@ -142,31 +132,39 @@ public class Lawn {
 
 
     public void INITIALIZE_ATTACK() {
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 6; i++) 
+        {
             ArrayList<Tile> tileRow = lawn.get(i);
     
             // Plant attack
-            for (int j = 1; j < tileRow.size(); j++) {
-                if (tileRow.get(j).hasPlant()) {
+            for (int j = 1; j < tileRow.size(); j++) 
+            {
+                if (tileRow.get(j).hasPlant()) 
+                {
                     Plant plant = tileRow.get(j).getPlant();
                     plant.action();
-                    if (plant.getHealth() <= 0) {
+                    if (plant.getHealth() <= 0) 
+                    {
                         tileRow.get(j).removePlant(); // Remove plant if health is zero
                     }
                 }
             }
     
-            for (int j = tileRow.size() - 1; j > 0; j--) {
+            for (int j = tileRow.size() - 1; j > 0; j--) 
+            {
                 if (tileRow.get(j).hasZombie()) {
                     Iterator<Zombie> iterator = tileRow.get(j).getZombies().iterator();
-                    while (iterator.hasNext()) {
+                    while (iterator.hasNext()) 
+                    {
                         Zombie z = iterator.next();
                         z.action();
-                        if (z.getZombieCol() != j) {                            // TREATMENT KHUSUS UNTUK POLE VAULTER
+                        if (z.getZombieCol() != j) 
+                        {                            // TREATMENT KHUSUS UNTUK POLE VAULTER
                                                                                 // DI ZOMBIE VAULTER, OBJECT ZOMBIE TIDAK DIPINDAHKAN LANGSUNG
                             iterator.remove();                                  // POSITION DIBUAT TIDAK SINKRON DENGAN CURRENT TILE LALU DIUBAH DISINI
                         }
-                        if (z.getHealth() <= 0) {
+                        if (z.getHealth() <= 0) 
+                        {
                             iterator.remove();
                         }
                     }
@@ -186,7 +184,7 @@ public class Lawn {
         {
             if (!getLawn().get(row).get(col).hasPlant()                         // KONDISI JIKA BELUM ADA LILYPAD
                 &&
-                plant.getName().equals("Lilypad")                      // PLANT YANG INGIN DITARO ADALAH LILYPAD
+                plant.getName().equals("Lilypad")                               // PLANT YANG INGIN DITARO ADALAH LILYPAD
             )
             {
                 lawn.get(row).get(col).setPlant(plant);
@@ -219,30 +217,130 @@ public class Lawn {
         }
     }
 
-    public void printLawn() 
-    {
-        for (int i = 0; i < 6; i++) 
-        {
-            for (int j = 0; j < 10; j++) 
-            {
-                if (j == 0) 
+    public void printLawn() {
+        for (int i = 0; i < 6; i++) {
+            for (int j = 0; j < 10; j++) {
+                if (j == 0)
                 {
-                    System.out.print("[ ]");
-                } else 
+                    System.out.print("[     ]");
+                }
+                else
                 {
-                    if (lawn.get(i).get(j).hasZombie() && lawn.get(i).get(j).hasPlant()) // IF THERE IS A ZOMBIE AND PLANT IN A TILE
-                        System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[X]" + "\u001B[0m");
-                    else if (lawn.get(i).get(j).hasZombie()) // ONLY HAS A ZOMBIE IN A TILE
-                        System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[Z:" + lawn.get(i).get(j).getZombies().size() + "]" + "\u001B[0m");
-                    else if (lawn.get(i).get(j).hasPlant()) // ONLY HAS A PLANT IN A TILE
-                        System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[P]" + "\u001B[0m");
+                    System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[");
+                    if (lawn.get(i).get(j).hasPlant()) 
+                    {
+                        System.out.print(getPlantInitial(lawn.get(i).get(j).getPlant()));
+                    } 
                     else 
-                        System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[ ]" + "\u001B[0m");
+                    {
+                        System.out.print(" ");
+                    }
+        
+                    System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "|" + "\u001B[0m");
+        
+                    if (lawn.get(i).get(j).hasZombie()) 
+                    {
+                        ArrayList<Zombie> zombies = lawn.get(i).get(j).getZombies();
+                        int zombiesCount = zombies.size();
+                        for (int k = 0; k < zombiesCount; k++) 
+                        {
+                            System.out.print(getZombieInitial(zombies.get(k)));
+                        }
+                        for (int k = zombiesCount; k < 4; k++) 
+                        {
+                            System.out.print(" ");
+                        }
+                    } 
+                    else 
+                    {
+                        System.out.print("    ");
+                    }
+        
+                    System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "]" + "\u001B[0m");         
                 }
             }
             System.out.println();
-        } 
+        }
         System.out.println();
-        System.out.println();
+    }
+
+    private String getPlantInitial(Plant p) {
+        String initial = "\033[1;92m"; // Green color
+        switch (p.getName()) {
+            case "Chomper":
+                initial += 'C';
+                break;
+            case "Jalapeno":
+                initial += 'J';
+                break;
+            case "Kubis":
+                initial += 'K';
+                break;
+            case "Lilypad":
+                initial += 'L';
+                break;
+            case "Peashooter":
+                initial += 'P';
+                break;
+            case "PotatoMine":
+                initial += 'M';
+                break;
+            case "SnowPea":
+                initial += 'S';
+                break;
+            case "Squash":
+                initial += 'Q';
+                break;
+            case "Sunflower":
+                initial += 'F';
+                break;
+            case "Wallnut":
+                initial += 'W';
+                break;
+            default:
+                initial += ' '; // Add a default case to handle unknown plants
+                break;
+        }
+        return initial + "\033[0m"; // Reset color
+    }
+
+    private String getZombieInitial(Zombie z) {
+        String initial = "\033[1;31m"; // Red color
+        switch (z.getName()) {
+            case "Buckethead Zombie":
+                initial += 'B';
+                break;
+            case "Conehead Zombie":
+                initial += 'C';
+                break;
+            case "Dolphin Rider Zombie":
+                initial += 'D';
+                break;
+            case "Ducky Tube Zombie":
+                initial += 'E';
+                break;
+            case "Football Zombie":
+                initial += 'F';
+                break;
+            case "Newspaper Zombie":
+                initial += 'N';
+                break;
+            case "Normal Zombie":
+                initial += 'Z';
+                break;
+            case "Pole Vaulting Zombie":
+                initial += 'P';
+                break;
+            case "Terminator Zombie":
+                initial += 'T';
+                break;
+            case "Tuyul Zombie":
+                initial += 'U';
+                break;
+            default:
+                initial += ' '; // Add a default case to handle unknown zombies
+                break;
+        }
+        return initial + "\033[0m"; // Reset color
     }
 }
