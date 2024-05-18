@@ -11,9 +11,10 @@ public class Repeater extends Plant implements Action {
         setName("Repeater");
         setCost(200);
         setHealth(100);
-        setAttackDamage(60);
+        setAttackDamage(50);
         setAttackSpeed(4);
-        setAttackCooldown(4);
+        setAttackCooldown(getAttackSpeed());
+        setRange(-1);
         setPlantPosition(row, col);
     }
 

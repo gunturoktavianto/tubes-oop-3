@@ -10,9 +10,9 @@ public class FootballZombie extends Zombie {
         setHealth(600);
         setAttackDamage(100);
         setAttackSpeed(1);
-        setIsAquatic(true);
+        setIsAquatic(false);
         setZombiePosition(row, col);
-        setMovementSpeed(3);
+        setMovementSpeed(5);
         setCurrentMovementSpeed(3);
         Zombie.addZombieCount();
     }

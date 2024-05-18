@@ -3,10 +3,10 @@ package com.app.Zombie;
 import com.app.AbstractClass.*;
 import com.app.Game.Lawn;
 
-public class WalnutZombie extends Zombie {
+public class WallnutZombie extends Zombie {
     
-    public WalnutZombie(int row, int col) {
-        setName("WalnutZombie");
+    public WallnutZombie(int row, int col) {
+        setName("Wallnut Zombie");
         setHealth(600);
         setAttackDamage(50);
         setAttackSpeed(1);

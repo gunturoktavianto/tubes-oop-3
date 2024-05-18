@@ -12,7 +12,7 @@ public class Peashooter extends Plant implements Action{
         setName("Peashooter");
         setCost(100);
         setHealth(100);
-        setAttackDamage(30);
+        setAttackDamage(25);
         setAttackSpeed(4);
         setAttackCooldown(getAttackSpeed());
         setRange(-1);
