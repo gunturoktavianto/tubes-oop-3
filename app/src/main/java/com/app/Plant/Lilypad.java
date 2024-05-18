@@ -4,7 +4,7 @@ import com.app.AbstractClass.Plant;
 public class Lilypad extends Plant{
     private Plant plantedPlant;
 
-    public Lilypad(int row, int col) {
+    public Lilypad() {
         setName("Lilypad");
         setCost(25);
         setHealth(100);

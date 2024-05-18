@@ -7,7 +7,7 @@ import com.app.Interface.Action;
 
 public class Jalapeno extends Plant implements Action {
     
-    public Jalapeno(int row, int col) {
+    public Jalapeno() {
         setName("Jalapeno");
         setCost(125);
         setHealth(100000);

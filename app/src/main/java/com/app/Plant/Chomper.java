@@ -7,7 +7,7 @@ import com.app.Interface.Action;
 
 public class Chomper extends Plant implements Action {
     int ranges;
-    public Chomper(int row, int col) {
+    public Chomper() {
         setName("Chomper");
         setCost(150);
         setHealth(100);

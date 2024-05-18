@@ -1,21 +1,19 @@
 package com.app.Plant;
-
 import java.util.ArrayList;
 
 import com.app.AbstractClass.*;
 import com.app.Game.Lawn;
 import com.app.Interface.Action;
 
-public class Peashooter extends Plant implements Action{
+public class Repeater extends Plant implements Action {
     
-    public Peashooter() {
-        setName("Peashooter");
-        setCost(100);
+    public Repeater() {
+        setName("Repeater");
+        setCost(200);
         setHealth(100);
-        setAttackDamage(30);
+        setAttackDamage(60);
         setAttackSpeed(4);
-        setAttackCooldown(getAttackSpeed());
-        setRange(-1);
+        setAttackCooldown(4);
         setPlantPosition(row, col);
     }
 

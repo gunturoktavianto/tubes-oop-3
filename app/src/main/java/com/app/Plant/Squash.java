@@ -8,7 +8,7 @@ import com.app.Interface.Action;
 public class Squash extends Plant implements Action {
     int ranges;
     int cols;
-    public Squash(int row, int col) {
+    public Squash() {
         setName("Squash");
         setCost(50);
         setHealth(10000);

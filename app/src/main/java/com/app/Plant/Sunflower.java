@@ -5,7 +5,7 @@ import com.app.Interface.Action;
 
 public class Sunflower extends Plant implements Action {
     
-    public Sunflower(int row, int col) {
+    public Sunflower() {
         setName("Sunflower");
         setCost(50);
         setHealth(100);

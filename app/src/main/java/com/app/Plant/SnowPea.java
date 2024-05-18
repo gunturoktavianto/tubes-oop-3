@@ -7,7 +7,7 @@ import com.app.Interface.Action;
 
 public class SnowPea extends Plant implements Action {
     
-    public SnowPea(int row, int col) {
+    public SnowPea() {
         setName("SnowPea");
         setCost(175);
         setHealth(100);

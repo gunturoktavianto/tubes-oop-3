@@ -12,6 +12,7 @@ public abstract class Plant {
     private int    attackSpeed;
     private int attackCooldown;
     private int          range;
+    private int plantingCooldown;
     private boolean  isAquatic;
     protected int     row, col;                                                 //INFO UNTUK SHOOTING 
 
@@ -86,12 +87,20 @@ public abstract class Plant {
         return attackCooldown;
     }
 
+    public int getPlantingCooldown() {
+        return plantingCooldown;
+    }
+
     public void setAttackSpeed(int attackSpeed) {
         this.attackSpeed = attackSpeed;
     }
 
     public void setAttackCooldown(int attackCooldown) {
         this.attackCooldown = attackCooldown;
+    }
+
+    public void setPlantingCooldown(int plantingCooldown) {
+        this.plantingCooldown = plantingCooldown;
     }
 
     public int getRange() {

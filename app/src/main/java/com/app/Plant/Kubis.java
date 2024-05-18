@@ -7,7 +7,7 @@ import com.app.Interface.Action;
 
 public class Kubis extends Plant implements Action {
     
-    public Kubis(int row, int col) {
+    public Kubis() {
         setName("Kubis");
         setCost(100);
         setHealth(100);

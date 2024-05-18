@@ -19,10 +19,12 @@ public class Lawn {
         initializeLawn();
 
         try {
-            plant(0, 5, new Wallnut(0,5));
-            plant(0, 6,new SnowPea(0,6));
-            plant(0, 3,new Wallnut(0,3));
-            plant(0, 7, new Wallnut(0,7));
+            plant(0, 5, new Wallnut());
+            plant(0, 6,new SnowPea());
+            plant(0, 1,new SnowPea());
+            plant(0, 2,new SnowPea());
+            plant(0, 3,new Wallnut());
+            plant(0, 7, new Wallnut());
             // lawn.get(0).get(9).getZombies().add(new BucketheadZombie(0, 9));
         } catch (InvalidPlantingException e) {
             System.out.println(e.getMessage());
@@ -94,7 +96,7 @@ public class Lawn {
                         }
                         else if(z.getFrozenTime() == 0 && z.getIsWillNotFreeze() == true)
                         {
-                            z.setCurrentMovementSpeed((float)Math.ceil(z.getCurrentMovementSpeed() / 2)); // kenapa di 1 soalnya karena di 1 ama 0 harusnya sama aja toh nti diubah lagi di 0 kan biat lebih ez aja
+                            z.setCurrentMovementSpeed((float)Math.ceil(z.getCurrentMovementSpeed() / 2) - 1); // kenapa di 1 soalnya karena di 1 ama 0 harusnya sama aja toh nti diubah lagi di 0 kan biat lebih ez aja
                             z.setIsWillNotFreeze(false);
                         }
                         if (z.getCurrentMovementSpeed() <= 0.0f) 
@@ -173,9 +175,10 @@ public class Lawn {
         }
     }
 
-    public void plant(int row, int col, Plant plant) 
+    public static void plant(int row, int col, Plant plant) 
         throws InvalidPlantingException
     {
+        plant.setPlantPosition(row, col);
         if (row < 0 || row > 5 || col < 1 || col > 9)
         {
             throw new InvalidPlantingException("Tidak Bisa Menaruh Plant!");
