@@ -5,7 +5,7 @@ import Interface.Action;
 
 public class Peashooter extends Plant implements Action{
     
-    public Peashooter(int row, int col) {
+    public Peashooter() {
         setName("Peashooter");
         setCost(100);
         setHealth(100);
@@ -14,6 +14,7 @@ public class Peashooter extends Plant implements Action{
         setAttackCooldown(getAttackSpeed());
         setRange(-1);
         setPlantPosition(row, col);
+        setPlantingCooldown(10);
     }
 
     public void action() {

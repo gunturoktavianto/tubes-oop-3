@@ -3,7 +3,12 @@ import AbstractClass.Plant;
 import Interface.Action;
 
 public class Squash extends Plant implements Action {
+<<<<<<< Updated upstream
     
+=======
+    int ranges;
+    int cols;
+>>>>>>> Stashed changes
     public Squash() {
         setName("Squash");
         setCost(50);
@@ -12,6 +17,11 @@ public class Squash extends Plant implements Action {
         setAttackSpeed(0);
         setAttackCooldown(99999);
         setRange(1);
+<<<<<<< Updated upstream
+=======
+        setPlantPosition(row, col);
+        setPlantingCooldown(10);
+>>>>>>> Stashed changes
     }
 
     public void action() {

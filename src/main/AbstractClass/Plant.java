@@ -13,7 +13,12 @@ public abstract class Plant {
     private int attackCooldown;
     private int          range;
     private boolean  isAquatic;
+<<<<<<< Updated upstream
     private int       row, col;                                                 //INFO UNTUK SHOOTING 
+=======
+    private int  plantingCooldown;
+    protected int     row, col;                                                 //INFO UNTUK SHOOTING 
+>>>>>>> Stashed changes
 
     public void shoot() {
         if (getAttackCooldown() > 0)                                                 // TIDAK PERLU MELAKUKAN SHOOT
@@ -36,6 +41,37 @@ public abstract class Plant {
             }                                                            
         }
     }
+<<<<<<< Updated upstream
+=======
+    public int getPlantCol()
+    {
+        return col;
+    }
+    
+    public int getPlantRow()
+    {
+        return row;
+    }
+
+    public void setPlantCol(int col)
+    {
+        this.col = col;
+    }
+    
+    public void setPlantRow(int row)
+    {
+        this.row = row;
+    }
+
+    // public int configRange(int col, int range) // untuk tetapin petak range
+    // {
+    //     ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
+    //     if(range == -1) return tileRow.size();
+    //     else if(range + col >= tileRow.size()-1) return tileRow.size();
+    //     else if(range + col < tileRow.size()-1 && range + col > 0) return range + col;
+    //     else return 0;
+    // }
+>>>>>>> Stashed changes
 
     public void setPlantPosition(int row, int col) {
         this.row = row;
@@ -83,6 +119,14 @@ public abstract class Plant {
         return attackCooldown;
     }
 
+    public int getPlantingCooldown() {
+        return plantingCooldown;
+    }
+
+    public void setPlantingCooldown(int plantingCooldown) {
+        this.plantingCooldown = plantingCooldown;
+    }
+    
     public void setAttackSpeed(int attackSpeed) {
         this.attackSpeed = attackSpeed;
     }

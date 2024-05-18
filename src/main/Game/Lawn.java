@@ -28,12 +28,33 @@ public class Lawn {
         lawn.get(4).get(9).addZombie(new NormalZombie(4, 9));
         lawn.get(5).get(9).addZombie(new NormalZombie(5, 9));
 
+<<<<<<< Updated upstream
         lawn.get(0).get(1).plant(new Peashooter(0, 1));
         lawn.get(1).get(2).plant(new Peashooter(1, 2));
         lawn.get(2).get(1).plant(new Lilypad(2, 1));
         lawn.get(3).get(2).plant(new Lilypad(3, 2));
         lawn.get(4).get(1).plant(new Peashooter(4, 1));
         lawn.get(5).get(2).plant(new Peashooter(5, 2));
+=======
+        // lawn.get(0).get(1).plant(new SnowPea(0, 1));
+        // lawn.get(1).get(2).plant(new Peashooter(1, 2));
+        // lawn.get(2).get(1).plant(new Lilypad(2, 1));
+        // lawn.get(3).get(2).plant(new Lilypad(3, 2));
+        // lawn.get(4).get(1).plant(new Peashooter(4, 1));
+        // lawn.get(5).get(2).plant(new Kubis(5, 2));
+        // lawn.get(5).get(3).plant(new Jalapeno(5, 3));
+        // lawn.get(4).get(8).plant(new Squash(4, 8));
+
+        try {
+            plant(0, 5, new Wallnut());
+            plant(0, 6,new SnowPea());
+            plant(0, 3,new Wallnut());
+            plant(0, 7, new Wallnut());
+            lawn.get(0).get(9).getZombies().add(new BucketheadZombie(0, 9));
+        } catch (InvalidPlantingException e) {
+            System.out.println(e.getMessage());
+        }
+>>>>>>> Stashed changes
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -181,8 +202,98 @@ public class Lawn {
 
     public void printLawn() {
         for (int i = 0; i < 6; i++) {
+<<<<<<< Updated upstream
             for (int j = 0; j < 10; j++) {
                 if (j == 0) {
+=======
+            ArrayList<Tile> tileRow = lawn.get(i);
+    
+            // Plant attack
+            for (int j = 1; j < tileRow.size(); j++) {
+                if (tileRow.get(j).hasPlant()) {
+                    Plant plant = tileRow.get(j).getPlant();
+                    plant.action();
+                    if (plant.getHealth() <= 0) {
+                        tileRow.get(j).removePlant(); // Remove plant if health is zero
+                    }
+                }
+            }
+    
+            for (int j = tileRow.size() - 1; j > 0; j--) {
+                if (tileRow.get(j).hasZombie()) {
+                    Iterator<Zombie> iterator = tileRow.get(j).getZombies().iterator();
+                    while (iterator.hasNext()) {
+                        Zombie z = iterator.next();
+                        z.action();
+                        if (z.getZombieCol() != j) {                            // TREATMENT KHUSUS UNTUK POLE VAULTER
+                                                                                // DI ZOMBIE VAULTER, OBJECT ZOMBIE TIDAK DIPINDAHKAN LANGSUNG
+                            iterator.remove();                                  // POSITION DIBUAT TIDAK SINKRON DENGAN CURRENT TILE LALU DIUBAH DISINI
+                        }
+                        if (z.getHealth() <= 0) {
+                            System.out.println("ZOMBIE MATI!!!");
+                            iterator.remove();
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    public static void plant(int row, int col, Plant plant) 
+        throws InvalidPlantingException
+    {
+        plant.setPlantCol(col);
+        plant.setPlantRow(row);
+        if (row < 0 || row > 5 || col < 1 || col > 9)
+        {
+            throw new InvalidPlantingException("Tidak Bisa Menaruh Plant!");
+        }
+        if (row == 2 || row == 3)                                               // WATER TILE PLANTING
+        {
+            if (!getLawn().get(row).get(col).hasPlant()                         // KONDISI JIKA BELUM ADA LILYPAD
+                &&
+                plant.getName().equals("Lilypad")                      // PLANT YANG INGIN DITARO ADALAH LILYPAD
+            )
+            {
+                lawn.get(row).get(col).setPlant(plant);
+            }
+            else if (((WaterTile) lawn.get(row).get(col)).hasLilypad())
+            {
+                if (((Lilypad) lawn.get(row).get(col).getPlant()).isOccupied())
+                {
+                    throw new InvalidPlantingException("Sudah ada tanaman diatas lilypad ini!");
+                }
+                else {
+                    if (!plant.getName().equals("lilypad")) 
+                    {
+                        ((Lilypad) lawn.get(row).get(col).getPlant()).plantOnTop(plant);
+                    } else
+                    {
+                        throw new InvalidPlantingException("Tidak bisa menaruh lilypad diatas lilypad");
+                    }
+                }
+            }
+        } else
+        {
+            if (!lawn.get(row).get(col).hasPlant())
+            {
+                lawn.get(row).get(col).setPlant(plant);
+            } else
+            {
+                throw new InvalidPlantingException("Sudah ada tanaman");
+            }
+        }
+    }
+
+    public void printLawn() 
+    {
+        for (int i = 0; i < 6; i++) 
+        {
+            for (int j = 0; j < 10; j++) 
+            {
+                if (j == 0) 
+                {
+>>>>>>> Stashed changes
                     System.out.print("[ ]");
                 } else {
                     if (lawn.get(i).get(j).hasZombie() && lawn.get(i).get(j).hasPlant()) // IF THERE IS A ZOMBIE AND PLANT IN A TILE

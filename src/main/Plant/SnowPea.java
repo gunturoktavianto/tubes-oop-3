@@ -12,6 +12,11 @@ public class SnowPea extends Plant implements Action {
         setAttackSpeed(4);
         setAttackCooldown(getAttackSpeed());
         setRange(-1);
+<<<<<<< Updated upstream
+=======
+        setPlantPosition(row, col);
+        setPlantingCooldown(10);
+>>>>>>> Stashed changes
     }
 
     public void action() {

@@ -5,7 +5,7 @@ public class Lilypad extends Plant{
     private Plant plantedPlant;
     // private String type;
 
-    public Lilypad(int row, int col) {
+    public Lilypad() {
         setName("Lilypad");
         setCost(25);
         setHealth(100);
@@ -14,6 +14,11 @@ public class Lilypad extends Plant{
         setAttackCooldown(99999);
         setRange(0);
         setPlantPosition(row, col);
+<<<<<<< Updated upstream
+=======
+        setAquatic(true);
+        setPlantingCooldown(10);
+>>>>>>> Stashed changes
     }
 
     public Plant getPlant() {
