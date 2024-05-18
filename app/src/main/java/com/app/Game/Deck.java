@@ -44,14 +44,9 @@ public class Deck {
     //     deck.get(i).setKey(plant);
     //     deck.get(i).setValue(cd);
     // }
-    public boolean isEmpty(){
-        int i =0;
-        while(i < 6)
-        {
-            if(deck.get(i) != null) return false;
-            i++;
-        }
-        return true;
+    public boolean isEmpty()
+    {
+        return deck.isEmpty();    
     }
 
 

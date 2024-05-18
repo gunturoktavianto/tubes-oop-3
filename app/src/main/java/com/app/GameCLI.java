@@ -37,12 +37,19 @@ public class GameCLI extends Main {
                     System.out.println();
         
                     if (menu.equals("START")) {
-                        if (!isStarted) {
-                            isStarted = true;
-                            isPaused = false;
-                            startTime = System.currentTimeMillis();
-                            startThreads();
-                            startDisplayThread();
+                        if (inventory.getDeck().isEmpty())
+                        {
+                            System.out.println("DECK KOSONG, GAME TIDAK DAPAT DIMULAI!");
+                        }
+                        else
+                        {
+                            if (!isStarted) {
+                                isStarted = true;
+                                isPaused = false;
+                                startTime = System.currentTimeMillis();
+                                startThreads();
+                                startDisplayThread();
+                            }
                         }
                     }
                     else if (menu.equals("INVENTORY"))
@@ -134,7 +141,6 @@ public class GameCLI extends Main {
                             System.out.println("Press ENTER to display lawn or input commands.");
                             System.out.print(">>");
                             String menu = scanner.nextLine();
-                            System.out.println();
                             
                             if (menu.equals(""))                       // Will just print the map
                             {
