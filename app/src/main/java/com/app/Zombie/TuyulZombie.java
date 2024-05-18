@@ -28,11 +28,11 @@ public class TuyulZombie extends Zombie{
                 Plant p = tileRow.get(i).getPlant();
                 if (getHealth() >= 50)
                 {
-                    p.setHealth(0);                                                 // RESET COOLDOWN
+                    p.setHealth(p.getHealth() - getAttackDamage());                                                 // RESET COOLDOWN
                 }
                 else
                 {
-
+                    p.setHealth(0);
                 }
                 setHealth(0);
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA

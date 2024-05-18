@@ -25,7 +25,7 @@ public class Lawn {
             plant(0, 2,new SnowPea());
             plant(0, 3,new Wallnut());
             plant(0, 7, new Wallnut());
-            // lawn.get(0).get(9).getZombies().add(new BucketheadZombie(0, 9));
+            // lawn.get(0).get(9).getZombies().add(new TuyulZombie(0, 9));
         } catch (InvalidPlantingException e) {
             System.out.println(e.getMessage());
         }
@@ -132,7 +132,6 @@ public class Lawn {
         }
     }
 
-
     public void INITIALIZE_ATTACK() {
         for (int i = 0; i < 6; i++) 
         {
@@ -161,7 +160,7 @@ public class Lawn {
                         Zombie z = iterator.next();
                         z.action();
                         if (z.getZombieCol() != j) 
-                        {                            // TREATMENT KHUSUS UNTUK POLE VAULTER
+                        {                                                       // TREATMENT KHUSUS UNTUK POLE VAULTER
                                                                                 // DI ZOMBIE VAULTER, OBJECT ZOMBIE TIDAK DIPINDAHKAN LANGSUNG
                             iterator.remove();                                  // POSITION DIBUAT TIDAK SINKRON DENGAN CURRENT TILE LALU DIUBAH DISINI
                         }

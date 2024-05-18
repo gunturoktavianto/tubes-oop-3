@@ -15,6 +15,7 @@ public class Inventory{
     private ArrayList<Plant> inventory;
     private Inventory instance;
     private Deck deck;
+    
     public Inventory() {
         this.inventory = new ArrayList<>();
         deck = new Deck();
@@ -28,7 +29,6 @@ public class Inventory{
         addItem(new Repeater());
         addItem(new Lilypad());
         addItem(new Kubis());
-        // INITILIZE WITH OTHER PLANTS 
     }
 
     public Inventory getInventoryInstance()                                        // SINGLETON DESIGN PATTERN
@@ -50,25 +50,41 @@ public class Inventory{
         return deck;
     }
 
-    public void swapDeck (int x, int y){
-        Pair<Plant, Integer> temp = deck.getDeck().get(x);
-        deck.getDeck().set(x, deck.getDeck().get(y));
-        deck.getDeck().set(y, temp);
+    public void swapDeckPlacement (int x, int y) 
+        throws IndexOutOfBoundsException, InvalidDeckSwapException
+    {
+        if (x < 0 || x > 6 || y < 0 || y > 6) 
+        {
+            throw new IndexOutOfBoundsException("INDEX TIDAK VALID");
+        }
+        
+        if (deck.getDeck().get(x-1) == null || deck.getDeck().get(y-1) == null) 
+        {
+            throw new InvalidDeckSwapException("TIDAK BISA SWAP DENGAN SLOT NULL");
+        }
+        
+        System.out.println("BERHASIL MELAKUKAN SWAP ANTARA " + 
+            deck.getDeck().get(x-1).getKey().getName() + " DENGAN " + 
+            deck.getDeck().get(y-1).getKey().getName()
+        );
+
+        Pair<Plant, Integer> temp = deck.getDeck().get(x-1);
+        deck.getDeck().set(x-1, deck.getDeck().get(y-1));
+        deck.getDeck().set(y-1, temp);
     }
 
     public void deletePlantFromDeck (int index){
-        if (index < 0 || index >= deck.getDeck().size()) {
+        if (index < 1 || index > 6) {
             throw new IllegalArgumentException("Index out of bounds");
         }
         else if (deck.getDeck().isEmpty()){
             throw new IllegalArgumentException("Deck is empty");
         }
-        else if (deck.getDeck().get(index).getKey() == null){
+        else if (deck.getDeck().get(index-1).getKey() == null){
             throw new IllegalArgumentException("No plant in deck");
         }
-        System.out.println(deck.getDeck().get(index).getKey() + " has been deleted from deck");
-        deck.getDeck().remove(index);
-        
+        System.out.println(deck.getDeck().get(index-1).getKey().getName() + " has been deleted from deck");
+        deck.getDeck().remove(index-1);
     }
 
     public boolean findPlantInDeck(Plant plant)
@@ -93,7 +109,7 @@ public class Inventory{
     }
 
     public void addPlantToDeck (int i){
-        if (i > 6) {
+        if (i > 10) {
             throw new IllegalArgumentException("Index out of bounds");
         }
         // else if (deck.getDeck().size() >= 6){
@@ -108,7 +124,7 @@ public class Inventory{
     }
 
     public void setPlantInDeck (int i, int j){ // i buat deck , j buat inventory
-        if (i > 6) {
+        if (i > 10) {
             throw new IllegalArgumentException("Index out of bounds");
         }
         // else if (deck.getDeck().size() >= 6){
@@ -125,14 +141,15 @@ public class Inventory{
         // deck.getDeck().get(i-1).setValue(inventory.get(j-1).getPlantingCooldown());
     }
 
-    public void addPlantToDeck (Plant plant){
+    public void addPlantToDeck (Plant plant)
+    {
         Pair<Plant, Integer> newPair = new Pair<Plant, Integer>(plant, plant.getPlantingCooldown());
         deck.getDeck().add(newPair);
     }
-    
-
-
-    public void switchPlacement(int index1, int index2) throws InvalidInventorySwapException {
+        
+    public void switchPlacement (int index1, int index2) 
+        throws InvalidInventorySwapException 
+    {
         // Validate indices within inventory bounds
         if (index1 >= 0 && index1 < inventory.size() &&
             index2 >= 0 && index2 < inventory.size()) {

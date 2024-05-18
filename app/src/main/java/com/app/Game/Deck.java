@@ -13,16 +13,8 @@ import com.app.Plant.*;
 
 
 public class Deck {
-    private List<Pair<Plant, Integer>> deck;
-    private static final int MAX_SIZE = 6;
-
-    // public void setDeck(Plant plant) throws InvalidStoringException {
-    //     while(deck.size() < MAX_SIZE)
-    //     {
-    //         Inventory.printInventory();
-                
-    //     }
-    // }
+    private ArrayList<Pair<Plant, Integer>> deck;
+    private final int MAX_SIZE = 6;
     
     public void plantCooldownThread() // panggil di main atau di game balll
     {
@@ -32,13 +24,8 @@ public class Deck {
         }
     }
 
-    public Deck(){
+    public Deck() {
         deck = new ArrayList<>();
-        Pair<Plant, Integer> newPair = new  Pair<Plant, Integer>(null, 0);
-        for(int i = 0; i < MAX_SIZE; i++)
-        {
-            deck.add(newPair);
-        }
     }
 
     
@@ -85,11 +72,12 @@ public class Deck {
         System.out.println("Deck : ");
         if (!deck.isEmpty()){
             for (Pair<Plant, Integer> p: deck){
-                if(p.getKey() == null)
-                {
-                    System.out.println(i + ". Empty");
-                }
-                else System.out.println(i + ". " + deck.get(i-1).getKey().getName());
+                System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
+                i++;
+            }
+            for (int j = i; j<7; j++)
+            {
+                System.out.println(i + ". Empty");
                 i++;
             }
         } else {
@@ -98,24 +86,24 @@ public class Deck {
         System.out.println();
     }
 
-    public void showDeckStatus(){
-        int i = 1;
-        System.out.println();
-        System.out.println("Deck : ");
-        if (!deck.isEmpty()){
-            for (Pair<Plant, Integer> p: deck){
-                if(p.getKey() == null)
-                {
-                    System.out.println(i + ". Empty");
-                }
-                else System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
-                i++;
-            }
-        } else {
-            System.out.println("Deck is empty");
-        }
-        System.out.println();
-    }
+    // public void showDeckStatus(){
+    //     int i = 1;
+    //     System.out.println();
+    //     System.out.println("Deck : ");
+    //     if (!deck.isEmpty()){
+    //         for (Pair<Plant, Integer> p: deck){
+    //             System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
+    //             i++;
+    //         }
+    //         for (int j = i; j<6; j++)
+    //         {
+    //             System.out.println(i + ". Empty");
+    //         }
+    //     } else {
+    //         System.out.println("Deck is empty");
+    //     }
+    //     System.out.println();
+    // }
 
     public void plant(int x, int y, int i) throws InvalidPlantingException // xy koordinat i index di deck
     {
@@ -161,7 +149,8 @@ public class Deck {
         }
     }
 
-    public void gali(int x, int y) throws IllegalArgumentException{ // nti tambahin NotShovelableException 
+    public void dig(int x, int y) throws IllegalArgumentException
+    { // nti tambahin NotShovelableException 
         if (x < 0 || x >= 6 || y < 1 || y >= 10) {
             throw new IllegalArgumentException("Index out of bounds");
         } else {
@@ -169,25 +158,20 @@ public class Deck {
         }
     }
 
-    
-
-
-
-
-    // public void printDeck() {
-    //     System.out.println("Current Deck:");
-    //     for (int i = 0; i < deck.size(); i++) {
-    //         if (deck.get(i) != null) {
-    //             System.out.println("Slot " + (i + 1) + ": " + deck.get(i));
-    //         } else {
-    //             System.out.println("Slot " + (i + 1) + ": Empty");
-    //         }
-    //     }
+    public void printDeck() {
+        System.out.println("Current Deck:");
+        for (int i = 0; i < deck.size(); i++) {
+            if (deck.get(i) != null) {
+                System.out.println("Slot " + (i + 1) + ": ");
+            } else {
+                System.out.println("Slot " + (i + 1) + ": Empty");
+            }
+        }
         
-    //     for (int i = deck.size(); i < MAX_SIZE; i++) {
-    //         System.out.println("Slot " + (i + 1) + ": Empty");
-    //     }
-    // }
+        for (int i = deck.size(); i < MAX_SIZE; i++) {
+            System.out.println("Slot " + (i + 1) + ": Empty");
+        }
+    }
 
     // // Adds a Plant to the deck if there is space and it's not already in the deck
     // public void addItem(Plant plant) throws InvalidStoringException {
