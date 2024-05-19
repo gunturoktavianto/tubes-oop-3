@@ -31,87 +31,183 @@ public class GameCLI extends Main {
         {
             while (!isStarted) {
                 synchronized (scanner) {
+                    System.out.println();
+                    System.out.println("MAIN MENU");
+                    System.out.println("1. Start");
+                    System.out.println("2. Help");
+                    System.out.println("3. Plants List");
+                    System.out.println("4. Zombies List");
+                    System.out.println("5. Exit");
                     System.out.println("Masukkan Perintah");
                     System.out.print(">>");
                     String menu = scanner.nextLine();
                     System.out.println();
         
-                    if (menu.equals("START")) {
-                        if (inventory.getDeck().isEmpty())
+                    if (menu.equals("START") || menu.equals("Start") || menu.equals("1")) {
+                        System.out.println("WELCOME TO THE GAME");
+                        System.out.println("SILAHKAN ATUR DECK TERLEBIH DAHULU");
+                        boolean inven = true;
+                        while(inven && !isStarted)
                         {
-                            System.out.println("DECK KOSONG, GAME TIDAK DAPAT DIMULAI!");
-                        }
-                        else
-                        {
-                            if (!isStarted) {
-                                isStarted = true;
-                                isPaused = false;
-                                startTime = System.currentTimeMillis();
-                                startThreads();
-                                startDisplayThread();
+                            
+                            System.out.println("INVENTORY MENU");
+                            System.out.println("1. Show Deck");
+                            System.out.println("2. Show Inventory");
+                            System.out.println("3. Switch Deck");
+                            System.out.println("4. Switch Inventory");
+                            System.out.println("5. Set Deck");
+                            System.out.println("6. Delete Deck");
+                            System.out.println("7. Start Game");
+                            System.out.println("8. Back");
+                            System.out.println("Masukkan Perintah");
+                            System.out.print(">>");
+                            String invenMenu = scanner.nextLine();
+                            
+                            if (invenMenu.equalsIgnoreCase("SHOW DECK") || invenMenu.equals("1"))
+                            {
+                                inventory.getDeck().showDeckRev();
                             }
+                            else if (invenMenu.equalsIgnoreCase("SHOW INVENTORY") || invenMenu.equals("2"))
+                            {
+                                inventory.printInventory();
+                            }
+                            else if (invenMenu.equals("SWITCH DECK") || invenMenu.equals("Switch Deck") || invenMenu.equals("3"))
+                            {
+                                System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE DECK! :");
+                                int plantIdx1 = Integer.parseInt(scanner.nextLine());
+                                System.out.print("PILIH INDEX TANAMAN 2 UNTUK DITUKAR KE DECK! :");
+                                int plantIdx2 = Integer.parseInt(scanner.nextLine());
+                                try {
+                                    inventory.swapDeckPlacement(plantIdx1, plantIdx2);
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                            else if (invenMenu.equals("SWITCH INVENTORY") || invenMenu.equals("Switch Inventory") || invenMenu.equals("4"))
+                            {
+                                System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE INVENTORY! :");
+                                int plantIdx1 = Integer.parseInt(scanner.nextLine());
+                                System.out.print("PILIH INDEX TANAMAN 2 UNTUK DITUKAR KE INVENTORY! :");
+                                int plantIdx2 = Integer.parseInt(scanner.nextLine());
+                                try {
+                                    inventory.switchPlacement(plantIdx1, plantIdx2);
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            }
+                            
+                            else if (invenMenu.equals("SET DECK") || invenMenu.equals("Set Deck") || invenMenu.equals("5"))
+                            {
+                                while(!inventory.getDeck().isFull())
+                                {
+                                    inventory.printInventory();
+                                    inventory.getDeck().showDeckRev();
+                                    System.out.print("PILIH INDEX TANAMAN UNTUK DIMASUKKAN KE DECK! :");
+                                    int plantIdx = Integer.parseInt(scanner.nextLine());
+                                    System.out.print("PILIH INDEX PADA DECK! :");
+                                    int deckIdx = Integer.parseInt(scanner.nextLine());
+                                    try {
+                                        inventory.setPlantInDeck(deckIdx, plantIdx);
+                                    } catch (Exception e) {
+                                        System.out.println(e.getMessage());
+                                    }
+                                }
+                                
+                            }
+                            else if (invenMenu.equals("DELETE DECK") || invenMenu.equals("Delete Deck") || invenMenu.equals("6"))
+                            {
+                                inventory.getDeck().showDeckRev();
+                                System.out.print("PILIH INDEX TANAMAN UNTUK DIREMOVE DARI DECK! :");
+                                int plantIdx = Integer.parseInt(scanner.nextLine());
+                                try {
+                                    inventory.deletePlantFromDeck(plantIdx);
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
+                            } 
+                            else if (invenMenu.equals("START GAME") || invenMenu.equals("Start Game") || invenMenu.equals("7"))
+                            {
+                                if (inventory.getDeck().isEmpty())  
+                                {
+                                    System.out.println("DECK KOSONG, GAME TIDAK DAPAT DIMULAI!");
+                                }
+                                else
+                                {
+                                    if (!isStarted) {
+                                        isStarted = true;
+                                        isPaused = false;
+                                        startTime = System.currentTimeMillis();
+                                        startThreads();
+                                        startDisplayThread();
+                                    }
+                                }
+                            } 
+                            else if (invenMenu.equals("BACK") || invenMenu.equals("Back") || invenMenu.equals("8"))
+                            {
+                                System.out.println("Anda Kembali ke tampilan utama");
+                                inven = false;
+                            } 
                         }
                     }
-                    else if (menu.equals("INVENTORY"))
-                    {
-                        inventory.printInventory();
-                    }
-                    else if (menu.equals("SWITCHINVENTORY"))
-                    {
-                        System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE INVENTORY! :");
-                        int plantIdx1 = Integer.parseInt(scanner.nextLine());
-                        System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE INVENTORY! :");
-                        int plantIdx2 = Integer.parseInt(scanner.nextLine());
-                        try {
-                            inventory.switchPlacement(plantIdx1, plantIdx2);
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                        }
-                    }
-                    else if (menu.equals("DECK"))
-                    {
-                        inventory.getDeck().showDeck();
-                    }
-                    else if (menu.equals("SETDECK"))
-                    {
-                        inventory.printInventory();
-                        System.out.print("PILIH INDEX TANAMAN UNTUK DIMASUKKAN KE DECK! :");
-                        int plantIdx = Integer.parseInt(scanner.nextLine());
-                        try {
-                            inventory.addPlantToDeck(plantIdx);
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                        }
-                    }
-                    else if (menu.equals("DELETEDECK"))
-                    {
-                        inventory.getDeck().showDeck();
-                        System.out.print("PILIH INDEX TANAMAN UNTUK DIREMOVE KE DECK! :");
-                        int plantIdx = Integer.parseInt(scanner.nextLine());
-                        try {
-                            inventory.deletePlantFromDeck(plantIdx);
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                        }
-                    } 
-                    else if (menu.equals("SWITCHDECK"))
-                    {
-                        System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE DECK! :");
-                        int plantIdx1 = Integer.parseInt(scanner.nextLine());
-                        System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE DECK! :");
-                        int plantIdx2 = Integer.parseInt(scanner.nextLine());
-                        try {
-                            inventory.swapDeckPlacement(plantIdx1, plantIdx2);
-                        } catch (Exception e) {
-                            System.out.println(e.getMessage());
-                        }
-                    }
-                    else if (menu.equals("EXIT")) 
-                    {
-                        System.out.println("Anda Keluar Dari Game");
-                        System.exit(0);
-                    } 
-                    else if (menu.equals("HELP")) 
+                    // else if (menu.equals("INVENTORY"))
+                    // {
+                    //     inventory.printInventory();
+                    // }
+                    // else if (menu.equals("SWITCHINVENTORY"))
+                    // {
+                    //     System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE INVENTORY! :");
+                    //     int plantIdx1 = Integer.parseInt(scanner.nextLine());
+                    //     System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE INVENTORY! :");
+                    //     int plantIdx2 = Integer.parseInt(scanner.nextLine());
+                    //     try {
+                    //         inventory.switchPlacement(plantIdx1, plantIdx2);
+                    //     } catch (Exception e) {
+                    //         System.out.println(e.getMessage());
+                    //     }
+                    // }
+                    // else if (menu.equals("DECK"))
+                    // {
+                    //     inventory.getDeck().showDeckRev();
+                    // }
+                    // else if (menu.equals("SETDECK"))
+                    // {
+                    //     inventory.printInventory();
+                    //     inventory.getDeck().showDeck();
+                    //     System.out.print("PILIH INDEX TANAMAN UNTUK DIMASUKKAN KE DECK! :");
+                    //     int plantIdx = Integer.parseInt(scanner.nextLine());
+                    //     System.out.print("PILIH INDEX PADA DECK! :");
+                    //     int deckIdx = Integer.parseInt(scanner.nextLine());
+                    //     try {
+                    //         inventory.setPlantInDeck(deckIdx, plantIdx);
+                    //     } catch (Exception e) {
+                    //         System.out.println(e.getMessage());
+                    //     }
+                    // }
+                    // else if (menu.equals("DELETEDECK"))
+                    // {
+                    //     inventory.getDeck().showDeck();
+                    //     System.out.print("PILIH INDEX TANAMAN UNTUK DIREMOVE KE DECK! :");
+                    //     int plantIdx = Integer.parseInt(scanner.nextLine());
+                    //     try {
+                    //         inventory.deletePlantFromDeck(plantIdx);
+                    //     } catch (Exception e) {
+                    //         System.out.println(e.getMessage());
+                    //     }
+                    // } 
+                    // else if (menu.equals("SWITCHDECK"))
+                    // {
+                    //     System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE DECK! :");
+                    //     int plantIdx1 = Integer.parseInt(scanner.nextLine());
+                    //     System.out.print("PILIH INDEX TANAMAN 2 UNTUK DITUKAR KE DECK! :");
+                    //     int plantIdx2 = Integer.parseInt(scanner.nextLine());
+                    //     try {
+                    //         inventory.swapDeckPlacement(plantIdx1, plantIdx2);
+                    //     } catch (Exception e) {
+                    //         System.out.println(e.getMessage());
+                    //     }
+                    // }
+                    
+                    else if (menu.equals("HELP") || menu.equals("Help") || menu.equals("2")) 
                     {
                         System.out.println("-----------MENU-----------");
                         System.out.println("1. START");
@@ -120,7 +216,7 @@ public class GameCLI extends Main {
                         System.out.println("4. Zombies List");
                         System.out.println("5. EXIT");
                     } 
-                    else if (menu.equals("Plants List")) 
+                    else if (menu.equals("Plants List") || menu.equals("3")) 
                     {
                         System.out.println("1. Sunflower");
                         System.out.println("   cost : 50");
@@ -203,7 +299,7 @@ public class GameCLI extends Main {
                         System.out.println("   cooldown : 10");
                         System.out.println("");
                     } 
-                    else if (menu.equals("Zombies List")) 
+                    else if (menu.equals("Zombies List") || menu.equals("4")) 
                     {
                         System.out.println("1. Normal Zombie");
                         System.out.println("   health : 125");
@@ -265,6 +361,11 @@ public class GameCLI extends Main {
                         System.out.println("   attack_speed : 1");
                         System.out.println("   is_aquatic : False");
                         System.out.println("");
+                    } 
+                    else if (menu.equals("EXIT") || menu.equals("Exit") || menu.equals("5") ) 
+                    {
+                        System.out.println("Anda Keluar Dari Game");
+                        System.exit(0);
                     } 
                     else 
                     {

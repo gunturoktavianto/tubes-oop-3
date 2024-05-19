@@ -124,21 +124,25 @@ public class Inventory{
         deck.getDeck().add(newPair);
     }
 
-    public void setPlantInDeck (int i, int j)
+    public void setPlantInDeck (int i, int j) // i deck, j inventory
     { 
-        if (i > 10) {
-            throw new IllegalArgumentException("Index out of bounds");
+        if (j > 10) {
+            throw new IllegalArgumentException("Inventory hanya bisa memiliki 10 plant.");
+        }
+        if (i > 6) {
+            throw new IllegalArgumentException("Deck hanya bisa menampung 6 plant.");
         }
         // else if (deck.getDeck().size() >= 6){
         //     throw new IllegalArgumentException("Deck is full");
         // }
         else if (findPlantInDeck(inventory.get(j-1))){
-            throw new IllegalArgumentException("Plant already in deck");
+            System.out.println("Plant udah ada di deck");
+            return;
         }
         System.out.println(inventory.get(j-1).getName() + " has been added to deck");
-        deck.showDeck();
         Pair<Plant, Integer> newPair = new Pair<Plant,Integer>(inventory.get(j-1), 0);
         deck.getDeck().set(i-1, newPair);
+        deck.showDeck();
         // deck.getDeck().get(i-1).setKey(inventory.get(j-1));
         // deck.getDeck().get(i-1).setValue(inventory.get(j-1).getPlantingCooldown());
     }

@@ -25,8 +25,13 @@ public class Deck {
         }
     }
 
-    public Deck() {
+    public Deck(){
         deck = new ArrayList<>();
+        Pair<Plant, Integer> newPair = new  Pair<Plant, Integer>(null, 0);
+        for(int i = 0; i < MAX_SIZE; i++)
+        {
+            deck.add(newPair);
+        }
     }
 
     
@@ -45,11 +50,25 @@ public class Deck {
     //     deck.get(i).setKey(plant);
     //     deck.get(i).setValue(cd);
     // }
-    public boolean isEmpty()
-    {
-        return deck.isEmpty();    
+    public boolean isEmpty(){
+        int i =0;
+        while(i < 6)
+        {
+            if(deck.get(i).getKey() != null) return false;
+            i++;
+        }
+        return true;
     }
 
+    public boolean isFull(){
+        int i =0;
+        while(i < 6)
+        {
+            if(deck.get(i).getKey() == null) return false;
+            i++;
+        }
+        return true;
+    }
 
     // // Helper method to remove trailing nulls to avoid list bloat
     // private void cleanUpTrailingNulls() {
@@ -82,24 +101,43 @@ public class Deck {
         System.out.println();
     }
 
-    // public void showDeckStatus(){
-    //     int i = 1;
-    //     System.out.println();
-    //     System.out.println("Deck : ");
-    //     if (!deck.isEmpty()){
-    //         for (Pair<Plant, Integer> p: deck){
-    //             System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
-    //             i++;
-    //         }
-    //         for (int j = i; j<6; j++)
-    //         {
-    //             System.out.println(i + ". Empty");
-    //         }
-    //     } else {
-    //         System.out.println("Deck is empty");
-    //     }
-    //     System.out.println();
-    // }
+    public void showDeckRev(){
+        int i = 1;
+        System.out.println();
+        System.out.println("Deck : ");
+        if (!deck.isEmpty()){
+            for (Pair<Plant, Integer> p: deck){
+                if(p.getKey() == null)
+                {
+                    System.out.println(i + ". Empty");
+                }
+                else System.out.println(i + ". " + deck.get(i-1).getKey().getName());
+                i++;
+            }
+        } else {
+            System.out.println("Deck is empty");
+        }
+        System.out.println();
+    }
+
+    public void showDeckStatus(){
+        int i = 1;
+        System.out.println();
+        System.out.println("Deck : ");
+        if (!deck.isEmpty()){
+            for (Pair<Plant, Integer> p: deck){
+                if(p.getKey() == null)
+                {
+                    System.out.println(i + ". Empty");
+                }
+                else System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
+                i++;
+            }
+        } else {
+            System.out.println("Deck is empty");
+        }
+        System.out.println();
+    }
 
     public void plant (int x, int y, int i) 
         throws InvalidPlantingException // xy koordinat i index di deck
@@ -108,39 +146,84 @@ public class Deck {
         {
             if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Chomper"))
             {
-                Lawn.plant(x, y, new Chomper());
+                try
+                {
+                    Lawn.plant(x, y, new Chomper());
+                }
+                catch(Exception e)
+                {
+                    System.out.println(e.getMessage());
+                }
             }
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Jalapeno"))
             {
-                Lawn.plant(x, y, new Jalapeno());
+                try {
+                    Lawn.plant(x, y, new Jalapeno());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                
             }
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Kubis"))
             {
-                Lawn.plant(x, y, new Kubis());
+                try {
+                    Lawn.plant(x, y, new Kubis());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                
             }
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Lilypad"))
             {
-                Lawn.plant(x, y, new Lilypad());
+                try {
+                    Lawn.plant(x, y, new Lilypad());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Peashooter"))
             {
-                Lawn.plant(x, y, new Peashooter());
-            }
+                try {
+                    Lawn.plant(x, y, new Peashooter());
+                }
+                catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+            }  
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("SnowPea"))
             {
-                Lawn.plant(x, y, new SnowPea());
+                try {
+                    Lawn.plant(x, y, new SnowPea());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                
             }
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Squash"))
             {
-                Lawn.plant(x, y, new Squash());
+                try {
+                    Lawn.plant(x, y, new Squash());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                
             }
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Sunflower"))
             {
-                Lawn.plant(x, y, new Sunflower());
+                try {
+                    Lawn.plant(x, y, new Sunflower());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
+                
             }
             else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Wallnut"))
             {
-                Lawn.plant(x, y, new Wallnut());
+                try {
+                    Lawn.plant(x, y, new Wallnut());
+                } catch (Exception e) {
+                    System.out.println(e.getMessage());
+                }
             }
             System.out.println("NEW COOLDOWN " + deck.get(i-1).getKey().getPlantingCooldown());
             deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
