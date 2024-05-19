@@ -5,7 +5,7 @@ public abstract class Zombie {
     private int health;
     private int attackDamage;
     private int attackSpeed = 1;
-    private float movementSpeed = 5;
+    private float movementSpeed = 10;
     private float currentMovementSpeed = movementSpeed;
     private boolean isAquatic, isDead = false;
     private int frozenTime = 0;
