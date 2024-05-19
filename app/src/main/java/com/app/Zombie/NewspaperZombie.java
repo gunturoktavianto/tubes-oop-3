@@ -30,9 +30,19 @@ public class NewspaperZombie extends Zombie implements SpellCaster{
             System.out.println("Newspaper Zombie said 'Im Angry'");
             setMovementSpeed(3);
         }
-
-        
-        if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
+    
+        if (Lawn.getLawn().get(row).get(col).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
+        {
+            if (getFrozenTime() == 3 || getFrozenTime() == 1) 
+            {
+                setCurrentMovementSpeed(getCurrentMovementSpeed() + 1); 
+                return;
+            }
+            Plant plant = Lawn.getLawn().get(row).get(col).getPlant(); 
+            plant.setHealth(plant.getHealth() - getAttackDamage());
+            setCurrentMovementSpeed(getCurrentMovementSpeed() + 1);              // MENGKOMPENSASI WAKTU ATTACK                         
+        }
+        else if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
         {
             if (getFrozenTime() == 3 || getFrozenTime() == 1) 
             {

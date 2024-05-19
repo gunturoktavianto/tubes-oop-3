@@ -24,11 +24,11 @@ public class TerminatorZombie extends Zombie {
     public void action()
     {
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
-        if (Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
+        if (Lawn.getLawn().get(row).get(col).hasPlant() || Lawn.getLawn().get(row).get(col-1).hasPlant())                      // CEK APAKAH DIDEPAN ZOMBIE ADA PLANT ATAU TIDAK    
         {
             setCurrentMovementSpeed(getCurrentMovementSpeed() + 1); 
         }
-        for (int i=col; i>0; i--)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
+        for (int i=col; i>0; i--)                                               // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasPlant())
             {
