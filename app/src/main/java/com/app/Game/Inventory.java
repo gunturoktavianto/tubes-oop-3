@@ -74,6 +74,29 @@ public class Inventory{
         deck.getDeck().set(y-1, temp);
     }
 
+    public void swapInventoryPlacement (int x, int y) 
+        throws IndexOutOfBoundsException, InvalidDeckSwapException
+    {
+        if (x < 0 || x > 6 || y < 0 || y > 6) 
+        {
+            throw new IndexOutOfBoundsException("INDEX TIDAK VALID");
+        }
+        
+        if (inventory.get(x-1) == null || inventory.get(y-1) == null) 
+        {
+            throw new InvalidDeckSwapException("TIDAK BISA SWAP DENGAN SLOT NULL");
+        }
+        
+        System.out.println("BERHASIL MELAKUKAN SWAP ANTARA " + 
+            inventory.get(x-1).getName() + " DENGAN " + 
+            inventory.get(y-1).getName()
+        );
+
+        Plant temp = inventory.get(x-1);
+        inventory.set(x-1, inventory.get(y-1));
+        inventory.set(y-1, temp);
+    }
+
     public void deletePlantFromDeck (int index){
         if (index < 1 || index > 6) {
             throw new IllegalArgumentException("Index out of bounds");
@@ -84,8 +107,13 @@ public class Inventory{
         else if (deck.getDeck().get(index-1).getKey() == null){
             throw new IllegalArgumentException("No plant in deck");
         }
-        System.out.println(deck.getDeck().get(index-1).getKey().getName() + " has been deleted from deck");
-        deck.getDeck().remove(index-1);
+        try {
+            Pair<Plant, Integer> newPair = new Pair<Plant,Integer>(null, 0);
+            deck.getDeck().set(index-1, newPair);
+            System.out.println(deck.getDeck().get(index-1).getKey().getName() + " has been deleted from deck");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public boolean findPlantInDeck(Plant plant)

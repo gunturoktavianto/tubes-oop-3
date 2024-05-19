@@ -91,7 +91,7 @@ public class GameCLI extends Main {
                                 System.out.print("PILIH INDEX TANAMAN 2 UNTUK DITUKAR KE INVENTORY! :");
                                 int plantIdx2 = Integer.parseInt(scanner.nextLine());
                                 try {
-                                    inventory.switchPlacement(plantIdx1, plantIdx2);
+                                    inventory.swapInventoryPlacement(plantIdx1, plantIdx2);
                                 } catch (Exception e) {
                                     System.out.println(e.getMessage());
                                 }
@@ -116,6 +116,7 @@ public class GameCLI extends Main {
                                             System.out.println(e.getMessage());
                                         }
                                     }
+
                                 }
                                 else
                                 {
