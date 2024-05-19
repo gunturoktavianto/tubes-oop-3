@@ -5,6 +5,7 @@ import java.util.Scanner;
 import com.Main;
 import com.app.AbstractClass.Zombie;
 import com.app.Game.*;
+import com.app.Exception.*;
 
 public class GameCLI extends Main {
     private final Scanner   scanner;
@@ -43,13 +44,13 @@ public class GameCLI extends Main {
                     String menu = scanner.nextLine();
                     System.out.println();
         
-                    if (menu.equals("START") || menu.equals("Start") || menu.equals("1")) {
+                    if (menu.equalsIgnoreCase("START") || menu.equalsIgnoreCase("Start") || menu.equalsIgnoreCase("1")) {
                         System.out.println("WELCOME TO THE GAME");
                         System.out.println("SILAHKAN ATUR DECK TERLEBIH DAHULU");
                         boolean inven = true;
                         while(inven && !isStarted)
                         {
-                            
+                            System.out.println("");
                             System.out.println("INVENTORY MENU");
                             System.out.println("1. Show Deck");
                             System.out.println("2. Show Inventory");
@@ -71,7 +72,7 @@ public class GameCLI extends Main {
                             {
                                 inventory.printInventory();
                             }
-                            else if (invenMenu.equals("SWITCH DECK") || invenMenu.equals("Switch Deck") || invenMenu.equals("3"))
+                            else if (invenMenu.equalsIgnoreCase("SWITCH DECK") || invenMenu.equalsIgnoreCase("Switch Deck") || invenMenu.equalsIgnoreCase("3"))
                             {
                                 System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE DECK! :");
                                 int plantIdx1 = Integer.parseInt(scanner.nextLine());
@@ -83,7 +84,7 @@ public class GameCLI extends Main {
                                     System.out.println(e.getMessage());
                                 }
                             }
-                            else if (invenMenu.equals("SWITCH INVENTORY") || invenMenu.equals("Switch Inventory") || invenMenu.equals("4"))
+                            else if (invenMenu.equalsIgnoreCase("SWITCH INVENTORY") || invenMenu.equalsIgnoreCase("Switch Inventory") || invenMenu.equalsIgnoreCase("4"))
                             {
                                 System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE INVENTORY! :");
                                 int plantIdx1 = Integer.parseInt(scanner.nextLine());
@@ -96,9 +97,27 @@ public class GameCLI extends Main {
                                 }
                             }
                             
-                            else if (invenMenu.equals("SET DECK") || invenMenu.equals("Set Deck") || invenMenu.equals("5"))
+                            else if (invenMenu.equalsIgnoreCase("SET DECK") || invenMenu.equalsIgnoreCase("Set Deck") || invenMenu.equalsIgnoreCase("5"))
                             {
-                                while(!inventory.getDeck().isFull())
+                                if(inventory.getDeck().isEmpty())
+                                {
+                                    while(!inventory.getDeck().isFull())
+                                    {
+                                        inventory.printInventory();
+                                        inventory.getDeck().showDeckRev(); 
+                                        try {
+                                            System.out.print("PILIH INDEX TANAMAN UNTUK DIMASUKKAN KE DECK! :");
+                                            int plantIdx = Integer.parseInt(scanner.nextLine());
+                                            System.out.print("PILIH INDEX PADA DECK! :");
+                                            int deckIdx = Integer.parseInt(scanner.nextLine());
+                                            inventory.setPlantInDeck(deckIdx, plantIdx);
+                                        } 
+                                        catch (Exception e) {
+                                            System.out.println(e.getMessage());
+                                        }
+                                    }
+                                }
+                                else
                                 {
                                     inventory.printInventory();
                                     inventory.getDeck().showDeckRev();
@@ -112,9 +131,8 @@ public class GameCLI extends Main {
                                         System.out.println(e.getMessage());
                                     }
                                 }
-                                
                             }
-                            else if (invenMenu.equals("DELETE DECK") || invenMenu.equals("Delete Deck") || invenMenu.equals("6"))
+                            else if (invenMenu.equalsIgnoreCase("DELETE DECK") || invenMenu.equalsIgnoreCase("Delete Deck") || invenMenu.equalsIgnoreCase("6"))
                             {
                                 inventory.getDeck().showDeckRev();
                                 System.out.print("PILIH INDEX TANAMAN UNTUK DIREMOVE DARI DECK! :");
@@ -125,11 +143,11 @@ public class GameCLI extends Main {
                                     System.out.println(e.getMessage());
                                 }
                             } 
-                            else if (invenMenu.equals("START GAME") || invenMenu.equals("Start Game") || invenMenu.equals("7"))
+                            else if (invenMenu.equalsIgnoreCase("START GAME") || invenMenu.equalsIgnoreCase("Start Game") || invenMenu.equalsIgnoreCase("7"))
                             {
-                                if (inventory.getDeck().isEmpty())  
+                                if (!inventory.getDeck().isFull())  
                                 {
-                                    System.out.println("DECK KOSONG, GAME TIDAK DAPAT DIMULAI!");
+                                    System.out.println("DECK BELUM PENUH, GAME TIDAK DAPAT DIMULAI!");
                                 }
                                 else
                                 {
@@ -142,18 +160,18 @@ public class GameCLI extends Main {
                                     }
                                 }
                             } 
-                            else if (invenMenu.equals("BACK") || invenMenu.equals("Back") || invenMenu.equals("8"))
+                            else if (invenMenu.equalsIgnoreCase("BACK") || invenMenu.equalsIgnoreCase("Back") || invenMenu.equalsIgnoreCase("8"))
                             {
                                 System.out.println("Anda Kembali ke tampilan utama");
                                 inven = false;
                             } 
                         }
                     }
-                    // else if (menu.equals("INVENTORY"))
+                    // else if (menu.equalsIgnoreCase("INVENTORY"))
                     // {
                     //     inventory.printInventory();
                     // }
-                    // else if (menu.equals("SWITCHINVENTORY"))
+                    // else if (menu.equalsIgnoreCase("SWITCHINVENTORY"))
                     // {
                     //     System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE INVENTORY! :");
                     //     int plantIdx1 = Integer.parseInt(scanner.nextLine());
@@ -165,11 +183,11 @@ public class GameCLI extends Main {
                     //         System.out.println(e.getMessage());
                     //     }
                     // }
-                    // else if (menu.equals("DECK"))
+                    // else if (menu.equalsIgnoreCase("DECK"))
                     // {
                     //     inventory.getDeck().showDeckRev();
                     // }
-                    // else if (menu.equals("SETDECK"))
+                    // else if (menu.equalsIgnoreCase("SETDECK"))
                     // {
                     //     inventory.printInventory();
                     //     inventory.getDeck().showDeck();
@@ -183,7 +201,7 @@ public class GameCLI extends Main {
                     //         System.out.println(e.getMessage());
                     //     }
                     // }
-                    // else if (menu.equals("DELETEDECK"))
+                    // else if (menu.equalsIgnoreCase("DELETEDECK"))
                     // {
                     //     inventory.getDeck().showDeck();
                     //     System.out.print("PILIH INDEX TANAMAN UNTUK DIREMOVE KE DECK! :");
@@ -194,7 +212,7 @@ public class GameCLI extends Main {
                     //         System.out.println(e.getMessage());
                     //     }
                     // } 
-                    // else if (menu.equals("SWITCHDECK"))
+                    // else if (menu.equalsIgnoreCase("SWITCHDECK"))
                     // {
                     //     System.out.print("PILIH INDEX TANAMAN 1 UNTUK DITUKAR KE DECK! :");
                     //     int plantIdx1 = Integer.parseInt(scanner.nextLine());
@@ -207,7 +225,7 @@ public class GameCLI extends Main {
                     //     }
                     // }
                     
-                    else if (menu.equals("HELP") || menu.equals("Help") || menu.equals("2")) 
+                    else if (menu.equalsIgnoreCase("HELP") || menu.equalsIgnoreCase("Help") || menu.equalsIgnoreCase("2")) 
                     {
                         System.out.println("-----------MENU-----------");
                         System.out.println("1. START");
@@ -216,7 +234,7 @@ public class GameCLI extends Main {
                         System.out.println("4. Zombies List");
                         System.out.println("5. EXIT");
                     } 
-                    else if (menu.equals("Plants List") || menu.equals("3")) 
+                    else if (menu.equalsIgnoreCase("Plants List") || menu.equalsIgnoreCase("3")) 
                     {
                         System.out.println("1. Sunflower");
                         System.out.println("   cost : 50");
@@ -299,7 +317,7 @@ public class GameCLI extends Main {
                         System.out.println("   cooldown : 10");
                         System.out.println("");
                     } 
-                    else if (menu.equals("Zombies List") || menu.equals("4")) 
+                    else if (menu.equalsIgnoreCase("Zombies List") || menu.equalsIgnoreCase("4")) 
                     {
                         System.out.println("1. Normal Zombie");
                         System.out.println("   health : 125");
@@ -362,7 +380,7 @@ public class GameCLI extends Main {
                         System.out.println("   is_aquatic : False");
                         System.out.println("");
                     } 
-                    else if (menu.equals("EXIT") || menu.equals("Exit") || menu.equals("5") ) 
+                    else if (menu.equalsIgnoreCase("EXIT") || menu.equalsIgnoreCase("Exit") || menu.equalsIgnoreCase("5") ) 
                     {
                         System.out.println("Anda Keluar Dari Game");
                         System.exit(0);
@@ -394,11 +412,11 @@ public class GameCLI extends Main {
                             System.out.print(">>");
                             String menu = scanner.nextLine();
                             
-                            if (menu.equals(""))                       // Will just print the map
+                            if (menu.equalsIgnoreCase(""))                       // Will just print the map
                             {
                                 
                             }
-                            else if (menu.equals("PLANT"))
+                            else if (menu.equalsIgnoreCase("PLANT"))
                             {
                                 inventory.getDeck().showDeck();
                                 System.out.println("PILIH TANAMANAN YANG MAU DI PLANT: ");
@@ -414,7 +432,7 @@ public class GameCLI extends Main {
                                     System.out.println(e.getMessage());
                                 }
                             }
-                            else if (menu.equals("PAUSE")) 
+                            else if (menu.equalsIgnoreCase("PAUSE")) 
                             {
                                 isPaused = true;
                                 pauseStartTime = System.currentTimeMillis();    // Record the start time of the pause
@@ -431,19 +449,19 @@ public class GameCLI extends Main {
                             String menu = scanner.nextLine();
                             System.out.println();
 
-                            if (menu.equals("CONTINUE"))
+                            if (menu.equalsIgnoreCase("CONTINUE"))
                             {
                                 isPaused = false;
                                 totalPausedTime += System.currentTimeMillis() - pauseStartTime; // Add the pause duration to totalPausedTime
                                 System.out.println("GAME CONTINUES!");
                             }
-                            else if (menu.equals("MENU"))
+                            else if (menu.equalsIgnoreCase("MENU"))
                             {
                                 System.out.println("BACK TO MENU!");
                                 isStarted = true;
                                 isGameOver = true;
                             }
-                            else if (menu.equals("HELP")) {
+                            else if (menu.equalsIgnoreCase("HELP")) {
                                 System.out.println("-----------MENU-----------");
                             }
                             else 
@@ -501,7 +519,7 @@ public class GameCLI extends Main {
             @Override
             public void run() {
                 while (!isGameOver) {
-                    if (!isPaused) {
+                    if (!isPaused && passedTime > 20 && passedTime < 160) {
                         for (int i=0; i<6; i++)
                         {
                             Lawn.getLawn().get(i).get(9).spawnZombie();

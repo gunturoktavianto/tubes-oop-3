@@ -7,6 +7,7 @@ import com.app.Exception.IndexOutOfRangeException;
 import com.app.Exception.InvalidInventorySwapException;
 import com.app.Exception.RemoveNullException;
 import com.app.Exception.InvalidDeckSwapException;
+import com.app.Exception.InvalidStoringException;
 import com.app.Interface.Stockable;
 import com.app.Plant.*;
 
@@ -124,7 +125,7 @@ public class Inventory{
         deck.getDeck().add(newPair);
     }
 
-    public void setPlantInDeck (int i, int j) // i deck, j inventory
+    public void setPlantInDeck (int i, int j) throws InvalidStoringException// i deck, j inventory
     { 
         if (j > 10) {
             throw new IllegalArgumentException("Inventory hanya bisa memiliki 10 plant.");
@@ -139,10 +140,15 @@ public class Inventory{
             System.out.println("Plant udah ada di deck");
             return;
         }
-        System.out.println(inventory.get(j-1).getName() + " has been added to deck");
-        Pair<Plant, Integer> newPair = new Pair<Plant,Integer>(inventory.get(j-1), 0);
-        deck.getDeck().set(i-1, newPair);
-        deck.showDeck();
+        try {
+            
+            Pair<Plant, Integer> newPair = new Pair<Plant,Integer>(inventory.get(j-1), 0);
+            deck.getDeck().set(i-1, newPair);
+            System.out.println(inventory.get(j-1).getName() + " has been added to deck");
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        
         // deck.getDeck().get(i-1).setKey(inventory.get(j-1));
         // deck.getDeck().get(i-1).setValue(inventory.get(j-1).getPlantingCooldown());
     }
