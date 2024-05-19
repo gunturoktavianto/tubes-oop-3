@@ -11,7 +11,7 @@ public class TerminatorZombie extends Zombie {
         setName("Terminator Zombie");
         setHealth(125);
         setAttackDamage(5);
-        setAttackSpeed(3);
+        setAttackSpeed(1);
         setIsAquatic(false);
         setZombiePosition(row, col);
         Zombie.addZombieCount();

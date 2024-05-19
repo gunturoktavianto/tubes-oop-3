@@ -76,6 +76,11 @@ public abstract class Zombie {
         zombieCount++;
     }
 
+    public static void setZombieCount(int newCount)
+    {
+        zombieCount = newCount;
+    }
+
     // Setter
     public void setName(String name) {
         this.name = name;

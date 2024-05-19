@@ -3,6 +3,7 @@ package com.app.Game;
 import java.util.ArrayList;
 
 import com.app.AbstractClass.Plant;
+import com.app.AbstractClass.Zombie;
 import com.app.Exception.IndexOutOfRangeException;
 import com.app.Exception.InvalidInventorySwapException;
 import com.app.Exception.RemoveNullException;
@@ -30,6 +31,7 @@ public class Inventory{
         addItem(new Repeater());
         addItem(new Lilypad());
         addItem(new Kubis());
+        Zombie.setZombieCount(0);
     }
 
     public Inventory getInventoryInstance()                                        // SINGLETON DESIGN PATTERN
