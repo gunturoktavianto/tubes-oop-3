@@ -257,7 +257,6 @@ public class GameCLI extends Main {
                             System.out.println("INPUT : ");
                             System.out.println("1. PLANT");
                             System.out.println("2. PAUSE");
-                            System.out.println("3. CONTINUE");
                             System.out.print(">>");
                             String menu = scanner.nextLine();
                             
@@ -265,7 +264,7 @@ public class GameCLI extends Main {
                             {
                                 
                             }
-                            else if (menu.equalsIgnoreCase("PLANT"))
+                            else if (menu.equalsIgnoreCase("PLANT") || menu.equalsIgnoreCase("1"))
                             {
                                 inventory.getDeck().showDeck();
 
@@ -282,7 +281,7 @@ public class GameCLI extends Main {
                                     System.out.println(e.getMessage());
                                 }
                             }
-                            else if (menu.equalsIgnoreCase("PAUSE")) 
+                            else if (menu.equalsIgnoreCase("PAUSE") || menu.equalsIgnoreCase("2"))
                             {
                                 isPaused = true;
                                 pauseStartTime = System.currentTimeMillis();    // Record the start time of the pause
