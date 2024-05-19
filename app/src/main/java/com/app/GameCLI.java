@@ -374,10 +374,10 @@ public class GameCLI extends Main {
                         System.out.println("   attack_speed : 1");
                         System.out.println("   is_aquatic : False");
                         System.out.println("");
-                        System.out.println("10. Terminator Zombie");
-                        System.out.println("   health : 125");
-                        System.out.println("   attack_damage : 10");
-                        System.out.println("   attack_speed : 3");
+                        System.out.println("10. Lorem Ipsum");
+                        System.out.println("   health : 600");
+                        System.out.println("   attack_damage : 50");
+                        System.out.println("   attack_speed : 1");
                         System.out.println("   is_aquatic : False");
                         System.out.println("");
                     } 
@@ -424,7 +424,7 @@ public class GameCLI extends Main {
                                 int plantIdx = Integer.parseInt(scanner.nextLine());
                                 System.out.print("PILIH POSISI ROW TANAMANAN YANG MAU DI PLANT: ");
                                 int x = Integer.parseInt(scanner.nextLine());
-                                System.out.print("PILIH POSISI COLUMN TANAMANAN YANG MAU DI PLANT: ");
+                                System.out.print("PILIH POSISI ROW TANAMANAN YANG MAU DI PLANT: ");
                                 int y = Integer.parseInt(scanner.nextLine());
 
                                 try {
