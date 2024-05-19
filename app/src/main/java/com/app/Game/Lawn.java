@@ -15,18 +15,19 @@ public class Lawn {
     private static Lawn instance;
     private static ArrayList<ArrayList<Tile>> lawn = new ArrayList<>();
 
-    public Lawn() {
+    public Lawn() 
+    {
         initializeLawn();
 
         // try {
-        //     plant(0, 5, new Wallnut());
-        //     plant(0, 6,new SnowPea());
-        //     plant(0, 1,new SnowPea());
-        //     plant(0, 2,new SnowPea());
-        //     plant(0, 3,new Wallnut());
-        //     plant(0, 7, new Wallnut());
-        //     // lawn.get(0).get(9).getZombies().add(new TerminatorZombie(0, 9));
-        // } catch (InvalidPlantingException e) {
+        //     // plant(0, 5, new Wallnut());
+        //     // plant(0, 6,new SnowPea());
+        //     // plant(0, 1,new SnowPea());
+        //     // plant(0, 2,new SnowPea());
+        //     // plant(0, 3,new Wallnut());
+        //     // plant(0, 7, new Wallnut());
+        //     lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
+        // } catch (Exception e) {
         //     System.out.println(e.getMessage());
         // }
     }
@@ -184,12 +185,16 @@ public class Lawn {
         }
         if (row == 2 || row == 3)                                               // WATER TILE PLANTING
         {
-            if (!getLawn().get(row).get(col).hasPlant()                         // KONDISI JIKA BELUM ADA LILYPAD
-                &&
-                plant.getName().equals("Lilypad")                               // PLANT YANG INGIN DITARO ADALAH LILYPAD
-            )
+            if (!getLawn().get(row).get(col).hasPlant())                        // KONDISI JIKA BELUM ADA LILYPAD                  
             {
-                lawn.get(row).get(col).setPlant(plant);
+                if (plant.getName().equals("Lilypad"))                          // PLANT YANG INGIN DITARO ADALAH LILYPAD
+                {
+                    lawn.get(row).get(col).setPlant(plant);
+                }
+                else
+                {
+                    throw new InvalidPlantingException("TIDAK BISA MENARUH TANAMAN TANPA LILYPAD");
+                }
             }
             else if (((WaterTile) lawn.get(row).get(col)).hasLilypad())
             {

@@ -10,10 +10,11 @@ public class Lilypad extends Plant{
         setHealth(100);
         setAttackDamage(0);
         setAttackSpeed(0);
-        setAttackCooldown(99999);
+        setAttackCooldown((plantedPlant == null ? 9999 : 0));
         setRange(0);
         setPlantPosition(row, col);
         setAquatic(true);
+        setPlantingCooldown(10);
     }
 
     public Plant getPlantedPlant() {

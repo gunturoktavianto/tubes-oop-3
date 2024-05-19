@@ -14,7 +14,7 @@ public class Peashooter extends Plant implements Action{
         setHealth(100);
         setAttackDamage(25);
         setAttackSpeed(4);
-        setAttackCooldown(getAttackSpeed());
+        setAttackCooldown(0);
         setPlantingCooldown(10);
         setRange(-1);
         setPlantPosition(row, col);

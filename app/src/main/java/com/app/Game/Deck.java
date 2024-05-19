@@ -10,6 +10,7 @@ import com.app.Exception.RemoveNullException;
 import com.app.Exception.InvalidPlantingException;
 import com.app.Interface.Stockable;
 import com.app.Plant.*;
+import com.app.Game.Sun;
 
 
 public class Deck {
@@ -140,93 +141,116 @@ public class Deck {
     }
 
     public void plant (int x, int y, int i) 
-        throws InvalidPlantingException // xy koordinat i index di deck
+        throws InvalidPlantingException                                         // xy koordinat i index di deck
     {
         if(deck.get(i-1).getValue() == 0) // ready
         {
-            if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Chomper"))
+            if (deck.get(i-1).getKey().getCost() <= Sun.getSun())
             {
-                try
+                if (deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Chomper"))
                 {
-                    Lawn.plant(x, y, new Chomper());
+                    try
+                    {
+                        Lawn.plant(x, y, new Chomper());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e.getMessage());
+                    }
                 }
-                catch(Exception e)
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Jalapeno"))
                 {
-                    System.out.println(e.getMessage());
+                    try {
+                        Lawn.plant(x, y, new Jalapeno());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
+                }
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Kubis"))
+                {
+                    try {
+                        Lawn.plant(x, y, new Kubis());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
+                }
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Lilypad"))
+                {
+                    try {
+                        Lawn.plant(x, y, new Lilypad());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Peashooter"))
+                {
+                    try {
+                        Lawn.plant(x, y, new Peashooter());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    }
+                    catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                }  
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("SnowPea"))
+                {
+                    try {
+                        Lawn.plant(x, y, new SnowPea());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
+                }
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Squash"))
+                {
+                    try {
+                        Lawn.plant(x, y, new Squash());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
+                }
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Sunflower"))
+                {
+                    try {
+                        Lawn.plant(x, y, new Sunflower());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                    
+                }
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Wallnut"))
+                {
+                    try {
+                        Lawn.plant(x, y, new Wallnut());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    } catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
                 }
             }
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Jalapeno"))
+            else
             {
-                try {
-                    Lawn.plant(x, y, new Jalapeno());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                
+                System.out.println("SUN TIDAK MENCUKUPI!");
             }
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Kubis"))
-            {
-                try {
-                    Lawn.plant(x, y, new Kubis());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                
-            }
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Lilypad"))
-            {
-                try {
-                    Lawn.plant(x, y, new Lilypad());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Peashooter"))
-            {
-                try {
-                    Lawn.plant(x, y, new Peashooter());
-                }
-                catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }  
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("SnowPea"))
-            {
-                try {
-                    Lawn.plant(x, y, new SnowPea());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                
-            }
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Squash"))
-            {
-                try {
-                    Lawn.plant(x, y, new Squash());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                
-            }
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Sunflower"))
-            {
-                try {
-                    Lawn.plant(x, y, new Sunflower());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-                
-            }
-            else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Wallnut"))
-            {
-                try {
-                    Lawn.plant(x, y, new Wallnut());
-                } catch (Exception e) {
-                    System.out.println(e.getMessage());
-                }
-            }
-            System.out.println("NEW COOLDOWN " + deck.get(i-1).getKey().getPlantingCooldown());
-            deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
         }
         else
         {

@@ -13,9 +13,10 @@ public class Repeater extends Plant implements Action {
         setHealth(100);
         setAttackDamage(50);
         setAttackSpeed(4);
-        setAttackCooldown(getAttackSpeed());
+        setAttackCooldown(0);
         setRange(-1);
         setPlantPosition(row, col);
+        setPlantingCooldown(10);
     }
 
     public void action() {

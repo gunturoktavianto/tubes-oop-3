@@ -16,6 +16,7 @@ public class Chomper extends Plant implements Action {
         setAttackCooldown(0);
         setRange(1);
         setPlantPosition(row, col);
+        setPlantingCooldown(10);
     }
 
     public void action() {

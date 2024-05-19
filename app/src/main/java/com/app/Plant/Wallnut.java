@@ -11,8 +11,10 @@ public class Wallnut extends Plant {
         setAttackSpeed(0);
         setAttackCooldown(99999);
         setRange(0);
+        setPlantingCooldown(20);
         setPlantPosition(row, col);
     }
+
     public void action() {
 
     }

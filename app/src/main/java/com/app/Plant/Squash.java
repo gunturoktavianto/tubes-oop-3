@@ -14,9 +14,10 @@ public class Squash extends Plant implements Action {
         setHealth(10000);
         setAttackDamage(5000);
         setAttackSpeed(0);
-        setAttackCooldown(1);
+        setAttackCooldown(0);
         setRange(1);
         setPlantPosition(row, col);
+        setPlantingCooldown(20);
     }
 
     public void action() {

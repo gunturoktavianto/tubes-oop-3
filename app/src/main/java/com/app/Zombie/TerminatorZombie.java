@@ -10,7 +10,7 @@ public class TerminatorZombie extends Zombie {
     public TerminatorZombie(int row, int col) {
         setName("Terminator Zombie");
         setHealth(125);
-        setAttackDamage(10);
+        setAttackDamage(5);
         setAttackSpeed(3);
         setIsAquatic(false);
         setZombiePosition(row, col);
@@ -37,7 +37,6 @@ public class TerminatorZombie extends Zombie {
                     setCurrentMovementSpeed(getCurrentMovementSpeed() + 1); 
                     return;
                 }
-                System.out.println("Terminator Zombie attacks plant at Tile: " + i);
                 Plant p = tileRow.get(i).getPlant();
                 p.setHealth(p.getHealth() - getAttackDamage());                 // RESET COOLDOWN
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA

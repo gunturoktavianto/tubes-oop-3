@@ -2,6 +2,7 @@ package com.app.Plant;
 import com.app.AbstractClass.Plant;
 import com.app.Game.Sun;
 import com.app.Interface.Action;
+import com.app.GameCLI;
 
 public class Sunflower extends Plant implements Action {
     
@@ -12,6 +13,7 @@ public class Sunflower extends Plant implements Action {
         setAttackSpeed(3); // attack speed dsnai waktu dia produce sunnya
         setAttackCooldown(3);
         setPlantPosition(row, col);
+        setPlantingCooldown(10);
     }
 
     public void action() {
@@ -21,10 +23,12 @@ public class Sunflower extends Plant implements Action {
             return;
         }
         else
-        {   
-            Sun.setSun(Sun.getSun() + 25);
-            setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
-            return; 
+        {   if (GameCLI.getPassedTime() >= 100)
+            {
+                Sun.setSun(Sun.getSun() + 25);
+                setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
+                return; 
+            }
         }
         
     }

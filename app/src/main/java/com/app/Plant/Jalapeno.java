@@ -16,6 +16,7 @@ public class Jalapeno extends Plant implements Action {
         setAttackCooldown(3);
         setRange(-1); //bingung mo -1 ato gimana
         setPlantPosition(row, col);
+        setPlantingCooldown(10);
     }
 
     public void action() {
