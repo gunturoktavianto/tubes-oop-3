@@ -520,10 +520,13 @@ public class GameCLI extends Main {
             @Override
             public void run() {
                 while (!isGameOver) {
-                    if (!isPaused && passedTime > 20 && passedTime < 160) {
+                    if (!isPaused) {
                         for (int i=0; i<6; i++)
                         {
-                            Lawn.getLawn().get(i).get(9).spawnZombie();
+                            if (passedTime >= 20 && passedTime <= 160)
+                            {
+                                Lawn.getLawn().get(i).get(9).spawnZombie();
+                            }
                         }
                         try {
                             Thread.sleep(1000); // Sleep for 1 second
@@ -543,8 +546,8 @@ public class GameCLI extends Main {
 
     private void printGameInfo()
     {
-        // System.out.print("\033[H\033[2J");
-        // System.out.flush();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         
         System.out.println("\033[0;33mTime: \u001B[0m" + passedTime);
 
