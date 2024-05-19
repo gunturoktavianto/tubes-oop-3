@@ -40,7 +40,7 @@ public class GroundTile extends Tile {
                 addZombie(new FootballZombie(getTileRow(), getTileCol()));
                 break;
             case 7:
-                addZombie(new TuyulZombie(getTileRow(), getTileCol()));
+                addZombie(new WallnutZombie(getTileRow(), getTileCol()));
                 break;
             default:
                 return;

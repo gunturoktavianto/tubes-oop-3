@@ -299,7 +299,19 @@ public class GameCLI extends Main {
                             }
                             else if (menu.equals("PLANT"))
                             {
-                                
+                                inventory.getDeck().showDeck();
+                                System.out.println("PILIH TANAMANAN YANG MAU DI PLANT: ");
+                                int plantIdx = Integer.parseInt(scanner.nextLine());
+                                System.out.print("PILIH POSISI ROW TANAMANAN YANG MAU DI PLANT: ");
+                                int x = Integer.parseInt(scanner.nextLine());
+                                System.out.print("PILIH POSISI ROW TANAMANAN YANG MAU DI PLANT: ");
+                                int y = Integer.parseInt(scanner.nextLine());
+
+                                try {
+                                    inventory.getDeck().plant(x, y, plantIdx);
+                                } catch (Exception e) {
+                                    System.out.println(e.getMessage());
+                                }
                             }
                             else if (menu.equals("PAUSE")) 
                             {
@@ -354,6 +366,7 @@ public class GameCLI extends Main {
                     if (!isPaused) {
                         lawn.INITIALIZE_ATTACK();
                         lawn.moveAll();
+                        inventory.getDeck().plantCooldownThread();
                         try {
                             Thread.sleep(1000); // Sleep for 1 second
                         } catch (InterruptedException e) {
@@ -410,8 +423,8 @@ public class GameCLI extends Main {
 
     private void printGameInfo()
     {
-        System.out.print("\033[H\033[2J");
-        System.out.flush();
+        // System.out.print("\033[H\033[2J");
+        // System.out.flush();
         
         System.out.println("\033[0;33mTime: \u001B[0m" + passedTime);
 

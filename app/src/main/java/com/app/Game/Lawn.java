@@ -18,17 +18,17 @@ public class Lawn {
     public Lawn() {
         initializeLawn();
 
-        try {
-            plant(0, 5, new Wallnut());
-            plant(0, 6,new SnowPea());
-            plant(0, 1,new SnowPea());
-            plant(0, 2,new SnowPea());
-            plant(0, 3,new Wallnut());
-            plant(0, 7, new Wallnut());
-            // lawn.get(0).get(9).getZombies().add(new TuyulZombie(0, 9));
-        } catch (InvalidPlantingException e) {
-            System.out.println(e.getMessage());
-        }
+        // try {
+        //     plant(0, 5, new Wallnut());
+        //     plant(0, 6,new SnowPea());
+        //     plant(0, 1,new SnowPea());
+        //     plant(0, 2,new SnowPea());
+        //     plant(0, 3,new Wallnut());
+        //     plant(0, 7, new Wallnut());
+        //     // lawn.get(0).get(9).getZombies().add(new TerminatorZombie(0, 9));
+        // } catch (InvalidPlantingException e) {
+        //     System.out.println(e.getMessage());
+        // }
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -336,8 +336,8 @@ public class Lawn {
             case "Terminator Zombie":
                 initial += 'T';
                 break;
-            case "Tuyul Zombie":
-                initial += 'U';
+            case "Wallnut Zombie":
+                initial += 'W';
                 break;
             default:
                 initial += ' '; // Add a default case to handle unknown zombies

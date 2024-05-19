@@ -108,7 +108,8 @@ public class Inventory{
         deck.getDeck().remove(plant);
     }
 
-    public void addPlantToDeck (int i){
+    public void addPlantToDeck (int i)
+    {
         if (i > 10) {
             throw new IllegalArgumentException("Index out of bounds");
         }
@@ -123,7 +124,8 @@ public class Inventory{
         deck.getDeck().add(newPair);
     }
 
-    public void setPlantInDeck (int i, int j){ // i buat deck , j buat inventory
+    public void setPlantInDeck (int i, int j)
+    { 
         if (i > 10) {
             throw new IllegalArgumentException("Index out of bounds");
         }

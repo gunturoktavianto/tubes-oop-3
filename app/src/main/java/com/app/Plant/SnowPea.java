@@ -16,6 +16,7 @@ public class SnowPea extends Plant implements Action {
         setAttackCooldown(getAttackSpeed());
         setRange(-1);
         setPlantPosition(row, col);
+        setPlantingCooldown(10);
     }
 
     public void action() {

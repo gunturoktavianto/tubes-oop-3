@@ -18,9 +18,10 @@ public class Deck {
     
     public void plantCooldownThread() // panggil di main atau di game balll
     {
-        for(int i = 0; i < 6; i++)
+        for(int i = 0; i < deck.size(); i++)
         {
-            if(deck.get(i).getValue() > 0) deck.get(i).setValue(deck.get(i).getValue() - 1);
+            if (deck.get(i).getValue() > 0) 
+                deck.get(i).setValue(deck.get(i).getValue() - 1);
         }
     }
 
@@ -100,7 +101,8 @@ public class Deck {
     //     System.out.println();
     // }
 
-    public void plant(int x, int y, int i) throws InvalidPlantingException // xy koordinat i index di deck
+    public void plant (int x, int y, int i) 
+        throws InvalidPlantingException // xy koordinat i index di deck
     {
         if(deck.get(i-1).getValue() == 0) // ready
         {
@@ -140,7 +142,12 @@ public class Deck {
             {
                 Lawn.plant(x, y, new Wallnut());
             }
+            System.out.println("NEW COOLDOWN " + deck.get(i-1).getKey().getPlantingCooldown());
             deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+        }
+        else
+        {
+            System.out.println("PLANT MASIH COOLDOWN");
         }
     }
 
