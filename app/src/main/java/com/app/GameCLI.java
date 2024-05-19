@@ -254,10 +254,10 @@ public class GameCLI extends Main {
                             lawn.printLawn();
                             
                             System.out.println("Press ENTER to display lawn or input commands.");
-                            System.out.print("INPUT : ");
-                            System.out.print("1. PLANT");
-                            System.out.print("2. PAUSE");
-                            System.out.print("3. CONTINUE");
+                            System.out.println("INPUT : ");
+                            System.out.println("1. PLANT");
+                            System.out.println("2. PAUSE");
+                            System.out.println("3. CONTINUE");
                             System.out.print(">>");
                             String menu = scanner.nextLine();
                             
