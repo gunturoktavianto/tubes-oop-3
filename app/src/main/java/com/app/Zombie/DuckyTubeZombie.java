@@ -12,7 +12,7 @@ public class DuckyTubeZombie extends Zombie {
         setAttackSpeed(1);
         setIsAquatic(true);
         setZombiePosition(row, col);
-        Zombie.addZombieCount();
+        // Zombie.addZombieCount();
     }
 
     public void moveForward(){

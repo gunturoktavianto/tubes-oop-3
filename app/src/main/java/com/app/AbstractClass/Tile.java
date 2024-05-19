@@ -50,8 +50,10 @@ public abstract class Tile {
     }
 
     public void addZombie(Zombie zombie) {
-        if (new Random().nextDouble() < 0.3)
+        if (new Random().nextDouble() < 0.3){
             zombies.add(zombie);
+            Zombie.addZombieCount();
+        }
     }
 
     public void removeZombie(Zombie zombie) {

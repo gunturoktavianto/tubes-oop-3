@@ -14,7 +14,7 @@ public class PoleVaultingZombie extends Zombie implements Vaultable {
         setAttackSpeed(1);
         setIsAquatic(false);
         setZombiePosition(row, col);
-        Zombie.addZombieCount();
+        // Zombie.addZombieCount();
     }
 
     public void jumpOver(int place)

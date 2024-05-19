@@ -14,7 +14,7 @@ public class FootballZombie extends Zombie {
         setZombiePosition(row, col);
         setMovementSpeed(5);
         setCurrentMovementSpeed(5);
-        Zombie.addZombieCount();
+        // Zombie.addZombieCount();
     }
 
     public void action()

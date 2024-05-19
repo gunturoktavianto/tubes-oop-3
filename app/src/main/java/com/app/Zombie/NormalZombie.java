@@ -12,7 +12,7 @@ public class NormalZombie extends Zombie {
         setAttackSpeed(1);
         setIsAquatic(false);
         setZombiePosition(row, col);
-        Zombie.addZombieCount();
+        // Zombie.addZombieCount();
     }
 
     public void moveForward(){

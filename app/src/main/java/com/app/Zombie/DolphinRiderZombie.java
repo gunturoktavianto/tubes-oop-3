@@ -13,7 +13,7 @@ public class DolphinRiderZombie extends Zombie implements Vaultable{
         setAttackSpeed(1);
         setIsAquatic(true);
         setZombiePosition(row, col);
-        Zombie.addZombieCount();
+        // Zombie.addZombieCount();
     }
 
     public void jumpOver(int place)
