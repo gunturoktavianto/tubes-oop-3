@@ -19,40 +19,40 @@ public class Lawn {
     {
         initializeLawn();
 
-        try {
-            plant(0, 1,new SnowPea());
-            plant(0, 2, new Wallnut());
-            plant(0, 3, new Wallnut());
+        // try {
+        //     plant(0, 1,new SnowPea());
+        //     plant(0, 2, new Wallnut());
+        //     plant(0, 3, new Wallnut());
 
-            plant(1, 1,new SnowPea());
-            plant(1, 2,new SnowPea());
-            plant(1, 3,new Wallnut());
+        //     plant(1, 1,new SnowPea());
+        //     plant(1, 2,new SnowPea());
+        //     plant(1, 3,new Wallnut());
 
-            plant(2, 1, new Lilypad());
-            plant(2, 2, new Lilypad());
-            plant(2, 3, new Lilypad());
-            plant(2, 1, new SnowPea());
-            plant(2, 2, new SnowPea());
-            plant(2, 3, new SnowPea());
+        //     plant(2, 1, new Lilypad());
+        //     plant(2, 2, new Lilypad());
+        //     plant(2, 3, new Lilypad());
+        //     plant(2, 1, new SnowPea());
+        //     plant(2, 2, new SnowPea());
+        //     plant(2, 3, new SnowPea());
 
 
-            plant(3, 1, new Lilypad());
-            plant(3, 2, new Lilypad());
-            plant(3, 3, new Lilypad());
-            plant(3, 1, new SnowPea());
-            plant(3, 2, new SnowPea());
-            plant(3, 3, new SnowPea());
+        //     plant(3, 1, new Lilypad());
+        //     plant(3, 2, new Lilypad());
+        //     plant(3, 3, new Lilypad());
+        //     plant(3, 1, new SnowPea());
+        //     plant(3, 2, new SnowPea());
+        //     plant(3, 3, new SnowPea());
 
-            plant(4, 1,new SnowPea());
-            plant(4, 2,new Wallnut());
-            plant(4, 3, new Wallnut());
+        //     plant(4, 1,new SnowPea());
+        //     plant(4, 2,new Wallnut());
+        //     plant(4, 3, new Wallnut());
 
-            plant(5, 1,new SnowPea());
-            plant(5, 2,new Wallnut());
-            plant(5, 3, new Wallnut());
-            // lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
+        //     plant(5, 1,new SnowPea());
+        //     plant(5, 2,new Wallnut());
+        //     plant(5, 3, new Wallnut());
+        //     // lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
+        // } catch (Exception e) {
+        //     System.out.println(e.getMessage());
         }
     }
 
