@@ -53,7 +53,7 @@ public class Lawn {
         //     // lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
         // } catch (Exception e) {
         //     System.out.println(e.getMessage());
-        }
+        // }
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
