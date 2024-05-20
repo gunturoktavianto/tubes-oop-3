@@ -71,17 +71,6 @@ public class Deck {
         return true;
     }
 
-    // // Helper method to remove trailing nulls to avoid list bloat
-    // private void cleanUpTrailingNulls() {
-    //     for (int i = deck.size() - 1; i >= 0; i--) {
-    //         if (deck.get(i) == null) {
-    //             deck.remove(i);
-    //         } else {
-    //             break;
-    //         }
-    //     }
-    // }
-
     public void showDeck(){
         int i = 1;
         System.out.println();
@@ -263,7 +252,24 @@ public class Deck {
         if (x < 0 || x >= 6 || y < 1 || y >= 10) {
             throw new IllegalArgumentException("Index out of bounds");
         } else {
-            Lawn.getLawn().get(x).get(y).removePlant();
+            if (x == 2 || x == 3)
+            {
+                if (Lawn.getLawn().get(x).get(y).hasPlant())
+                {
+                    ((Lilypad)Lawn.getLawn().get(x).get(y).getPlant()).removePlantedPlant(); // DIG LILYPAD HANYA UNTUK PLANTED PLANT
+                }
+            }
+            else
+            {
+                if (Lawn.getLawn().get(x).get(y).hasPlant())
+                {
+                    Lawn.getLawn().get(x).get(y).removePlant();
+                }
+                else 
+                {
+                    System.out.println("TIDAK ADA PLANT YANG BISA DI DIG");
+                }
+            }
         }
     }
 

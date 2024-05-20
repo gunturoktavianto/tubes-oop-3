@@ -19,17 +19,41 @@ public class Lawn {
     {
         initializeLawn();
 
-        // try {
-        //     // plant(0, 5, new Wallnut());
-        //     // plant(0, 6,new SnowPea());
-        //     // plant(0, 1,new SnowPea());
-        //     // plant(0, 2,new SnowPea());
-        //     // plant(0, 3,new Wallnut());
-        //     // plant(0, 7, new Wallnut());
-        //     lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
-        // } catch (Exception e) {
-        //     System.out.println(e.getMessage());
-        // }
+        try {
+            plant(0, 1,new SnowPea());
+            plant(0, 2, new Wallnut());
+            plant(0, 3, new Wallnut());
+
+            plant(1, 1,new SnowPea());
+            plant(1, 2,new SnowPea());
+            plant(1, 3,new Wallnut());
+
+            plant(2, 1, new Lilypad());
+            plant(2, 2, new Lilypad());
+            plant(2, 3, new Lilypad());
+            plant(2, 1, new SnowPea());
+            plant(2, 2, new SnowPea());
+            plant(2, 3, new SnowPea());
+
+
+            plant(3, 1, new Lilypad());
+            plant(3, 2, new Lilypad());
+            plant(3, 3, new Lilypad());
+            plant(3, 1, new SnowPea());
+            plant(3, 2, new SnowPea());
+            plant(3, 3, new SnowPea());
+
+            plant(4, 1,new SnowPea());
+            plant(4, 2,new Wallnut());
+            plant(4, 3, new Wallnut());
+
+            plant(5, 1,new SnowPea());
+            plant(5, 2,new Wallnut());
+            plant(5, 3, new Wallnut());
+            // lawn.get(0).get(9).getZombies().add(new PoleVaultingZombie(0, 9));
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public static Lawn getLawnInstance()                                        // SINGLETON DESIGN PATTERN
@@ -167,6 +191,7 @@ public class Lawn {
                         }
                         if (z.getHealth() <= 0) 
                         {
+                            Zombie.decreaseZombieCount();
                             iterator.remove();
                         }
                     }
@@ -178,7 +203,6 @@ public class Lawn {
     public static void plant(int row, int col, Plant plant) 
         throws InvalidPlantingException
     {
-        plant.setPlantPosition(row, col);
         if (row < 0 || row > 5 || col < 1 || col > 9)
         {
             throw new InvalidPlantingException("Tidak Bisa Menaruh Plant!");
@@ -190,6 +214,7 @@ public class Lawn {
                 if (plant.getName().equals("Lilypad"))                          // PLANT YANG INGIN DITARO ADALAH LILYPAD
                 {
                     lawn.get(row).get(col).setPlant(plant);
+                    plant.setPlantPosition(row, col);
                 }
                 else
                 {
@@ -206,6 +231,7 @@ public class Lawn {
                     if (!plant.getName().equals("lilypad")) 
                     {
                         ((Lilypad) lawn.get(row).get(col).getPlant()).plantOnTop(plant);
+                        plant.setPlantPosition(row, col);
                     } else
                     {
                         throw new InvalidPlantingException("Tidak bisa menaruh lilypad diatas lilypad");
@@ -217,6 +243,7 @@ public class Lawn {
             if (!lawn.get(row).get(col).hasPlant())
             {
                 lawn.get(row).get(col).setPlant(plant);
+                plant.setPlantPosition(row, col);
             } else
             {
                 throw new InvalidPlantingException("Sudah ada tanaman");

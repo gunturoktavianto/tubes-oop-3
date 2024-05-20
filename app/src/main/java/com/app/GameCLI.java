@@ -1,10 +1,10 @@
 package com.app;
 
-// import com.google.gson.Gson;
-// import com.google.gson.GsonBuilder;
-// import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.File;
+import java.io.File;    
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -239,7 +239,6 @@ public class GameCLI extends Main {
             public void run() {
                 while (!isGameOver) {
                     synchronized (scanner) {
-
                         if (!isPaused) 
                         {
                             passedTime = (System.currentTimeMillis() - startTime - totalPausedTime) / 1000;
@@ -281,7 +280,20 @@ public class GameCLI extends Main {
                                     System.out.println(e.getMessage());
                                 }
                             }
-                            else if (menu.equalsIgnoreCase("PAUSE") || menu.equalsIgnoreCase("2"))
+                            else if ((menu.equalsIgnoreCase("DIG") || menu.equalsIgnoreCase("2")))
+                            {
+                                System.out.print("PILIH POSISI ROW TANAMANAN YANG MAU DI DIG: ");
+                                int x = Integer.parseInt(scanner.nextLine());
+                                System.out.print("PILIH POSISI COL TANAMANAN YANG MAU DI DIG: ");
+                                int y = Integer.parseInt(scanner.nextLine());
+
+                                try {
+                                    inventory.getDeck().dig(x, y);
+                                } catch (Exception e) {
+                                    System.out.print(e.getMessage());
+                                }
+                            }
+                            else if (menu.equalsIgnoreCase("PAUSE") || menu.equalsIgnoreCase("3"))
                             {
                                 isPaused = true;
                                 pauseStartTime = System.currentTimeMillis();    // Record the start time of the pause
@@ -400,45 +412,45 @@ public class GameCLI extends Main {
     }
 
     public void saveGame(String filePath) {
-        // Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        // GameState gameState = new GameState(passedTime, lawn, inventory);
-        // try {
-        //     File file = new File(filePath);
-        //     // Ensure the directories exist
-        //     file.getParentFile().mkdirs();
-        //     // Write the JSON file
-        //     try (FileWriter writer = new FileWriter(file)) {
-        //         gson.toJson(gameState, writer);
-        //         System.out.println("Game state saved to " + filePath);
-        //     }
-        // } catch (IOException e) {
-        //     System.err.println("Failed to save game state: " + e.getMessage());
-        // }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GameState gameState = new GameState(passedTime, lawn, inventory);
+        try {
+            File file = new File(filePath);
+            // Ensure the directories exist
+            file.getParentFile().mkdirs();
+            // Write the JSON file
+            try (FileWriter writer = new FileWriter(file)) {
+                gson.toJson(gameState, writer);
+                System.out.println("Game state saved to " + filePath);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to save game state: " + e.getMessage());
+        }
     }
 
     public void loadGame(String filePath) {
-        // Gson gson = new Gson();
-        // try (FileReader reader = new FileReader(filePath)) {
-        //     Type gameStateType = new TypeToken<GameState>(){}.getType();
-        //     GameState gameState = gson.fromJson(reader, gameStateType);
-        //     passedTime = gameState.passedTime;
-        //     this.lawn = gameState.lawn;
-        //     this.inventory = gameState.inventory;
-        //     System.out.println("Game state loaded from " + filePath);
-        // } catch (IOException e) {
-        //     System.err.println("Failed to load game state: " + e.getMessage());
-        // }
+        Gson gson = new Gson();
+        try (FileReader reader = new FileReader(filePath)) {
+            Type gameStateType = new TypeToken<GameState>(){}.getType();
+            GameState gameState = gson.fromJson(reader, gameStateType);
+            passedTime = gameState.passedTime;
+            this.lawn = gameState.lawn;
+            this.inventory = gameState.inventory;
+            System.out.println("Game state loaded from " + filePath);
+        } catch (IOException e) {
+            System.err.println("Failed to load game state: " + e.getMessage());
+        }
     }
 
     private void printGameInfo()
     {
-        // System.out.print("\033[H\033[2J");
-        // System.out.flush();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
         
         System.out.println("\033[0;33mTime: \u001B[0m" + passedTime + (passedTime <= 100 ? " \u001B[33m(DAY)\u001B[0m" : " \u001B[34m(NIGHT)\u001B[0m"));
 
         System.out.println("\033[0;33mTotal Sun: \u001B[0m" + Sun.getSun());
-        System.out.println("\033[0;33mJumlah Zombie di Map: \u001B[0m" + Zombie.getZombieCount());
+        System.out.println("\033[0;33mJumlah Zombie di Map: \u001B[0m" + Zombie.getZombieCount() + ((GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100) || GameCLI.getPassedTime() > 180 ? "  FLAG" : " NORMAL"));
     }
 
     private void printZombieList()

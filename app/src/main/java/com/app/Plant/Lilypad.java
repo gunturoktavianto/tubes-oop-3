@@ -26,6 +26,10 @@ public class Lilypad extends Plant{
         setHealth(getHealth() + plantedPlant.getHealth());
     } 
 
+    public void removePlantedPlant() {
+        plantedPlant = null;
+    }
+
     public boolean isOccupied() {
         return (plantedPlant != null);
     }

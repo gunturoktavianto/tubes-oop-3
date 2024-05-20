@@ -2,7 +2,7 @@ package com.app.Game;
 
 
 public class Sun {
-    private static int sun = 0;
+    private static int sun = 25;
 
     public static synchronized void generateSun() {
         sun += 25;

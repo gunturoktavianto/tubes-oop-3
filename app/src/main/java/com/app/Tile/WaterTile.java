@@ -5,6 +5,7 @@ import java.util.Random;
 import com.app.AbstractClass.*;
 import com.app.Zombie.DolphinRiderZombie;
 import com.app.Zombie.DuckyTubeZombie;
+import com.app.GameCLI;
 
 public class WaterTile extends Tile {
     public WaterTile(int row, int col) {
@@ -18,19 +19,20 @@ public class WaterTile extends Tile {
         return false;
     }
 
-    // public void plant(Plant plant) {
-    //     if (getPlant() == null && plant.getName().equals("Lilypad"))
-    //         setPlant(new Lilypad(999, 999));
-    //     else if (hasLilypad())
-    //         setPlant(plant);
-    //     else
-    //         System.out.println("\u001B[31m" + "TIDAK BISA MENARUH TANAMAN" + "\u001B[0m");
-    // }
-
     public void spawnZombie() {
-        if (Zombie.getZombieCount() > 9)
+        if ((GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100) || GameCLI.getPassedTime() > 180)
         {
-            return;
+            if (Zombie.getZombieCount() > 24)
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (Zombie.getZombieCount() > 9)
+            {
+                return;
+            } 
         }
         Random rand = new Random();
         if (rand.nextBoolean()) {

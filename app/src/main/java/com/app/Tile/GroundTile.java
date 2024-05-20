@@ -4,6 +4,7 @@ import java.util.Random;
 
 import com.app.AbstractClass.*;
 import com.app.Zombie.*;
+import com.app.GameCLI;
 
 public class GroundTile extends Tile {
     public GroundTile(int row, int col) {
@@ -12,9 +13,19 @@ public class GroundTile extends Tile {
     }
 
     public void spawnZombie() {
-        if (Zombie.getZombieCount() > 9)
+        if ((GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100) || GameCLI.getPassedTime() > 180)
         {
-            return;
+            if (Zombie.getZombieCount() > 24)
+            {
+                return;
+            }
+        }
+        else
+        {
+            if (Zombie.getZombieCount() > 9)
+            {
+                return;
+            } 
         }
         Random rand = new Random();
         switch (rand.nextInt(8)) {

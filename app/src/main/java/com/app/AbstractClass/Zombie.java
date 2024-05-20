@@ -76,6 +76,11 @@ public abstract class Zombie {
         zombieCount++;
     }
 
+    public static void decreaseZombieCount()
+    {
+        zombieCount--;
+    }
+
     public static void setZombieCount(int newCount)
     {
         zombieCount = newCount;
