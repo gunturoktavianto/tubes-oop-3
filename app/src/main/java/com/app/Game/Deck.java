@@ -192,6 +192,17 @@ public class Deck {
                         System.out.println(e.getMessage());
                     }
                 }  
+                else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Repeater"))
+                {
+                    try {
+                        Lawn.plant(x, y, new Repeater());
+                        deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
+                        Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
+                    }
+                    catch (Exception e) {
+                        System.out.println(e.getMessage());
+                    }
+                } 
                 else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("SnowPea"))
                 {
                     try {

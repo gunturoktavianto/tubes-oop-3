@@ -7,6 +7,7 @@ import com.app.Interface.Action;
 
 public class Chomper extends Plant implements Action {
     int ranges;
+    int cols;
     public Chomper() {
         setName("Chomper");
         setCost(150);
@@ -21,19 +22,23 @@ public class Chomper extends Plant implements Action {
 
     public void action() {
         ArrayList<Tile> tileRow = Lawn.getLawn().get(row);
-        
-        if (getRange() + col > tileRow.size()-1) 
+        if  (getRange() + col > tileRow.size()-1) 
             ranges = tileRow.size()-1;
         else 
             ranges = col+getRange();
-        
-        for (int i=col; i < ranges; i++)                                        // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
+        if (col - 1 < 1) 
+            cols = col;
+        else 
+            cols = col-1;
+        for (int i=cols; i <= ranges; i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasZombie())
             {
-                Zombie z = tileRow.get(i).getZombies().get(0);            //CUMA MAKAN 1 ZOMBIE
-                z.setHealth(0);                                          // lsg mati anggepannya 
-                setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
+                for (Zombie z : tileRow.get(i).getZombies())
+                {
+                    z.setHealth(0);
+                }
+                setAttackCooldown(getAttackSpeed());
                 return;                                                         // LANGSUNG DI RETURN AGAR NEMBAK HANYA 1 TILE PALING DEPAN SAJA
             }                                                            
         }

@@ -316,8 +316,8 @@ public class Lawn {
             case "Peashooter":
                 initial += 'P';
                 break;
-            case "PotatoMine":
-                initial += 'M';
+            case "Repeater":
+                initial += 'R';
                 break;
             case "SnowPea":
                 initial += 'S';
