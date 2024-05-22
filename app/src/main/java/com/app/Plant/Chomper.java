@@ -7,7 +7,7 @@ import com.app.Interface.Action;
 
 public class Chomper extends Plant implements Action {
     int ranges;
-    int cols;
+
     public Chomper() {
         setName("Chomper");
         setCost(150);
@@ -26,11 +26,7 @@ public class Chomper extends Plant implements Action {
             ranges = tileRow.size()-1;
         else 
             ranges = col+getRange();
-        if (col - 1 < 1) 
-            cols = col;
-        else 
-            cols = col-1;
-        for (int i=cols; i <= ranges; i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
+        for (int i=col; i <= ranges; i++)                                  // JIKA PLANT BARU DITANAM DAN ADA ZOMBIE DI TILE TERSEBUT, 
         {                                                                       // AKAN LANGSUNG NEMBAK DI TILE TERSEBUT
             if (tileRow.get(i).hasZombie())
             {
