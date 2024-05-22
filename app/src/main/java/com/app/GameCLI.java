@@ -1,8 +1,8 @@
 package com.app;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+// import com.google.gson.Gson;
+// import com.google.gson.GsonBuilder;
+// import com.google.gson.reflect.TypeToken;
 
 import java.io.File;    
 import java.io.FileReader;
@@ -10,7 +10,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.Scanner;
-
 import com.Main;
 import com.app.AbstractClass.Zombie;
 import com.app.Game.*;
@@ -255,7 +254,8 @@ public class GameCLI extends Main {
                             System.out.println("Press ENTER to display lawn or input commands.");
                             System.out.println("INPUT : ");
                             System.out.println("1. PLANT");
-                            System.out.println("2. PAUSE");
+                            System.out.println("2. DIG");
+                            System.out.println("3. PAUSE");
                             System.out.print(">>");
                             String menu = scanner.nextLine();
                             
@@ -412,34 +412,34 @@ public class GameCLI extends Main {
     }
 
     public void saveGame(String filePath) {
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        GameState gameState = new GameState(passedTime, lawn, inventory);
-        try {
-            File file = new File(filePath);
-            // Ensure the directories exist
-            file.getParentFile().mkdirs();
-            // Write the JSON file
-            try (FileWriter writer = new FileWriter(file)) {
-                gson.toJson(gameState, writer);
-                System.out.println("Game state saved to " + filePath);
-            }
-        } catch (IOException e) {
-            System.err.println("Failed to save game state: " + e.getMessage());
-        }
+        // Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        // GameState gameState = new GameState(passedTime, lawn, inventory);
+        // try {
+        //     File file = new File(filePath);
+        //     // Ensure the directories exist
+        //     file.getParentFile().mkdirs();
+        //     // Write the JSON file
+        //     try (FileWriter writer = new FileWriter(file)) {
+        //         gson.toJson(gameState, writer);
+        //         System.out.println("Game state saved to " + filePath);
+        //     }
+        // } catch (IOException e) {
+        //     System.err.println("Failed to save game state: " + e.getMessage());
+        // }
     }
 
     public void loadGame(String filePath) {
-        Gson gson = new Gson();
-        try (FileReader reader = new FileReader(filePath)) {
-            Type gameStateType = new TypeToken<GameState>(){}.getType();
-            GameState gameState = gson.fromJson(reader, gameStateType);
-            passedTime = gameState.passedTime;
-            this.lawn = gameState.lawn;
-            this.inventory = gameState.inventory;
-            System.out.println("Game state loaded from " + filePath);
-        } catch (IOException e) {
-            System.err.println("Failed to load game state: " + e.getMessage());
-        }
+        // Gson gson = new Gson();
+        // try (FileReader reader = new FileReader(filePath)) {
+        //     Type gameStateType = new TypeToken<GameState>(){}.getType();
+        //     GameState gameState = gson.fromJson(reader, gameStateType);
+        //     passedTime = gameState.passedTime;
+        //     this.lawn = gameState.lawn;
+        //     this.inventory = gameState.inventory;
+        //     System.out.println("Game state loaded from " + filePath);
+        // } catch (IOException e) {
+        //     System.err.println("Failed to load game state: " + e.getMessage());
+        // }
     }
 
     private void printGameInfo()

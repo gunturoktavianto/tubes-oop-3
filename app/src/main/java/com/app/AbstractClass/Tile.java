@@ -2,6 +2,7 @@ package com.app.AbstractClass;
 
 import java.util.ArrayList;
 import java.util.Random;
+import com.app.GameCLI;
 
 public abstract class Tile {
     private String type;
@@ -50,9 +51,19 @@ public abstract class Tile {
     }
 
     public void addZombie(Zombie zombie) {
-        if (new Random().nextDouble() < 0.3){
-            zombies.add(zombie);
-            Zombie.addZombieCount();
+        if(GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100)
+        {
+            if (new Random().nextDouble() < 0.6){
+                zombies.add(zombie);
+                Zombie.addZombieCount();
+            }
+        }
+        else
+        {
+            if (new Random().nextDouble() < 0.3){
+                zombies.add(zombie);
+                Zombie.addZombieCount();
+            }
         }
     }
 

@@ -13,12 +13,26 @@ public class GroundTile extends Tile {
     }
 
     public void spawnZombie() {
-        if ((GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100) || GameCLI.getPassedTime() > 180)
+        if ((GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100))
         {
             if (Zombie.getZombieCount() > 24)
             {
                 return;
             }
+        }
+        else if((GameCLI.getPassedTime() > 20 && GameCLI.getPassedTime() < 30))
+        {
+            if (Zombie.getZombieCount() > 2)
+            {
+                return;
+            } 
+        }
+        else if((GameCLI.getPassedTime() > 30 && GameCLI.getPassedTime() < 50))
+        {
+            if (Zombie.getZombieCount() > 5)
+            {
+                return;
+            } 
         }
         else
         {

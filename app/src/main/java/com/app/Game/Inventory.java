@@ -56,6 +56,11 @@ public class Inventory{
     public void swapDeckPlacement (int x, int y) 
         throws IndexOutOfBoundsException, InvalidDeckSwapException
     {
+        if(x == y)
+        {
+            System.out.println("Cannot swap deck with same index");
+            return;
+        }
         if (x < 0 || x > 6 || y < 0 || y > 6) 
         {
             throw new IndexOutOfBoundsException("INDEX TIDAK VALID");
@@ -79,6 +84,11 @@ public class Inventory{
     public void swapInventoryPlacement (int x, int y) 
         throws IndexOutOfBoundsException, InvalidDeckSwapException
     {
+        if(x == y)
+        {
+            System.out.println("Cannot swap deck with same index");
+            return;
+        }
         if (x < 0 || x > 6 || y < 0 || y > 6) 
         {
             throw new IndexOutOfBoundsException("INDEX TIDAK VALID");
