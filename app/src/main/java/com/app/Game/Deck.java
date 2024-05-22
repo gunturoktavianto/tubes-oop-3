@@ -77,7 +77,7 @@ public class Deck {
         System.out.println("Deck : ");
         if (!deck.isEmpty()){
             for (Pair<Plant, Integer> p: deck){
-                System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
+                System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue() + " - Cost: " + deck.get(i-1).getKey().getCost());
                 i++;
             }
             for (int j = i; j<7; j++)
