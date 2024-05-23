@@ -230,6 +230,11 @@ public class Lawn {
                 else {
                     if (!plant.getName().equals("lilypad")) 
                     {
+                        if(row == 0 || row == 1 || row == 4 || row == 5) 
+                        {
+                            System.out.println("Tidak bisa menaruh aquatic plant di ground");
+                            return;
+                        }
                         ((Lilypad) lawn.get(row).get(col).getPlant()).plantOnTop(plant);
                         plant.setPlantPosition(row, col);
                     } else
