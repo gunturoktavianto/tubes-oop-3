@@ -77,7 +77,7 @@ public class Deck {
         System.out.println("Deck : ");
         if (!deck.isEmpty()){
             for (Pair<Plant, Integer> p: deck){
-                System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue() + " - Cost: " + deck.get(i-1).getKey().getCost());
+                System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
                 i++;
             }
             for (int j = i; j<7; j++)
@@ -173,13 +173,13 @@ public class Deck {
                 }
                 else if(deck.get(i-1).getKey().getName() != null && deck.get(i-1).getKey().getName().equals("Lilypad"))
                 {
-                    try {
-                        Lawn.plant(x, y, new Lilypad());
-                        if(x == 0 || x == 1 || x == 4 || x == 5) 
+                    if(x == 0 || x == 1 || x == 4 || x == 5) 
                         {
                             System.out.println("Tidak bisa menaruh aquatic plant di ground");
                             return;
                         }
+                    try {
+                        Lawn.plant(x, y, new Lilypad());
                         deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
                         Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
                     } catch (Exception e) {
