@@ -175,6 +175,11 @@ public class Deck {
                 {
                     try {
                         Lawn.plant(x, y, new Lilypad());
+                        if(x == 0 || x == 1 || x == 4 || x == 5) 
+                        {
+                            System.out.println("Tidak bisa menaruh aquatic plant di ground");
+                            return;
+                        }
                         deck.get(i-1).setValue(deck.get(i-1).getKey().getPlantingCooldown());
                         Sun.setSun(Sun.getSun() - deck.get(i-1).getKey().getCost());
                     } catch (Exception e) {
