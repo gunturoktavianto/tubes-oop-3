@@ -53,7 +53,7 @@ public abstract class Tile {
     public void addZombie(Zombie zombie) {
         if(GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100)
         {
-            if (new Random().nextDouble() < 0.6){
+            if (new Random().nextDouble() < 0.5){
                 zombies.add(zombie);
                 Zombie.addZombieCount();
             }
