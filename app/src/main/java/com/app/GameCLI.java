@@ -1,16 +1,18 @@
 package com.app;
 
-// import com.google.gson.Gson;
-// import com.google.gson.GsonBuilder;
-// import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.File;    
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Scanner;
 import com.Main;
+import com.app.AbstractClass.Tile;
 import com.app.AbstractClass.Zombie;
 import com.app.Game.*;
 import com.app.Exception.*;
@@ -23,7 +25,6 @@ public class GameCLI extends Main {
     private Inventory       inventory;
     private static boolean  isGameOver, isStarted;
     private boolean         isPaused;
-    // private boolean         backMenu; 
     private Thread          gameThread, generatorThread, displayThread, spawnThread; 
 
     public GameCLI() {
@@ -33,18 +34,19 @@ public class GameCLI extends Main {
         isStarted = false;
         isGameOver = false;
         isPaused = false;
-        // backMenu = false;
     }
 
     private static class GameState {
         private long passedTime;
-        private Lawn lawn;
+        private ArrayList<ArrayList<Tile>> lawn;
         private Inventory inventory;
+        private int sun;
 
-        public GameState(long passedTime, Lawn lawn, Inventory inventory) {
+        public GameState(long passedTime, ArrayList<ArrayList<Tile>> lawn, Inventory inventory, int sun) {
             this.passedTime = passedTime;
             this.lawn = lawn;
             this.inventory = inventory;
+            this.sun = Sun.getSun();
         }
     }
 
@@ -53,7 +55,6 @@ public class GameCLI extends Main {
 
         while (true)
         {
-
             if (!isStarted) {
                 synchronized (scanner) {
                     System.out.println();
@@ -179,11 +180,15 @@ public class GameCLI extends Main {
                                 else
                                 {
                                     if (!isStarted) {
+                                        
                                         isStarted = true;
                                         isPaused = false;
-                                        // startTime = System.currentTimeMillis();
+                                        isGameOver = false;
+                                        startTime = System.currentTimeMillis();
+                                        stopThreads();
                                         startThreads();
                                         startDisplayThread();
+                                        //System.out.println(Thread.currentThread());
                                     }
                                 }
                             } 
@@ -220,11 +225,11 @@ public class GameCLI extends Main {
                     else if (menu.equalsIgnoreCase("HELP") || menu.equalsIgnoreCase("6"))
                     {
                         System.out.println("-----------MENU-----------");
-                        System.out.println("1. START, Mulai Game");
+                        System.out.println("1. START");
                         System.out.println("2. HELP");
-                        System.out.println("3. Plants List, List dari plant");
-                        System.out.println("4. Zombies List, List dari Zombie");
-                        System.out.println("5. EXIT, Keluar Game");
+                        System.out.println("3. Plants List");
+                        System.out.println("4. Zombies List");
+                        System.out.println("5. EXIT");
                     }
                     else 
                     {
@@ -249,6 +254,7 @@ public class GameCLI extends Main {
                             {
                                 System.out.println("ZOMBIE TELAH HABIS, ANDA MENANG!!!");
                                 endGame();
+                                start();
                             }
         
                             printGameInfo();
@@ -299,7 +305,8 @@ public class GameCLI extends Main {
                             else if (menu.equalsIgnoreCase("PAUSE") || menu.equalsIgnoreCase("3"))
                             {
                                 isPaused = true;
-                                // pauseStartTime = System.currentTimeMillis();    // Record the start time of the pause
+                                pauseStartTime = System.currentTimeMillis(); 
+                                   // Record the start time of the pause
                             }
                             else 
                             {
@@ -325,21 +332,23 @@ public class GameCLI extends Main {
                                 startThreads();
                             }
                             else if (menu.equalsIgnoreCase("SAVE") || menu.equalsIgnoreCase("2"))
-                            {
-                                String filePath = "/app/bin/";
+                            {   
+                                String filePath = "C:/Guntur/ITB/Akademik/Semester 4/OOP/tubes-oop-3/";
                                 System.out.println("MASUKKAN NAMA FILE UNTUK DI SAVE");
                                 String inputFilePath = scanner.nextLine();
-                                filePath += inputFilePath;
+                                filePath += inputFilePath + ".json";
                                 saveGame(filePath);
                             }
                             else if (menu.equalsIgnoreCase("MENU")|| menu.equalsIgnoreCase("3"))
                             {
-                                
                                 System.out.println("BACK TO MENU!");
-                                // isStarted = false;
-                                // isGameOver = false;
+
                                 endGame();
-    
+                                System.out.println(Thread.activeCount());
+                                //threadWait();
+                                start();
+                                
+                                
                             }
                             else if (menu.equalsIgnoreCase("HELP")|| menu.equalsIgnoreCase("4")) {
                                 System.out.println("-----------MENU-----------");
@@ -351,18 +360,10 @@ public class GameCLI extends Main {
                         }
                     }
                 }
-                System.out.println("Back to Main Menu");
+
             }
         });
-        
         displayThread.start();
-        // if(isPaused)
-        // {
-        //     isGameOver = true;
-        //     isStarted = false;
-        //     backInput = true;
-        // }
-       
     }
 
     private void startThreads() {
@@ -391,16 +392,14 @@ public class GameCLI extends Main {
             public void run() {
                 while (!isGameOver) {
                     if (!isPaused) {
-                        if ((passedTime >=0 && passedTime <= 100) || (passedTime >=201 && passedTime <= 300))
-                        {
-                            try {
-                                Sun.generateSun();
-                                int delay = 5000 + (int) (Math.random() * 5000);
-                                Thread.sleep(delay);
-                            } catch (InterruptedException e) {
-                                System.out.println("Sun generator thread interrupted.");
-                                return;
-                            }
+                        Sun.generateSun();
+                        try {
+                            int delay = 5000 + (int) (Math.random() * 5000);
+                            Thread.sleep(delay);
+                        } catch (InterruptedException e) {
+                            System.out.println("Sun generator thread interrupted.");
+                            e.printStackTrace();
+                            return;
                         }
                     }
                 }
@@ -422,7 +421,7 @@ public class GameCLI extends Main {
                         try {
                             Thread.sleep(3000); // Sleep for 1 second
                         } catch (InterruptedException e) {
-                            System.out.println("Move thread interrupted.");
+                            System.out.println("Spawn thread interrupted.");
                             return;
                         }
                     }
@@ -436,21 +435,33 @@ public class GameCLI extends Main {
     }
 
     public void saveGame(String filePath) {
-        // Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        // GameState gameState = new GameState(passedTime, lawn, inventory);
-        // try {
-        //     File file = new File(filePath);
-        //     // Ensure the directories exist
-        //     file.getParentFile().mkdirs();
-        //     // Write the JSON file
-        //     try (FileWriter writer = new FileWriter(file)) {
-        //         gson.toJson(gameState, writer);
-        //         System.out.println("Game state saved to " + filePath);
-        //     }
-        // } catch (IOException e) {
-        //     System.err.println("Failed to save game state: " + e.getMessage());
-        // }
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        GameState gameState = new GameState(passedTime, Lawn.getLawn(), inventory, Sun.getSun());
+
+        
+        try {
+            File file = new File(filePath);
+            
+            // Ensure the parent directories exist
+            if (file.getParentFile() != null && !file.getParentFile().exists()) {
+                boolean dirsCreated = file.getParentFile().mkdirs();
+                if (!dirsCreated) {
+                    System.err.println("Failed to create directories for path: " + filePath);
+                    return;
+                }
+            }
+            
+            // Write the JSON file
+            try (FileWriter writer = new FileWriter(file)) {
+                gson.toJson(gameState, writer);
+                System.out.println("Game state saved to " + filePath);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to save game state: " + e.getMessage());
+            e.printStackTrace();  // Print stack trace for detailed error information
+        }
     }
+    
 
     public void loadGame(String filePath) {
         // Gson gson = new Gson();
@@ -630,8 +641,40 @@ public class GameCLI extends Main {
         return passedTime;
     }
 
+    private void stopThreads() {
+        if (gameThread != null)
+         {
+            gameThread.interrupt();
+            generatorThread.interrupt();
+            displayThread.interrupt();
+            spawnThread.interrupt();
+        }
+    }
+
+    private void threadWait(){
+        try {
+            if (gameThread != null) {
+                gameThread.join(); // Wait for gameThread to finish
+            }
+            if (generatorThread != null) {
+                generatorThread.join(); // Wait for generatorThread to finish
+            }
+            if (displayThread != null) {
+                displayThread.join(); // Wait for displayThread to finish
+            }
+            if (spawnThread != null) {
+                spawnThread.join(); // Wait for spawnThread to finish
+            }
+        } catch (InterruptedException e) {
+            System.out.println("Thread wait interrupted.");
+            Thread.currentThread().interrupt(); // Restore interrupted state
+        }
+
+    }
+
     public static void endGame() {
         isGameOver = true;
         isStarted = false;
+        //threadWait();
     }
 }
