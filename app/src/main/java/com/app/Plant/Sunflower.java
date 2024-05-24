@@ -30,6 +30,7 @@ public class Sunflower extends Plant implements Action {
                 setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
                 return; 
             }
+        }
         
     }
 }
