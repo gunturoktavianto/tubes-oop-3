@@ -212,7 +212,7 @@ public class GameCLI extends Main {
                         String filePath;
                         System.out.println("MASUKKAN NAMA FILE UNTUK DI LOAD");
                         String input = scanner.nextLine();
-                        filePath = "C:/Guntur/ITB/Akademik/Semester 4/OOP/tubes-oop-3/bin/" + input + ".json/";
+                        filePath = "C:/Users/LENOVO/Documents/GitHub/tubes-oop-3/bin/" + input + ".json/";
                         loadGame(filePath);
                     } 
                     else if (menu.equalsIgnoreCase("Plants List") || menu.equalsIgnoreCase("3")) 
