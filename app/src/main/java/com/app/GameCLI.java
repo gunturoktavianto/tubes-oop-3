@@ -45,12 +45,14 @@ public class GameCLI extends Main {
         private ArrayList<ArrayList<Tile>> lawn;
         private Inventory inventory;
         private int sun;
+        private int zombieCount;
 
         public GameState(long passedTime, ArrayList<ArrayList<Tile>> lawn, Inventory inventory, int sun) {
             this.passedTime = passedTime;
             this.lawn = lawn;
             this.inventory = inventory;
             this.sun = Sun.getSun();
+            this.zombieCount = Zombie.getZombieCount();
         }
     }
 
@@ -491,6 +493,7 @@ public class GameCLI extends Main {
                 
                 // Update your game state with the loaded data
                 passedTime = gameState.passedTime;
+                int tempZombieCount = 0;
                 for (int i = 0; i < gameState.lawn.size(); i++)
                 {
                     for (int j = 0; j < gameState.lawn.get(i).size(); j++)
@@ -508,12 +511,14 @@ public class GameCLI extends Main {
                             for (Zombie z : gameState.lawn.get(i).get(j).getZombies())
                             {
                                 Lawn.getLawn().get(i).get(j).getZombies().add(z);
+                                tempZombieCount++;
                             }
                         }
                     }
                 }
                 inventory = gameState.inventory;
                 Sun.setSun(gameState.sun);
+                Zombie.setZombieCount(tempZombieCount);
                 
                 System.out.println("Game state loaded from " + filePath);
             }
