@@ -392,7 +392,7 @@ public class GameCLI extends Main {
                 while (!isGameOver) {
                     if (!isPaused) {
                         Sun.generateSun();
-                        if((passedTime >=0 && passedTime <= 100) || (passedTime >=201 && passedTime <= 300))
+                        if ((passedTime >=0 && passedTime <= 100) || (passedTime >=201 && passedTime <= 300))
                         {
                             try {
                                 int delay = 5000 + (int) (Math.random() * 5000);

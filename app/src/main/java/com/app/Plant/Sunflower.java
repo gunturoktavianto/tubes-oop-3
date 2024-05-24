@@ -24,12 +24,12 @@ public class Sunflower extends Plant implements Action {
         }
         else
         {
-        // {   if (GameCLI.getPassedTime() >= 100)
-        //     {
+        {   if (GameCLI.getPassedTime() >= 100 && GameCLI.getPassedTime() <= 200)
+            {
                 Sun.setSun(Sun.getSun() + 25);
                 setAttackCooldown(getAttackSpeed());                            // RESET COOLDOWN
                 return; 
-            // }
+            }
         }
         
     }
