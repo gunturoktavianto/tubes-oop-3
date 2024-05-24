@@ -252,45 +252,63 @@ public class Lawn {
     }
 
     public void printLawn() {
-        for (int i = 0; i < 6; i++) {
-            for (int j = 0; j < 10; j++) {
-                if (j == 0)
+        for (int i = -1; i < 6; i++) {                                          
+            for (int j = -1; j < 10; j++) {                                     
+                if ( i == -1 )                                             
                 {
-                    System.out.print("[     ]");
+                    if (j == -1 || j == 0)
+                    {
+                        System.out.print("         ");
+                    }
+                    else
+                    {
+                        System.out.print("   " + (j-1) + "    ");
+                    }
                 }
                 else
                 {
-                    System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[");
-                    if (lawn.get(i).get(j).hasPlant()) 
+                    if (j == -1)
                     {
-                        System.out.print(getPlantInitial(lawn.get(i).get(j).getPlant()));
-                    } 
-                    else 
-                    {
-                        System.out.print(" ");
+                        System.out.print("    " + i + "    ");
                     }
-        
-                    System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "|" + "\u001B[0m");
-        
-                    if (lawn.get(i).get(j).hasZombie()) 
+                    else if (j == 0)
                     {
-                        ArrayList<Zombie> zombies = lawn.get(i).get(j).getZombies();
-                        int zombiesCount = zombies.size();
-                        for (int k = 0; k < zombiesCount; k++) 
+                        System.out.print("[       ]");
+                    }
+                    else
+                    {
+                        System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "[");
+                        if (lawn.get(i).get(j).hasPlant()) 
                         {
-                            System.out.print(getZombieInitial(zombies.get(k)));
-                        }
-                        for (int k = zombiesCount; k < 4; k++) 
+                            System.out.print(getPlantInitial(lawn.get(i).get(j).getPlant()));
+                        } 
+                        else 
                         {
                             System.out.print(" ");
                         }
-                    } 
-                    else 
-                    {
-                        System.out.print("    ");
+            
+                        System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "|" + "\u001B[0m");
+            
+                        if (lawn.get(i).get(j).hasZombie()) 
+                        {
+                            ArrayList<Zombie> zombies = lawn.get(i).get(j).getZombies();
+                            int zombiesCount = zombies.size();
+                            for (int k = 0; k < zombiesCount; k++) 
+                            {
+                                System.out.print(getZombieInitial(zombies.get(k)));
+                            }
+                            for (int k = zombiesCount; k < 4; k++) 
+                            {
+                                System.out.print(" ");
+                            }
+                        } 
+                        else 
+                        {
+                            System.out.print("    ");
+                        }
+            
+                        System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "]" + "\u001B[0m");         
                     }
-        
-                    System.out.print((i == 2 || i == 3 ? "\u001B[34m" : "\u001B[32m") + "]" + "\u001B[0m");         
                 }
             }
             System.out.println();
