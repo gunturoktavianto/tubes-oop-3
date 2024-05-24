@@ -262,7 +262,7 @@ public class Lawn {
                     }
                     else
                     {
-                        System.out.print("   " + (j-1) + "    ");
+                        System.out.print("   " + (j) + "    ");
                     }
                 }
                 else
