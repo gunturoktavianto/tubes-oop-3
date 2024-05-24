@@ -10,6 +10,10 @@ public abstract class Tile {
     private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
     private int row, col;
 
+    public Tile() {
+        // Initialize any default values or perform any necessary setup here
+    }
+
     public abstract void spawnZombie();
 
     public int getTileRow() {
@@ -53,7 +57,7 @@ public abstract class Tile {
     public void addZombie(Zombie zombie) {
         if(GameCLI.getPassedTime() > 80 && GameCLI.getPassedTime() < 100)
         {
-            if (new Random().nextDouble() < 0.6){
+            if (new Random().nextDouble() < 0.5){
                 zombies.add(zombie);
                 Zombie.addZombieCount();
             }

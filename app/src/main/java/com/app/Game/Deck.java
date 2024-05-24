@@ -77,12 +77,11 @@ public class Deck {
         System.out.println("Deck : ");
         if (!deck.isEmpty()){
             for (Pair<Plant, Integer> p: deck){
-                System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
-                i++;
-            }
-            for (int j = i; j<7; j++)
-            {
-                System.out.println(i + ". Empty");
+                if(p.getKey() == null)
+                {
+                    System.out.println(i + ". Empty");
+                }
+                else System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " (Cost : " + deck.get(i-1).getKey().getCost() + ")" + " Cooldown : " + deck.get(i-1).getValue());
                 i++;
             }
         } else {
@@ -120,7 +119,7 @@ public class Deck {
                 {
                     System.out.println(i + ". Empty");
                 }
-                else System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " Cooldown : " + deck.get(i-1).getValue());
+                else System.out.println(i + ". " + deck.get(i-1).getKey().getName() + " (Cost : " + deck.get(i-1).getKey().getCost() + ")" + " Cooldown : " + deck.get(i-1).getValue());
                 i++;
             }
         } else {

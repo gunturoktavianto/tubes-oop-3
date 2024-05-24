@@ -3,14 +3,20 @@ package com.app;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
+import java.io.BufferedReader;
 import java.io.File;    
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Scanner;
 import com.Main;
+import com.app.AbstractClass.Tile;
 import com.app.AbstractClass.Zombie;
 import com.app.Game.*;
 import com.app.Exception.*;
@@ -36,11 +42,11 @@ public class GameCLI extends Main {
 
     private static class GameState {
         private long passedTime;
-        private Lawn lawn;
+        private ArrayList<ArrayList<Tile>> lawn;
         private Inventory inventory;
         private int sun;
 
-        public GameState(long passedTime, Lawn lawn, Inventory inventory, int sun) {
+        public GameState(long passedTime, ArrayList<ArrayList<Tile>> lawn, Inventory inventory, int sun) {
             this.passedTime = passedTime;
             this.lawn = lawn;
             this.inventory = inventory;
@@ -202,9 +208,11 @@ public class GameCLI extends Main {
                         }
                     }
                     else if (menu.equalsIgnoreCase("LOAD") || menu.equalsIgnoreCase("2")) 
-                    {
+                    {   
+                        String filePath;
                         System.out.println("MASUKKAN NAMA FILE UNTUK DI LOAD");
-                        String filePath = scanner.nextLine();
+                        String input = scanner.nextLine();
+                        filePath = "C:/Guntur/ITB/Akademik/Semester 4/OOP/tubes-oop-3/" + input + ".json/";
                         loadGame(filePath);
                     } 
                     else if (menu.equalsIgnoreCase("Plants List") || menu.equalsIgnoreCase("3")) 
@@ -342,7 +350,7 @@ public class GameCLI extends Main {
                                 System.out.println("BACK TO MENU!");
 
                                 endGame();
-                                System.out.println(Thread.activeCount());
+                                
                                 //threadWait();
                                 start();
                                 
@@ -390,14 +398,18 @@ public class GameCLI extends Main {
             public void run() {
                 while (!isGameOver) {
                     if (!isPaused) {
-                        Sun.generateSun();
-                        try {
-                            int delay = 5000 + (int) (Math.random() * 5000);
-                            Thread.sleep(delay);
-                        } catch (InterruptedException e) {
-                            System.out.println("Sun generator thread interrupted.");
-                            e.printStackTrace();
-                            return;
+                        if ((passedTime >=0 && passedTime <= 100) || (passedTime >=201 && passedTime <= 300))
+                        {           
+                            try {
+                                Sun.generateSun();
+                                int delay = 5000 + (int) (Math.random() * 5000);
+                                Thread.sleep(delay);
+                            } catch (InterruptedException e) {
+                                System.out.println("Sun generator thread interrupted.");
+                                e.printStackTrace();
+                                return;
+                            }
+
                         }
                     }
                 }
@@ -434,7 +446,7 @@ public class GameCLI extends Main {
 
     public void saveGame(String filePath) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        GameState gameState = new GameState(passedTime, lawn, inventory, Sun.getSun());
+        GameState gameState = new GameState(passedTime, Lawn.getLawn(), inventory, Sun.getSun());
 
         
         try {
@@ -462,17 +474,41 @@ public class GameCLI extends Main {
     
 
     public void loadGame(String filePath) {
-        // Gson gson = new Gson();
-        // try (FileReader reader = new FileReader(filePath)) {
-        //     Type gameStateType = new TypeToken<GameState>(){}.getType();
-        //     GameState gameState = gson.fromJson(reader, gameStateType);
-        //     passedTime = gameState.passedTime;
-        //     this.lawn = gameState.lawn;
-        //     this.inventory = gameState.inventory;
-        //     System.out.println("Game state loaded from " + filePath);
-        // } catch (IOException e) {
-        //     System.err.println("Failed to load game state: " + e.getMessage());
-        // }
+        Gson gson = new Gson();
+        
+        try {
+            File file = new File(filePath);
+            
+            // Check if the file exists
+            if (!file.exists()) {
+                System.err.println("File does not exist: " + filePath);
+                return;
+            }
+            
+            // Read the JSON data from the file
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                GameState gameState = gson.fromJson(reader, GameState.class);
+                
+                // Update your game state with the loaded data
+                passedTime = gameState.passedTime;
+                // for (int i = 0; i < gameState.lawn.size(); i++)
+                // {
+                //     for (int j = 0; j < gameState.lawn.get(i).size(); j++)
+                //     {
+                //         Lawn.getLawn().get(i).get(j).setPlant(null); = gameState.lawn.get(i).get(j);
+                //     }
+                // }
+                
+                ArrayList<ArrayList<Tile>> lawn = gameState.lawn;
+                inventory = gameState.inventory;
+                Sun.setSun(gameState.sun);
+                
+                System.out.println("Game state loaded from " + filePath);
+            }
+        } catch (IOException e) {
+            System.err.println("Failed to load game state: " + e.getMessage());
+            e.printStackTrace();  // Print stack trace for detailed error information
+        }
     }
 
     private void printGameInfo()
