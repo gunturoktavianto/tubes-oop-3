@@ -17,7 +17,7 @@ import com.app.Exception.*;
 
 public class GameCLI extends Main {
     private final Scanner   scanner;
-    private static long     passedTime;
+    private static long     passedTime = 0;
     private long            startTime, pauseStartTime, totalPausedTime;
     private Lawn            lawn;
     private Inventory       inventory;
@@ -240,7 +240,7 @@ public class GameCLI extends Main {
                     synchronized (scanner) {
                         if (!isPaused) 
                         {
-                            passedTime = (System.currentTimeMillis() - startTime - totalPausedTime) / 1000;
+                            // passedTime = (System.currentTimeMillis() - startTime - totalPausedTime) / 1000;
 
                             if (passedTime > 160 && Zombie.getZombieCount() == 0)
                             {
@@ -305,18 +305,23 @@ public class GameCLI extends Main {
                         }
                         else
                         {
-                            System.out.println("GAME DI PAUSE!, KETIK CONTINUE UNTUK MELANJUTKAN!");
+                            System.out.println("GAME DI PAUSE!");
+                            System.out.println("1. CONTINUE");
+                            System.out.println("2. SAVE");
+                            System.out.println("3. MENU");
+                            System.out.println("4. HELP");
                             System.out.print(">>");
                             String menu = scanner.nextLine();
                             System.out.println();
 
-                            if (menu.equalsIgnoreCase("CONTINUE"))
+                            if (menu.equalsIgnoreCase("CONTINUE") || menu.equalsIgnoreCase("1"))
                             {
                                 isPaused = false;
-                                totalPausedTime += System.currentTimeMillis() - pauseStartTime; // Add the pause duration to totalPausedTime
+                                // totalPausedTime += System.currentTimeMillis() - pauseStartTime; // Add the pause duration to totalPausedTime
                                 System.out.println("GAME CONTINUES!");
+                                startThreads();
                             }
-                            else if (menu.equalsIgnoreCase("SAVE"))
+                            else if (menu.equalsIgnoreCase("SAVE") || menu.equalsIgnoreCase("2"))
                             {
                                 String filePath = "/app/bin/";
                                 System.out.println("MASUKKAN NAMA FILE UNTUK DI SAVE");
@@ -324,12 +329,12 @@ public class GameCLI extends Main {
                                 filePath += inputFilePath;
                                 saveGame(filePath);
                             }
-                            else if (menu.equalsIgnoreCase("MENU"))
+                            else if (menu.equalsIgnoreCase("MENU")|| menu.equalsIgnoreCase("3"))
                             {
                                 System.out.println("BACK TO MENU!");
                                 endGame();
                             }
-                            else if (menu.equalsIgnoreCase("HELP")) {
+                            else if (menu.equalsIgnoreCase("HELP")|| menu.equalsIgnoreCase("4")) {
                                 System.out.println("-----------MENU-----------");
                             }
                             else 
@@ -341,7 +346,6 @@ public class GameCLI extends Main {
                 }
             }
         });
-
         displayThread.start();
     }
 
@@ -351,6 +355,7 @@ public class GameCLI extends Main {
             public void run() {
                 while (!isGameOver) {
                     if (!isPaused) {
+                        passedTime++;
                         lawn.INITIALIZE_ATTACK();
                         lawn.moveAll();
                         inventory.getDeck().plantCooldownThread();
