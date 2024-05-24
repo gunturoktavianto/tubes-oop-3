@@ -499,10 +499,19 @@ public class GameCLI extends Main {
                         {
                             Lawn.getLawn().get(i).get(j).setPlant(null);
                         }
-
+                        else
+                        {
+                            Lawn.getLawn().get(i).get(j).setPlant(gameState.lawn.get(i).get(j).getPlant());
+                        }
+                        if (gameState.lawn.get(i).get(j).hasZombie())
+                        {
+                            for (Zombie z : gameState.lawn.get(i).get(j).getZombies())
+                            {
+                                Lawn.getLawn().get(i).get(j).getZombies().add(z);
+                            }
+                        }
                     }
                 }
-                ArrayList<ArrayList<Tile>> lawn = gameState.lawn;
                 inventory = gameState.inventory;
                 Sun.setSun(gameState.sun);
                 
