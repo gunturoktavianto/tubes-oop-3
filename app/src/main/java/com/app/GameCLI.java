@@ -23,6 +23,7 @@ public class GameCLI extends Main {
     private Inventory       inventory;
     private static boolean  isGameOver, isStarted;
     private boolean         isPaused;
+    // private boolean         backMenu; 
     private Thread          gameThread, generatorThread, displayThread, spawnThread; 
 
     public GameCLI() {
@@ -32,6 +33,7 @@ public class GameCLI extends Main {
         isStarted = false;
         isGameOver = false;
         isPaused = false;
+        // backMenu = false;
     }
 
     private static class GameState {
@@ -51,6 +53,7 @@ public class GameCLI extends Main {
 
         while (true)
         {
+
             if (!isStarted) {
                 synchronized (scanner) {
                     System.out.println();
@@ -178,7 +181,7 @@ public class GameCLI extends Main {
                                     if (!isStarted) {
                                         isStarted = true;
                                         isPaused = false;
-                                        startTime = System.currentTimeMillis();
+                                        // startTime = System.currentTimeMillis();
                                         startThreads();
                                         startDisplayThread();
                                     }
@@ -217,11 +220,11 @@ public class GameCLI extends Main {
                     else if (menu.equalsIgnoreCase("HELP") || menu.equalsIgnoreCase("6"))
                     {
                         System.out.println("-----------MENU-----------");
-                        System.out.println("1. START");
+                        System.out.println("1. START, Mulai Game");
                         System.out.println("2. HELP");
-                        System.out.println("3. Plants List");
-                        System.out.println("4. Zombies List");
-                        System.out.println("5. EXIT");
+                        System.out.println("3. Plants List, List dari plant");
+                        System.out.println("4. Zombies List, List dari Zombie");
+                        System.out.println("5. EXIT, Keluar Game");
                     }
                     else 
                     {
@@ -296,7 +299,7 @@ public class GameCLI extends Main {
                             else if (menu.equalsIgnoreCase("PAUSE") || menu.equalsIgnoreCase("3"))
                             {
                                 isPaused = true;
-                                pauseStartTime = System.currentTimeMillis();    // Record the start time of the pause
+                                // pauseStartTime = System.currentTimeMillis();    // Record the start time of the pause
                             }
                             else 
                             {
@@ -331,8 +334,12 @@ public class GameCLI extends Main {
                             }
                             else if (menu.equalsIgnoreCase("MENU")|| menu.equalsIgnoreCase("3"))
                             {
+                                
                                 System.out.println("BACK TO MENU!");
+                                // isStarted = false;
+                                // isGameOver = false;
                                 endGame();
+    
                             }
                             else if (menu.equalsIgnoreCase("HELP")|| menu.equalsIgnoreCase("4")) {
                                 System.out.println("-----------MENU-----------");
@@ -344,9 +351,18 @@ public class GameCLI extends Main {
                         }
                     }
                 }
+                System.out.println("Back to Main Menu");
             }
         });
+        
         displayThread.start();
+        // if(isPaused)
+        // {
+        //     isGameOver = true;
+        //     isStarted = false;
+        //     backInput = true;
+        // }
+       
     }
 
     private void startThreads() {
@@ -376,12 +392,15 @@ public class GameCLI extends Main {
                 while (!isGameOver) {
                     if (!isPaused) {
                         Sun.generateSun();
-                        try {
-                            int delay = 5000 + (int) (Math.random() * 5000);
-                            Thread.sleep(delay);
-                        } catch (InterruptedException e) {
-                            System.out.println("Sun generator thread interrupted.");
-                            return;
+                        if((passedTime >=0 && passedTime <= 100) || (passedTime >=201 && passedTime <= 300))
+                        {
+                            try {
+                                int delay = 5000 + (int) (Math.random() * 5000);
+                                Thread.sleep(delay);
+                            } catch (InterruptedException e) {
+                                System.out.println("Sun generator thread interrupted.");
+                                return;
+                            }
                         }
                     }
                 }

@@ -2,9 +2,8 @@ package com.app.Zombie;
 
 import com.app.AbstractClass.*;
 import com.app.Game.Lawn;
-import com.app.Interface.SpellCaster;
 
-public class NewspaperZombie extends Zombie implements SpellCaster{
+public class NewspaperZombie extends Zombie{
     
     public NewspaperZombie(int row, int col) {
         setName("Newspaper Zombie");
@@ -14,10 +13,6 @@ public class NewspaperZombie extends Zombie implements SpellCaster{
         setIsAquatic(false);
         setZombiePosition(row, col);
         // Zombie.addZombieCount();
-    }
-
-    public void castSpell(){
-        System.out.println("shing shing");
     }
 
     public void moveForward(){
