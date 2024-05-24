@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import com.app.Game.Lawn;
 
-public abstract class Plant {
+public class Plant {
     private String        name;
     private int           cost;
     private int         health;
@@ -119,5 +119,7 @@ public abstract class Plant {
         isAquatic = aquatic;
     }
 
-    public abstract void action();          // NANTI DULU
+    public void action(){
+
+    }        // NANTI DULU
 }

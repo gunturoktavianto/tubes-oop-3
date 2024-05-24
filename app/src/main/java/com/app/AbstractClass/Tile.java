@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 import com.app.GameCLI;
 
-public abstract class Tile {
+public class Tile {
     private String type;
     private Plant plant = null;
     private ArrayList<Zombie> zombies = new ArrayList<Zombie>();
@@ -14,7 +14,9 @@ public abstract class Tile {
         // Initialize any default values or perform any necessary setup here
     }
 
-    public abstract void spawnZombie();
+    public void spawnZombie(){
+
+    }
 
     public int getTileRow() {
         return this.row;

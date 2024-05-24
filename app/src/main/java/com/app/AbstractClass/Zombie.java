@@ -1,6 +1,6 @@
 package com.app.AbstractClass;
 
-public abstract class Zombie {
+public class Zombie {
     private String name;
     private int health;
     private int attackDamage;

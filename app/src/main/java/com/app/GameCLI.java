@@ -502,7 +502,6 @@ public class GameCLI extends Main {
 
                     }
                 }
-
                 ArrayList<ArrayList<Tile>> lawn = gameState.lawn;
                 inventory = gameState.inventory;
                 Sun.setSun(gameState.sun);
