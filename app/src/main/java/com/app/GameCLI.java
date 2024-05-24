@@ -491,14 +491,18 @@ public class GameCLI extends Main {
                 
                 // Update your game state with the loaded data
                 passedTime = gameState.passedTime;
-                // for (int i = 0; i < gameState.lawn.size(); i++)
-                // {
-                //     for (int j = 0; j < gameState.lawn.get(i).size(); j++)
-                //     {
-                //         Lawn.getLawn().get(i).get(j).setPlant(null); = gameState.lawn.get(i).get(j);
-                //     }
-                // }
-                
+                for (int i = 0; i < gameState.lawn.size(); i++)
+                {
+                    for (int j = 0; j < gameState.lawn.get(i).size(); j++)
+                    {   
+                        if (!gameState.lawn.get(i).get(j).hasPlant())
+                        {
+                            Lawn.getLawn().get(i).get(j).setPlant(null);
+                        }
+
+                    }
+                }
+
                 ArrayList<ArrayList<Tile>> lawn = gameState.lawn;
                 inventory = gameState.inventory;
                 Sun.setSun(gameState.sun);
