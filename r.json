@@ -1,0 +1,244 @@
+{
+  "passedTime": 45,
+  "lawn": {},
+  "inventory": {
+    "inventory": [
+      {
+        "name": "Peashooter",
+        "cost": 100,
+        "health": 100,
+        "attackDamage": 25,
+        "attackSpeed": 4,
+        "attackCooldown": 0,
+        "range": -1,
+        "plantingCooldown": 10,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "name": "SnowPea",
+        "cost": 175,
+        "health": 100,
+        "attackDamage": 25,
+        "attackSpeed": 4,
+        "attackCooldown": 0,
+        "range": -1,
+        "plantingCooldown": 10,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "name": "Wallnut",
+        "cost": 50,
+        "health": 1000,
+        "attackDamage": 0,
+        "attackSpeed": 0,
+        "attackCooldown": 99999,
+        "range": 0,
+        "plantingCooldown": 20,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "ranges": 0,
+        "name": "Chomper",
+        "cost": 150,
+        "health": 100,
+        "attackDamage": 500,
+        "attackSpeed": 10,
+        "attackCooldown": 0,
+        "range": 1,
+        "plantingCooldown": 10,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "name": "Jalapeno",
+        "cost": 125,
+        "health": 100000,
+        "attackDamage": 5000,
+        "attackSpeed": 0,
+        "attackCooldown": 3,
+        "range": -1,
+        "plantingCooldown": 10,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "ranges": 0,
+        "cols": 0,
+        "name": "Squash",
+        "cost": 50,
+        "health": 10000,
+        "attackDamage": 5000,
+        "attackSpeed": 0,
+        "attackCooldown": 0,
+        "range": 1,
+        "plantingCooldown": 20,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "name": "Sunflower",
+        "cost": 50,
+        "health": 100,
+        "attackDamage": 0,
+        "attackSpeed": 3,
+        "attackCooldown": 3,
+        "range": 0,
+        "plantingCooldown": 10,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "name": "Repeater",
+        "cost": 200,
+        "health": 100,
+        "attackDamage": 50,
+        "attackSpeed": 4,
+        "attackCooldown": 0,
+        "range": -1,
+        "plantingCooldown": 10,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "name": "Lilypad",
+        "cost": 25,
+        "health": 100,
+        "attackDamage": 0,
+        "attackSpeed": 0,
+        "attackCooldown": 9999,
+        "range": 0,
+        "plantingCooldown": 10,
+        "isAquatic": true,
+        "row": 0,
+        "col": 0
+      },
+      {
+        "name": "Kubis",
+        "cost": 100,
+        "health": 100,
+        "attackDamage": 25,
+        "attackSpeed": 4,
+        "attackCooldown": 0,
+        "range": -1,
+        "plantingCooldown": 10,
+        "isAquatic": false,
+        "row": 0,
+        "col": 0
+      }
+    ],
+    "deck": {
+      "deck": [
+        {
+          "key": {
+            "name": "Peashooter",
+            "cost": 100,
+            "health": 100,
+            "attackDamage": 25,
+            "attackSpeed": 4,
+            "attackCooldown": 0,
+            "range": -1,
+            "plantingCooldown": 10,
+            "isAquatic": false,
+            "row": 0,
+            "col": 0
+          },
+          "value": 0
+        },
+        {
+          "key": {
+            "name": "SnowPea",
+            "cost": 175,
+            "health": 100,
+            "attackDamage": 25,
+            "attackSpeed": 4,
+            "attackCooldown": 0,
+            "range": -1,
+            "plantingCooldown": 10,
+            "isAquatic": false,
+            "row": 0,
+            "col": 0
+          },
+          "value": 0
+        },
+        {
+          "key": {
+            "name": "Sunflower",
+            "cost": 50,
+            "health": 100,
+            "attackDamage": 0,
+            "attackSpeed": 3,
+            "attackCooldown": 3,
+            "range": 0,
+            "plantingCooldown": 10,
+            "isAquatic": false,
+            "row": 0,
+            "col": 0
+          },
+          "value": 0
+        },
+        {
+          "key": {
+            "ranges": 0,
+            "name": "Chomper",
+            "cost": 150,
+            "health": 100,
+            "attackDamage": 500,
+            "attackSpeed": 10,
+            "attackCooldown": 0,
+            "range": 1,
+            "plantingCooldown": 10,
+            "isAquatic": false,
+            "row": 0,
+            "col": 0
+          },
+          "value": 0
+        },
+        {
+          "key": {
+            "name": "Jalapeno",
+            "cost": 125,
+            "health": 100000,
+            "attackDamage": 5000,
+            "attackSpeed": 0,
+            "attackCooldown": 3,
+            "range": -1,
+            "plantingCooldown": 10,
+            "isAquatic": false,
+            "row": 0,
+            "col": 0
+          },
+          "value": 0
+        },
+        {
+          "key": {
+            "name": "Lilypad",
+            "cost": 25,
+            "health": 100,
+            "attackDamage": 0,
+            "attackSpeed": 0,
+            "attackCooldown": 9999,
+            "range": 0,
+            "plantingCooldown": 10,
+            "isAquatic": true,
+            "row": 0,
+            "col": 0
+          },
+          "value": 0
+        }
+      ],
+      "MAX_SIZE": 6
+    }
+  },
+  "sun": 150
+}
