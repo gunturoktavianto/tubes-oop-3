@@ -212,7 +212,7 @@ public class GameCLI extends Main {
                         String filePath;
                         System.out.println("MASUKKAN NAMA FILE UNTUK DI LOAD");
                         String input = scanner.nextLine();
-                        filePath = "C:/Guntur/ITB/Akademik/Semester 4/OOP/tubes-oop-3/" + input + ".json/";
+                        filePath = "C:/Guntur/ITB/Akademik/Semester 4/OOP/tubes-oop-3/bin/" + input + ".json/";
                         loadGame(filePath);
                     } 
                     else if (menu.equalsIgnoreCase("Plants List") || menu.equalsIgnoreCase("3")) 
@@ -339,7 +339,7 @@ public class GameCLI extends Main {
                             }
                             else if (menu.equalsIgnoreCase("SAVE") || menu.equalsIgnoreCase("2"))
                             {   
-                                String filePath = "C:/Guntur/ITB/Akademik/Semester 4/OOP/tubes-oop-3/";
+                                String filePath = "C:/Guntur/ITB/Akademik/Semester 4/OOP/tubes-oop-3/bin/";
                                 System.out.println("MASUKKAN NAMA FILE UNTUK DI SAVE");
                                 String inputFilePath = scanner.nextLine();
                                 filePath += inputFilePath + ".json";
